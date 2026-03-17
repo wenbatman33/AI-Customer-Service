@@ -1,16 +1,16 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
-const http = require('http');
+const cors    = require('cors');
+const http    = require('http');
 const WebSocket = require('ws');
-const fetch = require('node-fetch');
+const fetch   = require('node-fetch');
 
-const app = express();
+const app    = express();
 app.use(cors());
 app.use(express.json());
 
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+const wss    = new WebSocket.Server({ server });
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3100;
@@ -22,26 +22,28 @@ const ANYTHINGLLM_BASE      = process.env.ANYTHINGLLM_BASE      || 'http://anyth
 const ANYTHINGLLM_API_KEY   = process.env.ANYTHINGLLM_API_KEY   || '';
 const ANYTHINGLLM_WORKSPACE = process.env.ANYTHINGLLM_WORKSPACE || 'default';
 
+const LIVECHAT_LICENSE_ID    = process.env.LIVECHAT_LICENSE_ID    || '';
 const LIVECHAT_CLIENT_ID     = process.env.LIVECHAT_CLIENT_ID     || '';
 const LIVECHAT_CLIENT_SECRET = process.env.LIVECHAT_CLIENT_SECRET || '';
 const ACTIVE_PLATFORM        = process.env.LIVECHAT_ACTIVE_PLATFORM || 'both';
 
-// In-memory session store: livechat thread_id → dify conversation_id
+// In-memory store: session → dify conversation_id
 const difyConversations = {};
 
 // ── WebSocket Broadcast ───────────────────────────────────────────────────────
 function broadcast(data) {
   const payload = JSON.stringify(data);
   wss.clients.forEach((client) => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(payload);
-    }
+    if (client.readyState === WebSocket.OPEN) client.send(payload);
   });
 }
 
 // ── Dify API ──────────────────────────────────────────────────────────────────
-async function queryDify(message, threadId) {
-  const conversationId = difyConversations[threadId] || '';
+async function queryDify(message, sessionId) {
+  if (!DIFY_API_KEY) return { answer: '[未設定 Dify API Key]', ms: 0 };
+
+  const conversationId = difyConversations[sessionId] || '';
+  const t0 = Date.now();
   try {
     const res = await fetch(`${DIFY_API_BASE}/v1/chat-messages`, {
       method: 'POST',
@@ -54,28 +56,25 @@ async function queryDify(message, threadId) {
         query: message,
         response_mode: 'blocking',
         conversation_id: conversationId,
-        user: `livechat-${threadId}`,
+        user: `session-${sessionId}`,
       }),
     });
-
-    if (!res.ok) {
-      const err = await res.text();
-      throw new Error(`Dify API ${res.status}: ${err}`);
-    }
-
+    const ms = Date.now() - t0;
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${await res.text()}`);
     const data = await res.json();
-    if (data.conversation_id) {
-      difyConversations[threadId] = data.conversation_id;
-    }
-    return data.answer || '';
+    if (data.conversation_id) difyConversations[sessionId] = data.conversation_id;
+    return { answer: data.answer || '', ms };
   } catch (err) {
     console.error('[Dify]', err.message);
-    return `[Dify 錯誤] ${err.message}`;
+    return { answer: `[Dify 錯誤] ${err.message}`, ms: Date.now() - t0 };
   }
 }
 
 // ── AnythingLLM API ───────────────────────────────────────────────────────────
-async function queryAnythingLLM(message, threadId) {
+async function queryAnythingLLM(message, sessionId) {
+  if (!ANYTHINGLLM_API_KEY) return { answer: '[未設定 AnythingLLM API Key]', ms: 0 };
+
+  const t0 = Date.now();
   try {
     const res = await fetch(
       `${ANYTHINGLLM_BASE}/api/v1/workspace/${ANYTHINGLLM_WORKSPACE}/chat`,
@@ -88,28 +87,23 @@ async function queryAnythingLLM(message, threadId) {
         body: JSON.stringify({
           message,
           mode: 'chat',
-          sessionId: `livechat-${threadId}`,
+          sessionId: `session-${sessionId}`,
         }),
       }
     );
-
-    if (!res.ok) {
-      const err = await res.text();
-      throw new Error(`AnythingLLM API ${res.status}: ${err}`);
-    }
-
+    const ms = Date.now() - t0;
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${await res.text()}`);
     const data = await res.json();
-    return data.textResponse || '';
+    return { answer: data.textResponse || '', ms };
   } catch (err) {
     console.error('[AnythingLLM]', err.message);
-    return `[AnythingLLM 錯誤] ${err.message}`;
+    return { answer: `[AnythingLLM 錯誤] ${err.message}`, ms: Date.now() - t0 };
   }
 }
 
 // ── LiveChat Messaging API ────────────────────────────────────────────────────
 async function sendLiveChatResponse(chatId, text) {
   if (!LIVECHAT_CLIENT_ID || !LIVECHAT_CLIENT_SECRET) return;
-
   const auth = Buffer.from(`${LIVECHAT_CLIENT_ID}:${LIVECHAT_CLIENT_SECRET}`).toString('base64');
   try {
     await fetch('https://api.livechatinc.com/v3.5/action/send_event', {
@@ -117,15 +111,10 @@ async function sendLiveChatResponse(chatId, text) {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Basic ${auth}`,
-        'X-Region': 'fra',
       },
       body: JSON.stringify({
         chat_id: chatId,
-        event: {
-          type: 'message',
-          text,
-          visibility: 'all',
-        },
+        event: { type: 'message', text, visibility: 'all' },
       }),
     });
   } catch (err) {
@@ -138,63 +127,77 @@ async function sendLiveChatResponse(chatId, text) {
 // Health check
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
-// LiveChat Webhook — receives incoming customer messages
-// Configure webhook URL in LiveChat: Settings → Integrations → Webhooks
-// Event: incoming_chat or chat_message_created
+// Config — used by demo-ui to inject LiveChat license and show setup status
+app.get('/api/config', (_req, res) => {
+  res.json({
+    livechatLicenseId: LIVECHAT_LICENSE_ID,
+    activePlatform:    ACTIVE_PLATFORM,
+    difyConfigured:    !!DIFY_API_KEY,
+    anythingllmConfigured: !!ANYTHINGLLM_API_KEY,
+  });
+});
+
+// Status — check if downstream services are reachable
+app.get('/api/status', async (_req, res) => {
+  const [difyOk, allmOk] = await Promise.all([
+    fetch(`${DIFY_API_BASE}/health`, { signal: AbortSignal.timeout(3000) })
+      .then(r => r.ok).catch(() => false),
+    fetch(`${ANYTHINGLLM_BASE}/api/ping`, { signal: AbortSignal.timeout(3000) })
+      .then(r => r.ok).catch(() => false),
+  ]);
+  res.json({ dify: difyOk, anythingllm: allmOk });
+});
+
+// LiveChat Webhook
 app.post('/webhook/livechat', async (req, res) => {
   const payload = req.body;
-  console.log('[Webhook] received:', JSON.stringify(payload).slice(0, 200));
+  console.log('[Webhook]', JSON.stringify(payload).slice(0, 200));
 
-  // Extract message text and chat info from LiveChat webhook payload
-  const event   = payload?.event || {};
-  const chat    = payload?.chat  || {};
-  const chatId  = chat.id || payload?.chat_id || 'unknown';
-  const message = event?.text || payload?.text || '';
-
-  // Ignore bot/agent messages to avoid loops
+  const event      = payload?.event || {};
+  const chat       = payload?.chat  || {};
+  const chatId     = chat.id || payload?.chat_id || 'unknown';
+  const message    = event?.text || payload?.text || '';
   const authorType = event?.author?.type || payload?.author_type || '';
+
   if (!message || authorType === 'agent') {
     return res.status(200).json({ ok: true, skipped: true });
   }
 
-  res.status(200).json({ ok: true }); // respond quickly to LiveChat
+  res.status(200).json({ ok: true }); // respond to LiveChat immediately
 
-  // Query both platforms in parallel
-  const [difyAnswer, anythingAnswer] = await Promise.all([
-    ACTIVE_PLATFORM !== 'anythingllm' ? queryDify(message, chatId) : Promise.resolve(''),
-    ACTIVE_PLATFORM !== 'dify'        ? queryAnythingLLM(message, chatId) : Promise.resolve(''),
+  const [difyResult, allmResult] = await Promise.all([
+    ACTIVE_PLATFORM !== 'anythingllm' ? queryDify(message, chatId)       : Promise.resolve({ answer: '', ms: 0 }),
+    ACTIVE_PLATFORM !== 'dify'        ? queryAnythingLLM(message, chatId) : Promise.resolve({ answer: '', ms: 0 }),
   ]);
 
-  // Broadcast to demo dashboard
   broadcast({
     type: 'comparison',
     chatId,
     message,
-    dify: difyAnswer,
-    anythingllm: anythingAnswer,
+    dify:        { answer: difyResult.answer,  ms: difyResult.ms },
+    anythingllm: { answer: allmResult.answer,  ms: allmResult.ms },
     timestamp: new Date().toISOString(),
   });
 
-  // Send response back to LiveChat
   if (ACTIVE_PLATFORM === 'dify') {
-    await sendLiveChatResponse(chatId, difyAnswer);
+    await sendLiveChatResponse(chatId, difyResult.answer);
   } else if (ACTIVE_PLATFORM === 'anythingllm') {
-    await sendLiveChatResponse(chatId, anythingAnswer);
+    await sendLiveChatResponse(chatId, allmResult.answer);
   } else {
-    // both: send Dify response to LiveChat, show both in dashboard
-    const combined = `[Dify]\n${difyAnswer}\n\n[AnythingLLM]\n${anythingAnswer}`;
+    const combined = `[Dify]\n${difyResult.answer}\n\n[AnythingLLM]\n${allmResult.answer}`;
     await sendLiveChatResponse(chatId, combined);
   }
 });
 
-// Manual test endpoint — simulate a message without LiveChat
+// Manual test — simulate a message without LiveChat
 app.post('/api/test', async (req, res) => {
   const { message } = req.body;
   if (!message) return res.status(400).json({ error: 'message required' });
 
-  const sessionId = 'manual-test';
+  // Unique session per request so histories don't bleed between manual tests
+  const sessionId = `manual-${Date.now()}`;
 
-  const [difyAnswer, anythingAnswer] = await Promise.all([
+  const [difyResult, allmResult] = await Promise.all([
     queryDify(message, sessionId),
     queryAnythingLLM(message, sessionId),
   ]);
@@ -203,8 +206,8 @@ app.post('/api/test', async (req, res) => {
     type: 'comparison',
     chatId: sessionId,
     message,
-    dify: difyAnswer,
-    anythingllm: anythingAnswer,
+    dify:        { answer: difyResult.answer, ms: difyResult.ms },
+    anythingllm: { answer: allmResult.answer, ms: allmResult.ms },
     timestamp: new Date().toISOString(),
   };
 
@@ -214,8 +217,9 @@ app.post('/api/test', async (req, res) => {
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 server.listen(PORT, () => {
-  console.log(`[webhook-bridge] listening on port ${PORT}`);
-  console.log(`  Dify API    : ${DIFY_API_BASE}`);
-  console.log(`  AnythingLLM : ${ANYTHINGLLM_BASE}`);
-  console.log(`  Platform    : ${ACTIVE_PLATFORM}`);
+  console.log(`[webhook-bridge] port ${PORT}`);
+  console.log(`  Dify         : ${DIFY_API_BASE} (key: ${DIFY_API_KEY ? '✓' : '✗ not set'})`);
+  console.log(`  AnythingLLM  : ${ANYTHINGLLM_BASE} (key: ${ANYTHINGLLM_API_KEY ? '✓' : '✗ not set'})`);
+  console.log(`  Platform     : ${ACTIVE_PLATFORM}`);
+  console.log(`  LiveChat ID  : ${LIVECHAT_LICENSE_ID || '(not set)'}`);
 });

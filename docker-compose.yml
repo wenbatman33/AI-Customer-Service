@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   # ──────────────────────────────────────────
-  # Dify Services
+  # Dify — Database
   # ──────────────────────────────────────────
   dify-db:
     image: postgres:15-alpine
@@ -34,13 +34,26 @@ services:
       timeout: 5s
       retries: 5
 
+  # Qdrant — vector store for Dify
+  dify-qdrant:
+    image: qdrant/qdrant:latest
+    restart: always
+    volumes:
+      - dify-qdrant-data:/qdrant/storage
+    networks:
+      - ai-net
+
+  # ──────────────────────────────────────────
+  # Dify — API & Worker
+  # ──────────────────────────────────────────
   dify-api:
     image: langgenius/dify-api:latest
     restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
-      # App
       MODE: api
-      SECRET_KEY: ${DIFY_SECRET_KEY:-your-secret-key-change-me}
+      SECRET_KEY: ${DIFY_SECRET_KEY:-your-secret-key-change-me-32chars}
       LOG_LEVEL: INFO
       # DB
       DB_USERNAME: ${DIFY_DB_USER:-dify}
@@ -48,18 +61,26 @@ services:
       DB_HOST: dify-db
       DB_PORT: 5432
       DB_DATABASE: ${DIFY_DB_NAME:-dify}
-      # Redis
+      # Redis / Celery
       REDIS_HOST: dify-redis
       REDIS_PORT: 6379
+      CELERY_BROKER_URL: redis://:@dify-redis:6379/1
+      BROKER_USE_SSL: 'false'
       # Storage
       STORAGE_TYPE: local
       LOCAL_STORAGE_PATH: /app/storage
       # CORS
       CONSOLE_CORS_ALLOW_ORIGINS: "*"
       WEB_API_CORS_ALLOW_ORIGINS: "*"
+      # Vector DB — Qdrant
+      VECTOR_STORE: qdrant
+      QDRANT_URL: http://dify-qdrant:6333
+      QDRANT_API_KEY: ""
       # Sandbox
       CODE_EXECUTION_ENDPOINT: http://dify-sandbox:8194
-      CODE_MAX_NUMBER: 10
+      CODE_EXECUTION_API_KEY: ${DIFY_SANDBOX_KEY:-sandbox-secret}
+      # Ollama (host machine)
+      OLLAMA_API_BASE: http://host.docker.internal:11434
     volumes:
       - dify-storage:/app/storage
     depends_on:
@@ -75,9 +96,11 @@ services:
   dify-worker:
     image: langgenius/dify-api:latest
     restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       MODE: worker
-      SECRET_KEY: ${DIFY_SECRET_KEY:-your-secret-key-change-me}
+      SECRET_KEY: ${DIFY_SECRET_KEY:-your-secret-key-change-me-32chars}
       DB_USERNAME: ${DIFY_DB_USER:-dify}
       DB_PASSWORD: ${DIFY_DB_PASSWORD:-difypassword}
       DB_HOST: dify-db
@@ -85,9 +108,16 @@ services:
       DB_DATABASE: ${DIFY_DB_NAME:-dify}
       REDIS_HOST: dify-redis
       REDIS_PORT: 6379
+      CELERY_BROKER_URL: redis://:@dify-redis:6379/1
+      BROKER_USE_SSL: 'false'
       STORAGE_TYPE: local
       LOCAL_STORAGE_PATH: /app/storage
+      VECTOR_STORE: qdrant
+      QDRANT_URL: http://dify-qdrant:6333
+      QDRANT_API_KEY: ""
       CODE_EXECUTION_ENDPOINT: http://dify-sandbox:8194
+      CODE_EXECUTION_API_KEY: ${DIFY_SANDBOX_KEY:-sandbox-secret}
+      OLLAMA_API_BASE: http://host.docker.internal:11434
     volumes:
       - dify-storage:/app/storage
     depends_on:
@@ -145,21 +175,18 @@ services:
       - "3001:3001"
 
   # ──────────────────────────────────────────
-  # Webhook Bridge (Custom)
+  # Webhook Bridge
   # ──────────────────────────────────────────
   webhook-bridge:
     build: ./webhook-bridge
     restart: always
     environment:
       PORT: 3100
-      # Dify
       DIFY_API_BASE: http://dify-api:5001
       DIFY_API_KEY: ${DIFY_API_KEY:-}
-      # AnythingLLM
       ANYTHINGLLM_BASE: http://anythingllm:3001
       ANYTHINGLLM_API_KEY: ${ANYTHINGLLM_API_KEY:-}
       ANYTHINGLLM_WORKSPACE: ${ANYTHINGLLM_WORKSPACE:-default}
-      # LiveChat
       LIVECHAT_LICENSE_ID: ${LIVECHAT_LICENSE_ID:-}
       LIVECHAT_CLIENT_ID: ${LIVECHAT_CLIENT_ID:-}
       LIVECHAT_CLIENT_SECRET: ${LIVECHAT_CLIENT_SECRET:-}
@@ -173,7 +200,7 @@ services:
       - "3100:3100"
 
   # ──────────────────────────────────────────
-  # Demo UI
+  # Demo Dashboard
   # ──────────────────────────────────────────
   demo-ui:
     build: ./demo-ui
@@ -190,5 +217,6 @@ networks:
 volumes:
   dify-db-data:
   dify-redis-data:
+  dify-qdrant-data:
   dify-storage:
   anythingllm-storage:

@@ -11,54 +11,74 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: #0f1117;
       color: #e2e8f0;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
 
-    /* ── Header ─────────────────────────────────────────── */
+    /* ── Header ──────────────────────────────────────────────────── */
     header {
       background: #1a1d27;
       border-bottom: 1px solid #2d3148;
-      padding: 16px 24px;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      flex-shrink: 0;
     }
-    header h1 {
-      font-size: 18px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.3px;
-    }
+    header h1 { font-size: 16px; font-weight: 700; color: #fff; }
     header h1 span { color: #6366f1; }
 
-    .status-badge {
-      display: flex;
+    .hdr-right { display: flex; align-items: center; gap: 8px; }
+
+    .badge {
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 12px;
+      gap: 5px;
+      font-size: 11px;
       color: #94a3b8;
       background: #0f1117;
       border: 1px solid #2d3148;
       border-radius: 20px;
-      padding: 4px 12px;
+      padding: 3px 10px;
+      cursor: default;
     }
-    .status-dot {
-      width: 7px; height: 7px;
+    .badge.clickable { cursor: pointer; }
+    .badge.clickable:hover { border-color: #6366f1; color: #e2e8f0; }
+
+    .dot {
+      width: 6px; height: 6px;
       border-radius: 50%;
-      background: #ef4444;
+      background: #475569;
+      flex-shrink: 0;
       transition: background .3s;
     }
-    .status-dot.connected { background: #22c55e; }
+    .dot.ok      { background: #22c55e; }
+    .dot.warn    { background: #f59e0b; }
+    .dot.error   { background: #ef4444; }
 
-    /* ── Layout ──────────────────────────────────────────── */
+    /* ── Service status bar ──────────────────────────────────────── */
+    #status-bar {
+      background: #131620;
+      border-bottom: 1px solid #2d3148;
+      padding: 6px 20px;
+      display: flex;
+      gap: 20px;
+      font-size: 11px;
+      color: #64748b;
+      flex-shrink: 0;
+    }
+    .svc { display: flex; align-items: center; gap: 5px; }
+    .svc .label { font-weight: 600; color: #94a3b8; }
+
+    /* ── Main grid ───────────────────────────────────────────────── */
     main {
       flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
+      grid-template-rows: 1fr auto;
+      min-height: 0;
     }
 
     .panel {
@@ -67,53 +87,65 @@
       border-right: 1px solid #2d3148;
       min-height: 0;
     }
-    .panel:last-child { border-right: none; }
+    .panel:last-of-type { border-right: none; }
 
     .panel-header {
-      padding: 14px 20px;
+      padding: 10px 16px;
       border-bottom: 1px solid #2d3148;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       background: #1a1d27;
+      flex-shrink: 0;
     }
     .panel-logo {
-      width: 28px; height: 28px;
-      border-radius: 6px;
+      width: 24px; height: 24px;
+      border-radius: 5px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 800;
+      font-size: 12px; font-weight: 800;
+      flex-shrink: 0;
     }
     .logo-dify { background: #6366f1; color: #fff; }
     .logo-allm { background: #0ea5e9; color: #fff; }
+    .panel-header h2 { font-size: 14px; font-weight: 600; }
 
-    .panel-header h2 { font-size: 15px; font-weight: 600; }
-    .panel-header .sub { font-size: 11px; color: #64748b; margin-left: auto; }
+    .panel-meta { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+    .panel-url  { font-size: 10px; color: #475569; }
+    .svc-dot    { width: 6px; height: 6px; border-radius: 50%; background: #475569; transition: background .3s; }
+    .svc-dot.ok { background: #22c55e; }
 
+    .btn-clear {
+      font-size: 10px;
+      color: #64748b;
+      background: transparent;
+      border: 1px solid #2d3148;
+      border-radius: 4px;
+      padding: 2px 7px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .btn-clear:hover { color: #e2e8f0; border-color: #475569; }
+
+    /* ── Chat area ───────────────────────────────────────────────── */
     .chat-area {
       flex: 1;
       overflow-y: auto;
-      padding: 20px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      scroll-behavior: smooth;
+      gap: 14px;
     }
 
-    /* ── Messages ────────────────────────────────────────── */
-    .msg-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .msg-group { display: flex; flex-direction: column; gap: 6px; }
 
     .msg-user {
       align-self: flex-end;
       background: #4f46e5;
       color: #fff;
-      border-radius: 16px 16px 4px 16px;
-      padding: 10px 14px;
+      border-radius: 14px 14px 3px 14px;
+      padding: 8px 12px;
       max-width: 80%;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.5;
     }
 
@@ -121,92 +153,118 @@
       align-self: flex-start;
       background: #1e2235;
       border: 1px solid #2d3148;
-      border-radius: 16px 16px 16px 4px;
-      padding: 10px 14px;
-      max-width: 88%;
-      font-size: 14px;
+      border-radius: 14px 14px 14px 3px;
+      padding: 8px 12px;
+      max-width: 90%;
+      font-size: 13px;
       line-height: 1.6;
       white-space: pre-wrap;
     }
 
-    .msg-time {
-      font-size: 10px;
-      color: #475569;
-      text-align: right;
-    }
-
-    .msg-loading {
+    .msg-footer {
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 10px 14px;
+      gap: 8px;
+      font-size: 10px;
+      color: #475569;
+    }
+    .msg-time { }
+    .msg-ms {
       background: #1e2235;
       border: 1px solid #2d3148;
-      border-radius: 16px 16px 16px 4px;
-      width: fit-content;
-      font-size: 13px;
+      border-radius: 10px;
+      padding: 1px 6px;
       color: #64748b;
     }
-    .dot-anim { animation: blink 1.2s infinite; }
+    .msg-ms.fast  { color: #22c55e; border-color: #166534; }
+    .msg-ms.mid   { color: #f59e0b; border-color: #78350f; }
+    .msg-ms.slow  { color: #ef4444; border-color: #7f1d1d; }
+
+    /* loading */
+    .msg-loading {
+      align-self: flex-start;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 12px;
+      background: #1e2235;
+      border: 1px solid #2d3148;
+      border-radius: 14px 14px 14px 3px;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .dot-anim { display: inline-block; animation: blink 1.2s infinite; }
     .dot-anim:nth-child(2) { animation-delay: .2s; }
     .dot-anim:nth-child(3) { animation-delay: .4s; }
-    @keyframes blink {
-      0%, 80%, 100% { opacity: .2; }
-      40% { opacity: 1; }
-    }
+    @keyframes blink { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
 
-    /* ── Input bar ───────────────────────────────────────── */
-    .input-bar {
-      border-top: 1px solid #2d3148;
-      padding: 16px 20px;
-      background: #1a1d27;
-      grid-column: 1 / -1;
-      display: flex;
-      gap: 10px;
-    }
-    .input-bar input {
-      flex: 1;
-      background: #0f1117;
-      border: 1px solid #2d3148;
-      border-radius: 10px;
-      color: #e2e8f0;
-      font-size: 14px;
-      padding: 10px 14px;
-      outline: none;
-      transition: border .2s;
-    }
-    .input-bar input:focus { border-color: #6366f1; }
-    .input-bar input::placeholder { color: #475569; }
-
-    .btn-send {
-      background: #6366f1;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      padding: 10px 20px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background .2s, opacity .2s;
-    }
-    .btn-send:hover { background: #4f46e5; }
-    .btn-send:disabled { opacity: .5; cursor: not-allowed; }
-
-    /* ── Empty state ─────────────────────────────────────── */
+    /* empty */
     .empty-state {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      color: #334155;
-      font-size: 13px;
+      gap: 6px;
+      color: #2d3148;
+      font-size: 12px;
       text-align: center;
     }
-    .empty-state .icon { font-size: 36px; margin-bottom: 4px; }
+    .empty-icon { font-size: 32px; margin-bottom: 4px; }
 
-    /* ── Scrollbar ───────────────────────────────────────── */
+    /* ── Input bar ───────────────────────────────────────────────── */
+    .input-bar {
+      border-top: 1px solid #2d3148;
+      padding: 12px 16px;
+      background: #1a1d27;
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .input-bar input {
+      flex: 1;
+      background: #0f1117;
+      border: 1px solid #2d3148;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 13px;
+      padding: 9px 12px;
+      outline: none;
+      transition: border .15s;
+    }
+    .input-bar input:focus { border-color: #6366f1; }
+    .input-bar input::placeholder { color: #334155; }
+
+    .btn-send {
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, opacity .15s;
+      white-space: nowrap;
+    }
+    .btn-send:hover    { background: #4f46e5; }
+    .btn-send:disabled { opacity: .45; cursor: not-allowed; }
+
+    /* ── Config notice ───────────────────────────────────────────── */
+    .notice {
+      background: #1c1a09;
+      border: 1px solid #78350f;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #fbbf24;
+      line-height: 1.5;
+      margin: 12px;
+    }
+
+    /* scrollbar */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #2d3148; border-radius: 4px; }
@@ -214,170 +272,161 @@
 </head>
 <body>
 
+<!-- Header -->
 <header>
   <h1>AI 客服比較 <span>Demo</span></h1>
-  <div style="display:flex;gap:10px;align-items:center;">
-    <div class="status-badge">
-      <div class="status-dot" id="ws-dot"></div>
-      <span id="ws-label">未連線</span>
+  <div class="hdr-right">
+    <div class="badge" id="ws-badge">
+      <div class="dot" id="ws-dot"></div>
+      <span id="ws-label">連線中…</span>
     </div>
-    <div class="status-badge" style="cursor:pointer;" onclick="openDify()">⚙ Dify</div>
-    <div class="status-badge" style="cursor:pointer;" onclick="openAllm()">⚙ AnythingLLM</div>
+    <div class="badge clickable" onclick="window.open('http://localhost:3000','_blank')">⚙ Dify</div>
+    <div class="badge clickable" onclick="window.open('http://localhost:3001','_blank')">⚙ AnythingLLM</div>
   </div>
 </header>
 
+<!-- Service status bar -->
+<div id="status-bar">
+  <div class="svc">
+    <div class="dot" id="dot-dify"></div>
+    <span class="label">Dify API</span>
+    <span id="label-dify">—</span>
+  </div>
+  <div class="svc">
+    <div class="dot" id="dot-allm"></div>
+    <span class="label">AnythingLLM</span>
+    <span id="label-allm">—</span>
+  </div>
+  <div class="svc" style="margin-left:auto">
+    <span id="livechat-status">LiveChat: 未設定</span>
+  </div>
+</div>
+
 <main>
   <!-- Dify Panel -->
-  <div class="panel" id="panel-dify">
+  <div class="panel">
     <div class="panel-header">
       <div class="panel-logo logo-dify">D</div>
       <h2>Dify</h2>
-      <span class="sub">localhost:3000</span>
+      <div class="panel-meta">
+        <div class="svc-dot" id="svc-dify"></div>
+        <span class="panel-url">:3000</span>
+        <button class="btn-clear" onclick="clearPanel('dify')">清除</button>
+      </div>
     </div>
     <div class="chat-area" id="chat-dify">
       <div class="empty-state" id="empty-dify">
-        <div class="icon">🤖</div>
-        <div>等待第一則訊息…</div>
-        <div style="color:#1e2235">在下方輸入框傳送，或使用 LiveChat widget</div>
+        <div class="empty-icon">🤖</div>
+        <div>等待訊息…</div>
       </div>
     </div>
   </div>
 
   <!-- AnythingLLM Panel -->
-  <div class="panel" id="panel-allm">
+  <div class="panel">
     <div class="panel-header">
       <div class="panel-logo logo-allm">A</div>
       <h2>AnythingLLM</h2>
-      <span class="sub">localhost:3001</span>
+      <div class="panel-meta">
+        <div class="svc-dot" id="svc-allm"></div>
+        <span class="panel-url">:3001</span>
+        <button class="btn-clear" onclick="clearPanel('allm')">清除</button>
+      </div>
     </div>
     <div class="chat-area" id="chat-allm">
       <div class="empty-state" id="empty-allm">
-        <div class="icon">🧠</div>
-        <div>等待第一則訊息…</div>
+        <div class="empty-icon">🧠</div>
+        <div>等待訊息…</div>
       </div>
     </div>
   </div>
 
-  <!-- Input Bar (full-width) -->
+  <!-- Input bar -->
   <div class="input-bar">
     <input
       id="msg-input"
       type="text"
-      placeholder="輸入訊息測試（不需要 LiveChat）"
+      placeholder="輸入訊息直接測試（或使用 LiveChat widget）"
       autocomplete="off"
     />
     <button class="btn-send" id="btn-send" onclick="sendManual()">傳送</button>
   </div>
 </main>
 
-<!-- LiveChat Widget -->
-<script>
+<!-- LiveChat widget (license injected via /api/config) -->
+<script id="lc-init">
   window.__lc = window.__lc || {};
-  window.__lc.license = '%%LIVECHAT_LICENSE_ID%%'; // replaced at runtime if set
+  // license set dynamically below
 </script>
 <script>
-(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice));
+(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};n.__lc.asyncInit=true;n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice));
 </script>
 
 <script>
-  // ── WebSocket ────────────────────────────────────────────────────────────────
-  const WS_URL = `ws://${location.host}/ws`;
-  let ws;
+  // ── Loading group store (one per panel) ──────────────────────────────────────
+  const pendingGroups = { dify: null, allm: null };
 
-  function connectWS() {
-    ws = new WebSocket(WS_URL);
-
-    ws.onopen = () => {
-      document.getElementById('ws-dot').classList.add('connected');
-      document.getElementById('ws-label').textContent = '已連線';
-    };
-
-    ws.onmessage = (e) => {
-      try {
-        const data = JSON.parse(e.data);
-        if (data.type === 'comparison') {
-          renderComparison(data);
-        }
-      } catch (_) {}
-    };
-
-    ws.onclose = () => {
-      document.getElementById('ws-dot').classList.remove('connected');
-      document.getElementById('ws-label').textContent = '重新連線中…';
-      setTimeout(connectWS, 3000);
-    };
+  // ── Helpers ──────────────────────────────────────────────────────────────────
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
-  connectWS();
+  function msClass(ms) {
+    if (ms <= 0)   return '';
+    if (ms < 3000) return 'fast';
+    if (ms < 8000) return 'mid';
+    return 'slow';
+  }
+
+  function msLabel(ms) {
+    if (ms <= 0) return '';
+    return ms >= 1000 ? `${(ms/1000).toFixed(1)}s` : `${ms}ms`;
+  }
 
   // ── Render ───────────────────────────────────────────────────────────────────
   function renderComparison({ message, dify, anythingllm, timestamp }) {
-    const time = new Date(timestamp).toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-
-    appendMessage('dify', message, dify, time);
-    appendMessage('allm', message, anythingllm, time);
+    const time = new Date(timestamp).toLocaleTimeString('zh-TW', {
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+    appendMsg('dify', message, dify.answer, time, dify.ms);
+    appendMsg('allm', message, anythingllm.answer, time, anythingllm.ms);
   }
 
-  function appendMessage(panel, userText, aiText, time) {
+  function appendMsg(panel, userText, aiText, time, ms) {
     const chatEl = document.getElementById(`chat-${panel}`);
+
+    // Remove loading group for this panel
+    if (pendingGroups[panel]) {
+      pendingGroups[panel].remove();
+      pendingGroups[panel] = null;
+    }
+    // Remove empty state
     const emptyEl = document.getElementById(`empty-${panel}`);
     if (emptyEl) emptyEl.remove();
+
+    const cls = msClass(ms);
+    const lbl = msLabel(ms);
 
     const group = document.createElement('div');
     group.className = 'msg-group';
     group.innerHTML = `
       <div class="msg-user">${escHtml(userText)}</div>
       <div class="msg-ai">${escHtml(aiText || '（無回應）')}</div>
-      <div class="msg-time">${time}</div>
+      <div class="msg-footer">
+        <span class="msg-time">${time}</span>
+        ${lbl ? `<span class="msg-ms ${cls}">${lbl}</span>` : ''}
+      </div>
     `;
     chatEl.appendChild(group);
     chatEl.scrollTop = chatEl.scrollHeight;
   }
 
-  function escHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  // ── Manual Send ──────────────────────────────────────────────────────────────
-  async function sendManual() {
-    const input = document.getElementById('msg-input');
-    const btn   = document.getElementById('btn-send');
-    const message = input.value.trim();
-    if (!message) return;
-
-    input.value = '';
-    btn.disabled = true;
-
-    // Show loading indicators
-    showLoading('dify', message);
-    showLoading('allm', message);
-
-    try {
-      const res = await fetch('/api/test', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message }),
-      });
-      // Response is also broadcast via WebSocket — no need to handle here
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        alert('請求失敗: ' + (data.error || res.status));
-      }
-    } catch (err) {
-      alert('連線失敗，請確認 webhook-bridge 服務正在運行');
-    } finally {
-      btn.disabled = false;
-      // Remove loading indicators (WS response will render actual messages)
-      document.querySelectorAll('.msg-loading').forEach(el => el.remove());
-    }
-  }
-
   function showLoading(panel, userText) {
     const chatEl = document.getElementById(`chat-${panel}`);
+    // Remove previous pending group
+    if (pendingGroups[panel]) pendingGroups[panel].remove();
     const emptyEl = document.getElementById(`empty-${panel}`);
     if (emptyEl) emptyEl.remove();
 
@@ -386,27 +435,147 @@
     group.innerHTML = `
       <div class="msg-user">${escHtml(userText)}</div>
       <div class="msg-loading">
-        <span class="dot-anim">●</span>
-        <span class="dot-anim">●</span>
-        <span class="dot-anim">●</span>
+        <span class="dot-anim">●</span><span class="dot-anim">●</span><span class="dot-anim">●</span>
         <span style="margin-left:4px">思考中</span>
       </div>
     `;
+    pendingGroups[panel] = group;
     chatEl.appendChild(group);
     chatEl.scrollTop = chatEl.scrollHeight;
   }
 
-  // ── Keyboard enter ───────────────────────────────────────────────────────────
-  document.getElementById('msg-input').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      sendManual();
+  function clearPanel(panel) {
+    const chatEl = document.getElementById(`chat-${panel}`);
+    chatEl.innerHTML = '';
+    pendingGroups[panel] = null;
+  }
+
+  // ── WebSocket ────────────────────────────────────────────────────────────────
+  const WS_URL = `ws://${location.host}/ws`;
+  let ws;
+
+  function connectWS() {
+    ws = new WebSocket(WS_URL);
+    ws.onopen = () => {
+      document.getElementById('ws-dot').className = 'dot ok';
+      document.getElementById('ws-label').textContent = '已連線';
+    };
+    ws.onmessage = (e) => {
+      try {
+        const data = JSON.parse(e.data);
+        if (data.type === 'comparison') renderComparison(data);
+      } catch (_) {}
+    };
+    ws.onclose = () => {
+      document.getElementById('ws-dot').className = 'dot error';
+      document.getElementById('ws-label').textContent = '重新連線中…';
+      setTimeout(connectWS, 3000);
+    };
+  }
+
+  connectWS();
+
+  // ── Manual send ──────────────────────────────────────────────────────────────
+  async function sendManual() {
+    const input = document.getElementById('msg-input');
+    const btn   = document.getElementById('btn-send');
+    const msg   = input.value.trim();
+    if (!msg) return;
+
+    input.value = '';
+    btn.disabled = true;
+    showLoading('dify', msg);
+    showLoading('allm', msg);
+
+    try {
+      const res = await fetch('/api/test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg }),
+      });
+      if (!res.ok) {
+        const d = await res.json().catch(() => ({}));
+        clearLoadings();
+        alert('請求失敗: ' + (d.error || res.status));
+      }
+      // WS broadcast will call renderComparison, which removes the loading groups
+    } catch (err) {
+      clearLoadings();
+      alert('連線失敗，請確認 webhook-bridge 服務正在運行');
+    } finally {
+      btn.disabled = false;
     }
+  }
+
+  function clearLoadings() {
+    ['dify','allm'].forEach(p => {
+      if (pendingGroups[p]) { pendingGroups[p].remove(); pendingGroups[p] = null; }
+    });
+  }
+
+  document.getElementById('msg-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendManual(); }
   });
 
-  // ── Quick links ──────────────────────────────────────────────────────────────
-  function openDify()  { window.open('http://localhost:3000', '_blank'); }
-  function openAllm()  { window.open('http://localhost:3001', '_blank'); }
+  // ── Service status polling ───────────────────────────────────────────────────
+  async function pollStatus() {
+    try {
+      const res  = await fetch('/api/status');
+      const data = await res.json();
+
+      setDot('dot-dify',  data.dify);
+      setDot('svc-dify',  data.dify);
+      setDot('dot-allm',  data.anythingllm);
+      setDot('svc-allm',  data.anythingllm);
+
+      document.getElementById('label-dify').textContent = data.dify        ? '運行中' : '無法連接';
+      document.getElementById('label-allm').textContent = data.anythingllm ? '運行中' : '無法連接';
+    } catch (_) {}
+  }
+
+  function setDot(id, ok) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.className = el.className.replace(/\b(ok|error|warn)\b/g, '').trim();
+    el.classList.add(ok ? 'ok' : 'error');
+  }
+
+  pollStatus();
+  setInterval(pollStatus, 30_000);
+
+  // ── Load config (LiveChat license) ───────────────────────────────────────────
+  async function loadConfig() {
+    try {
+      const res  = await fetch('/api/config');
+      const cfg  = await res.json();
+
+      // Show notices for unconfigured API keys
+      ['dify','allm'].forEach(p => {
+        const key = p === 'dify' ? cfg.difyConfigured : cfg.anythingllmConfigured;
+        if (!key) {
+          const chatEl = document.getElementById(`chat-${p}`);
+          const emptyEl = document.getElementById(`empty-${p}`);
+          const notice = document.createElement('div');
+          notice.className = 'notice';
+          notice.innerHTML = `⚠️ ${p === 'dify' ? 'Dify' : 'AnythingLLM'} API Key 尚未設定。<br>請先在管理介面取得 API Key 並更新 <code>.env</code>，再重啟 webhook-bridge。`;
+          if (emptyEl) chatEl.insertBefore(notice, emptyEl);
+          else chatEl.prepend(notice);
+        }
+      });
+
+      // LiveChat widget
+      const lcId = cfg.livechatLicenseId;
+      document.getElementById('livechat-status').textContent =
+        lcId ? `LiveChat: ${lcId}` : 'LiveChat: 未設定 License ID';
+
+      if (lcId) {
+        window.__lc.license = lcId;
+        window.LiveChatWidget.init();
+      }
+    } catch (_) {}
+  }
+
+  loadConfig();
 </script>
 
 </body>
