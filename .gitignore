@@ -4,3 +4,4 @@ dify/volumes/
 *.tar.gz
 ngrok.yml
 .DS_Store
+.claude/
