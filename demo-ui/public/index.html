@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 客服平台比較 Demo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ─────────────────────────────────────────── */
+    header {
+      background: #1a1d27;
+      border-bottom: 1px solid #2d3148;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    header h1 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.3px;
+    }
+    header h1 span { color: #6366f1; }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #94a3b8;
+      background: #0f1117;
+      border: 1px solid #2d3148;
+      border-radius: 20px;
+      padding: 4px 12px;
+    }
+    .status-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #ef4444;
+      transition: background .3s;
+    }
+    .status-dot.connected { background: #22c55e; }
+
+    /* ── Layout ──────────────────────────────────────────── */
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .panel {
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #2d3148;
+      min-height: 0;
+    }
+    .panel:last-child { border-right: none; }
+
+    .panel-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid #2d3148;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #1a1d27;
+    }
+    .panel-logo {
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800;
+    }
+    .logo-dify { background: #6366f1; color: #fff; }
+    .logo-allm { background: #0ea5e9; color: #fff; }
+
+    .panel-header h2 { font-size: 15px; font-weight: 600; }
+    .panel-header .sub { font-size: 11px; color: #64748b; margin-left: auto; }
+
+    .chat-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      scroll-behavior: smooth;
+    }
+
+    /* ── Messages ────────────────────────────────────────── */
+    .msg-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .msg-user {
+      align-self: flex-end;
+      background: #4f46e5;
+      color: #fff;
+      border-radius: 16px 16px 4px 16px;
+      padding: 10px 14px;
+      max-width: 80%;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .msg-ai {
+      align-self: flex-start;
+      background: #1e2235;
+      border: 1px solid #2d3148;
+      border-radius: 16px 16px 16px 4px;
+      padding: 10px 14px;
+      max-width: 88%;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .msg-time {
+      font-size: 10px;
+      color: #475569;
+      text-align: right;
+    }
+
+    .msg-loading {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      background: #1e2235;
+      border: 1px solid #2d3148;
+      border-radius: 16px 16px 16px 4px;
+      width: fit-content;
+      font-size: 13px;
+      color: #64748b;
+    }
+    .dot-anim { animation: blink 1.2s infinite; }
+    .dot-anim:nth-child(2) { animation-delay: .2s; }
+    .dot-anim:nth-child(3) { animation-delay: .4s; }
+    @keyframes blink {
+      0%, 80%, 100% { opacity: .2; }
+      40% { opacity: 1; }
+    }
+
+    /* ── Input bar ───────────────────────────────────────── */
+    .input-bar {
+      border-top: 1px solid #2d3148;
+      padding: 16px 20px;
+      background: #1a1d27;
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 10px;
+    }
+    .input-bar input {
+      flex: 1;
+      background: #0f1117;
+      border: 1px solid #2d3148;
+      border-radius: 10px;
+      color: #e2e8f0;
+      font-size: 14px;
+      padding: 10px 14px;
+      outline: none;
+      transition: border .2s;
+    }
+    .input-bar input:focus { border-color: #6366f1; }
+    .input-bar input::placeholder { color: #475569; }
+
+    .btn-send {
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, opacity .2s;
+    }
+    .btn-send:hover { background: #4f46e5; }
+    .btn-send:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* ── Empty state ─────────────────────────────────────── */
+    .empty-state {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #334155;
+      font-size: 13px;
+      text-align: center;
+    }
+    .empty-state .icon { font-size: 36px; margin-bottom: 4px; }
+
+    /* ── Scrollbar ───────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #2d3148; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>AI 客服比較 <span>Demo</span></h1>
+  <div style="display:flex;gap:10px;align-items:center;">
+    <div class="status-badge">
+      <div class="status-dot" id="ws-dot"></div>
+      <span id="ws-label">未連線</span>
+    </div>
+    <div class="status-badge" style="cursor:pointer;" onclick="openDify()">⚙ Dify</div>
+    <div class="status-badge" style="cursor:pointer;" onclick="openAllm()">⚙ AnythingLLM</div>
+  </div>
+</header>
+
+<main>
+  <!-- Dify Panel -->
+  <div class="panel" id="panel-dify">
+    <div class="panel-header">
+      <div class="panel-logo logo-dify">D</div>
+      <h2>Dify</h2>
+      <span class="sub">localhost:3000</span>
+    </div>
+    <div class="chat-area" id="chat-dify">
+      <div class="empty-state" id="empty-dify">
+        <div class="icon">🤖</div>
+        <div>等待第一則訊息…</div>
+        <div style="color:#1e2235">在下方輸入框傳送，或使用 LiveChat widget</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AnythingLLM Panel -->
+  <div class="panel" id="panel-allm">
+    <div class="panel-header">
+      <div class="panel-logo logo-allm">A</div>
+      <h2>AnythingLLM</h2>
+      <span class="sub">localhost:3001</span>
+    </div>
+    <div class="chat-area" id="chat-allm">
+      <div class="empty-state" id="empty-allm">
+        <div class="icon">🧠</div>
+        <div>等待第一則訊息…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Bar (full-width) -->
+  <div class="input-bar">
+    <input
+      id="msg-input"
+      type="text"
+      placeholder="輸入訊息測試（不需要 LiveChat）"
+      autocomplete="off"
+    />
+    <button class="btn-send" id="btn-send" onclick="sendManual()">傳送</button>
+  </div>
+</main>
+
+<!-- LiveChat Widget -->
+<script>
+  window.__lc = window.__lc || {};
+  window.__lc.license = '%%LIVECHAT_LICENSE_ID%%'; // replaced at runtime if set
+</script>
+<script>
+(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice));
+</script>
+
+<script>
+  // ── WebSocket ────────────────────────────────────────────────────────────────
+  const WS_URL = `ws://${location.host}/ws`;
+  let ws;
+
+  function connectWS() {
+    ws = new WebSocket(WS_URL);
+
+    ws.onopen = () => {
+      document.getElementById('ws-dot').classList.add('connected');
+      document.getElementById('ws-label').textContent = '已連線';
+    };
+
+    ws.onmessage = (e) => {
+      try {
+        const data = JSON.parse(e.data);
+        if (data.type === 'comparison') {
+          renderComparison(data);
+        }
+      } catch (_) {}
+    };
+
+    ws.onclose = () => {
+      document.getElementById('ws-dot').classList.remove('connected');
+      document.getElementById('ws-label').textContent = '重新連線中…';
+      setTimeout(connectWS, 3000);
+    };
+  }
+
+  connectWS();
+
+  // ── Render ───────────────────────────────────────────────────────────────────
+  function renderComparison({ message, dify, anythingllm, timestamp }) {
+    const time = new Date(timestamp).toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+    appendMessage('dify', message, dify, time);
+    appendMessage('allm', message, anythingllm, time);
+  }
+
+  function appendMessage(panel, userText, aiText, time) {
+    const chatEl = document.getElementById(`chat-${panel}`);
+    const emptyEl = document.getElementById(`empty-${panel}`);
+    if (emptyEl) emptyEl.remove();
+
+    const group = document.createElement('div');
+    group.className = 'msg-group';
+    group.innerHTML = `
+      <div class="msg-user">${escHtml(userText)}</div>
+      <div class="msg-ai">${escHtml(aiText || '（無回應）')}</div>
+      <div class="msg-time">${time}</div>
+    `;
+    chatEl.appendChild(group);
+    chatEl.scrollTop = chatEl.scrollHeight;
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // ── Manual Send ──────────────────────────────────────────────────────────────
+  async function sendManual() {
+    const input = document.getElementById('msg-input');
+    const btn   = document.getElementById('btn-send');
+    const message = input.value.trim();
+    if (!message) return;
+
+    input.value = '';
+    btn.disabled = true;
+
+    // Show loading indicators
+    showLoading('dify', message);
+    showLoading('allm', message);
+
+    try {
+      const res = await fetch('/api/test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message }),
+      });
+      // Response is also broadcast via WebSocket — no need to handle here
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert('請求失敗: ' + (data.error || res.status));
+      }
+    } catch (err) {
+      alert('連線失敗，請確認 webhook-bridge 服務正在運行');
+    } finally {
+      btn.disabled = false;
+      // Remove loading indicators (WS response will render actual messages)
+      document.querySelectorAll('.msg-loading').forEach(el => el.remove());
+    }
+  }
+
+  function showLoading(panel, userText) {
+    const chatEl = document.getElementById(`chat-${panel}`);
+    const emptyEl = document.getElementById(`empty-${panel}`);
+    if (emptyEl) emptyEl.remove();
+
+    const group = document.createElement('div');
+    group.className = 'msg-group';
+    group.innerHTML = `
+      <div class="msg-user">${escHtml(userText)}</div>
+      <div class="msg-loading">
+        <span class="dot-anim">●</span>
+        <span class="dot-anim">●</span>
+        <span class="dot-anim">●</span>
+        <span style="margin-left:4px">思考中</span>
+      </div>
+    `;
+    chatEl.appendChild(group);
+    chatEl.scrollTop = chatEl.scrollHeight;
+  }
+
+  // ── Keyboard enter ───────────────────────────────────────────────────────────
+  document.getElementById('msg-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendManual();
+    }
+  });
+
+  // ── Quick links ──────────────────────────────────────────────────────────────
+  function openDify()  { window.open('http://localhost:3000', '_blank'); }
+  function openAllm()  { window.open('http://localhost:3001', '_blank'); }
+</script>
+
+</body>
+</html>

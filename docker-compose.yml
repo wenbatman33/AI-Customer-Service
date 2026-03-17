@@ -1,0 +1,194 @@
+version: '3.8'
+
+services:
+  # ──────────────────────────────────────────
+  # Dify Services
+  # ──────────────────────────────────────────
+  dify-db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DIFY_DB_USER:-dify}
+      POSTGRES_PASSWORD: ${DIFY_DB_PASSWORD:-difypassword}
+      POSTGRES_DB: ${DIFY_DB_NAME:-dify}
+    volumes:
+      - dify-db-data:/var/lib/postgresql/data
+    networks:
+      - ai-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DIFY_DB_USER:-dify}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  dify-redis:
+    image: redis:6-alpine
+    restart: always
+    volumes:
+      - dify-redis-data:/data
+    networks:
+      - ai-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  dify-api:
+    image: langgenius/dify-api:latest
+    restart: always
+    environment:
+      # App
+      MODE: api
+      SECRET_KEY: ${DIFY_SECRET_KEY:-your-secret-key-change-me}
+      LOG_LEVEL: INFO
+      # DB
+      DB_USERNAME: ${DIFY_DB_USER:-dify}
+      DB_PASSWORD: ${DIFY_DB_PASSWORD:-difypassword}
+      DB_HOST: dify-db
+      DB_PORT: 5432
+      DB_DATABASE: ${DIFY_DB_NAME:-dify}
+      # Redis
+      REDIS_HOST: dify-redis
+      REDIS_PORT: 6379
+      # Storage
+      STORAGE_TYPE: local
+      LOCAL_STORAGE_PATH: /app/storage
+      # CORS
+      CONSOLE_CORS_ALLOW_ORIGINS: "*"
+      WEB_API_CORS_ALLOW_ORIGINS: "*"
+      # Sandbox
+      CODE_EXECUTION_ENDPOINT: http://dify-sandbox:8194
+      CODE_MAX_NUMBER: 10
+    volumes:
+      - dify-storage:/app/storage
+    depends_on:
+      dify-db:
+        condition: service_healthy
+      dify-redis:
+        condition: service_healthy
+    networks:
+      - ai-net
+    ports:
+      - "5001:5001"
+
+  dify-worker:
+    image: langgenius/dify-api:latest
+    restart: always
+    environment:
+      MODE: worker
+      SECRET_KEY: ${DIFY_SECRET_KEY:-your-secret-key-change-me}
+      DB_USERNAME: ${DIFY_DB_USER:-dify}
+      DB_PASSWORD: ${DIFY_DB_PASSWORD:-difypassword}
+      DB_HOST: dify-db
+      DB_PORT: 5432
+      DB_DATABASE: ${DIFY_DB_NAME:-dify}
+      REDIS_HOST: dify-redis
+      REDIS_PORT: 6379
+      STORAGE_TYPE: local
+      LOCAL_STORAGE_PATH: /app/storage
+      CODE_EXECUTION_ENDPOINT: http://dify-sandbox:8194
+    volumes:
+      - dify-storage:/app/storage
+    depends_on:
+      dify-db:
+        condition: service_healthy
+      dify-redis:
+        condition: service_healthy
+    networks:
+      - ai-net
+
+  dify-web:
+    image: langgenius/dify-web:latest
+    restart: always
+    environment:
+      CONSOLE_API_URL: http://localhost:5001
+      APP_API_URL: http://localhost:5001
+    networks:
+      - ai-net
+    ports:
+      - "3000:3000"
+
+  dify-sandbox:
+    image: langgenius/dify-sandbox:latest
+    restart: always
+    environment:
+      API_KEY: ${DIFY_SANDBOX_KEY:-sandbox-secret}
+      GIN_MODE: release
+    networks:
+      - ai-net
+
+  # ──────────────────────────────────────────
+  # AnythingLLM
+  # ──────────────────────────────────────────
+  anythingllm:
+    image: mintplexlabs/anythingllm:latest
+    restart: always
+    cap_add:
+      - SYS_ADMIN
+    environment:
+      STORAGE_DIR: /app/server/storage
+      JWT_SECRET: ${ANYTHINGLLM_JWT_SECRET:-anythingllm-jwt-secret-change-me}
+      LLM_PROVIDER: ollama
+      OLLAMA_BASE_PATH: http://host.docker.internal:11434
+      OLLAMA_MODEL_PREF: ${OLLAMA_MODEL:-llama3}
+      OLLAMA_MODEL_TOKEN_LIMIT: 4096
+      EMBEDDING_ENGINE: native
+      VECTOR_DB: lancedb
+    volumes:
+      - anythingllm-storage:/app/server/storage
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - ai-net
+    ports:
+      - "3001:3001"
+
+  # ──────────────────────────────────────────
+  # Webhook Bridge (Custom)
+  # ──────────────────────────────────────────
+  webhook-bridge:
+    build: ./webhook-bridge
+    restart: always
+    environment:
+      PORT: 3100
+      # Dify
+      DIFY_API_BASE: http://dify-api:5001
+      DIFY_API_KEY: ${DIFY_API_KEY:-}
+      # AnythingLLM
+      ANYTHINGLLM_BASE: http://anythingllm:3001
+      ANYTHINGLLM_API_KEY: ${ANYTHINGLLM_API_KEY:-}
+      ANYTHINGLLM_WORKSPACE: ${ANYTHINGLLM_WORKSPACE:-default}
+      # LiveChat
+      LIVECHAT_LICENSE_ID: ${LIVECHAT_LICENSE_ID:-}
+      LIVECHAT_CLIENT_ID: ${LIVECHAT_CLIENT_ID:-}
+      LIVECHAT_CLIENT_SECRET: ${LIVECHAT_CLIENT_SECRET:-}
+      LIVECHAT_ACTIVE_PLATFORM: ${LIVECHAT_ACTIVE_PLATFORM:-both}
+    depends_on:
+      - dify-api
+      - anythingllm
+    networks:
+      - ai-net
+    ports:
+      - "3100:3100"
+
+  # ──────────────────────────────────────────
+  # Demo UI
+  # ──────────────────────────────────────────
+  demo-ui:
+    build: ./demo-ui
+    restart: always
+    networks:
+      - ai-net
+    ports:
+      - "8080:80"
+
+networks:
+  ai-net:
+    driver: bridge
+
+volumes:
+  dify-db-data:
+  dify-redis-data:
+  dify-storage:
+  anythingllm-storage:
