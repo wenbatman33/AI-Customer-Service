@@ -25,7 +25,17 @@ const ANYTHINGLLM_WORKSPACE = process.env.ANYTHINGLLM_WORKSPACE || 'default';
 const LIVECHAT_LICENSE_ID    = process.env.LIVECHAT_LICENSE_ID    || '';
 const LIVECHAT_CLIENT_ID     = process.env.LIVECHAT_CLIENT_ID     || '';
 const LIVECHAT_CLIENT_SECRET = process.env.LIVECHAT_CLIENT_SECRET || '';
+const LIVECHAT_TOKEN         = process.env.LIVECHAT_TOKEN         || '';
 const ACTIVE_PLATFORM        = process.env.LIVECHAT_ACTIVE_PLATFORM || 'both';
+
+// Parse account ID from PAT token (format: accountId:region:pat)
+let MY_ACCOUNT_ID = null;
+let MY_AGENT_EMAIL = null;
+if (LIVECHAT_TOKEN) {
+  try {
+    MY_ACCOUNT_ID = Buffer.from(LIVECHAT_TOKEN, 'base64').toString('utf-8').split(':')[0];
+  } catch (_) {}
+}
 
 // In-memory store: session → dify conversation_id
 const difyConversations = {};
@@ -101,7 +111,7 @@ async function queryAnythingLLM(message, sessionId) {
   }
 }
 
-// ── LiveChat Messaging API ────────────────────────────────────────────────────
+// ── LiveChat Webhook Reply (Client ID/Secret) ─────────────────────────────────
 async function sendLiveChatResponse(chatId, text) {
   if (!LIVECHAT_CLIENT_ID || !LIVECHAT_CLIENT_SECRET) return;
   const auth = Buffer.from(`${LIVECHAT_CLIENT_ID}:${LIVECHAT_CLIENT_SECRET}`).toString('base64');
@@ -122,6 +132,129 @@ async function sendLiveChatResponse(chatId, text) {
   }
 }
 
+// ── LiveChat RTM Reply (PAT Token) ────────────────────────────────────────────
+async function sendLiveChatRTMReply(chatId, text) {
+  if (!LIVECHAT_TOKEN) return;
+  try {
+    const res = await fetch('https://api.livechatinc.com/v3.5/agent/action/send_event', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${LIVECHAT_TOKEN}`,
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        event: { type: 'message', text, visibility: 'all' },
+      }),
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      console.error('[RTM reply]', res.status, body);
+    }
+  } catch (err) {
+    console.error('[RTM reply]', err.message);
+  }
+}
+
+// ── LiveChat RTM WebSocket ────────────────────────────────────────────────────
+const RTM_URL = 'wss://api.livechatinc.com/v3.5/agent/rtm/ws';
+let rtmWs        = null;
+let rtmReqId     = 1;
+let rtmConnecting = false;
+const replyCooldown = new Set();
+
+function connectRTM() {
+  if (!LIVECHAT_TOKEN || rtmConnecting) return;
+  rtmConnecting = true;
+  console.log('[RTM] Connecting...');
+  rtmWs = new WebSocket(RTM_URL);
+
+  rtmWs.on('open', () => {
+    rtmConnecting = false;
+    console.log('[RTM] Connected, logging in...');
+    rtmWs.send(JSON.stringify({
+      request_id: `login_${rtmReqId++}`,
+      action: 'login',
+      payload: { token: `Basic ${LIVECHAT_TOKEN}` },
+    }));
+  });
+
+  rtmWs.on('message', async (raw) => {
+    let msg;
+    try { msg = JSON.parse(raw); } catch { return; }
+
+    // Login response
+    if (msg.request_id?.startsWith('login_') && 'success' in msg) {
+      if (msg.success) {
+        MY_AGENT_EMAIL = msg.payload?.my_profile?.email || msg.payload?.my_profile?.login;
+        console.log(`[RTM] Logged in: ${MY_AGENT_EMAIL}`);
+      } else {
+        console.error('[RTM] Login failed:', JSON.stringify(msg.payload));
+      }
+      return;
+    }
+
+    // Incoming message event
+    if (msg.action === 'incoming_event') {
+      const event  = msg.payload?.event;
+      const chatId = msg.payload?.chat_id;
+      if (event?.type !== 'message') return;
+
+      const authorId = event.author_id;
+      const text     = event.text;
+
+      // Skip own messages
+      if (authorId === MY_ACCOUNT_ID || (MY_AGENT_EMAIL && authorId === MY_AGENT_EMAIL)) return;
+
+      // Skip agent messages (agent IDs contain @)
+      if (String(authorId).includes('@')) return;
+
+      // Cooldown to prevent duplicate replies
+      if (replyCooldown.has(chatId)) return;
+      replyCooldown.add(chatId);
+      setTimeout(() => replyCooldown.delete(chatId), 5000);
+
+      console.log(`[RTM] Customer [${chatId}]: ${text}`);
+
+      const [difyResult, allmResult] = await Promise.all([
+        ACTIVE_PLATFORM !== 'anythingllm' ? queryDify(text, chatId)        : Promise.resolve({ answer: '', ms: 0 }),
+        ACTIVE_PLATFORM !== 'dify'        ? queryAnythingLLM(text, chatId) : Promise.resolve({ answer: '', ms: 0 }),
+      ]);
+
+      broadcast({
+        type: 'comparison',
+        chatId,
+        message: text,
+        dify:        { answer: difyResult.answer, ms: difyResult.ms },
+        anythingllm: { answer: allmResult.answer, ms: allmResult.ms },
+        timestamp: new Date().toISOString(),
+        source: 'livechat_rtm',
+      });
+
+      // Reply back to LiveChat
+      let replyText;
+      if (ACTIVE_PLATFORM === 'dify')         replyText = difyResult.answer;
+      else if (ACTIVE_PLATFORM === 'anythingllm') replyText = allmResult.answer;
+      else replyText = difyResult.answer || allmResult.answer; // both: first non-empty
+
+      if (replyText) {
+        setTimeout(() => sendLiveChatRTMReply(chatId, replyText), 1200);
+      }
+    }
+  });
+
+  rtmWs.on('close', (code) => {
+    rtmWs = null;
+    rtmConnecting = false;
+    console.log(`[RTM] Disconnected (${code}), reconnecting in 5s...`);
+    setTimeout(connectRTM, 5000);
+  });
+
+  rtmWs.on('error', (err) => {
+    console.error('[RTM] Error:', err.message);
+  });
+}
+
 // ── Routes ────────────────────────────────────────────────────────────────────
 
 // Health check
@@ -134,6 +267,7 @@ app.get('/api/config', (_req, res) => {
     activePlatform:    ACTIVE_PLATFORM,
     difyConfigured:    !!DIFY_API_KEY,
     anythingllmConfigured: !!ANYTHINGLLM_API_KEY,
+    livechatRtmConfigured: !!LIVECHAT_TOKEN,
   });
 });
 
@@ -145,7 +279,11 @@ app.get('/api/status', async (_req, res) => {
     fetch(`${ANYTHINGLLM_BASE}/api/ping`, { signal: AbortSignal.timeout(3000) })
       .then(r => r.ok).catch(() => false),
   ]);
-  res.json({ dify: difyOk, anythingllm: allmOk });
+  res.json({
+    dify: difyOk,
+    anythingllm: allmOk,
+    livechat_rtm: rtmWs !== null && rtmWs.readyState === WebSocket.OPEN,
+  });
 });
 
 // LiveChat Webhook
@@ -194,7 +332,6 @@ app.post('/api/test', async (req, res) => {
   const { message } = req.body;
   if (!message) return res.status(400).json({ error: 'message required' });
 
-  // Unique session per request so histories don't bleed between manual tests
   const sessionId = `manual-${Date.now()}`;
 
   const [difyResult, allmResult] = await Promise.all([
@@ -222,4 +359,7 @@ server.listen(PORT, () => {
   console.log(`  AnythingLLM  : ${ANYTHINGLLM_BASE} (key: ${ANYTHINGLLM_API_KEY ? '✓' : '✗ not set'})`);
   console.log(`  Platform     : ${ACTIVE_PLATFORM}`);
   console.log(`  LiveChat ID  : ${LIVECHAT_LICENSE_ID || '(not set)'}`);
+  console.log(`  LiveChat RTM : ${LIVECHAT_TOKEN ? '✓ token set' : '✗ not set'}`);
+
+  connectRTM();
 });

@@ -297,7 +297,12 @@
     <span class="label">AnythingLLM</span>
     <span id="label-allm">—</span>
   </div>
-  <div class="svc" style="margin-left:auto">
+  <div class="svc" style="margin-left:auto; gap:12px">
+    <div class="svc" id="svc-rtm" style="display:none">
+      <div class="dot" id="dot-rtm"></div>
+      <span class="label">LiveChat RTM</span>
+      <span id="label-rtm">—</span>
+    </div>
     <span id="livechat-status">LiveChat: 未設定</span>
   </div>
 </div>
@@ -530,6 +535,12 @@
 
       document.getElementById('label-dify').textContent = data.dify        ? '運行中' : '無法連接';
       document.getElementById('label-allm').textContent = data.anythingllm ? '運行中' : '無法連接';
+
+      if (typeof data.livechat_rtm === 'boolean') {
+        document.getElementById('svc-rtm').style.display = 'flex';
+        setDot('dot-rtm', data.livechat_rtm);
+        document.getElementById('label-rtm').textContent = data.livechat_rtm ? '已連線' : '未連線';
+      }
     } catch (_) {}
   }
 
