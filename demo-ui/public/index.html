@@ -514,7 +514,7 @@
   }
 
   document.getElementById('msg-input').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendManual(); }
+    if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); sendManual(); }
   });
 
   // ── Service status polling ───────────────────────────────────────────────────

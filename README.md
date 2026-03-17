@@ -32,7 +32,7 @@
 
 ```bash
 # 安裝 Ollama: https://ollama.ai
-ollama pull llama3   # 或 qwen2, mistral 等
+ollama pull llama3.1:8b   # 或 qwen2, mistral 等
 ```
 
 ### 2. 複製設定檔
