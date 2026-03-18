@@ -76,7 +76,7 @@
     main {
       flex: 1;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: 1fr auto;
       min-height: 0;
     }
@@ -238,7 +238,6 @@
     .input-bar input::placeholder { color: #334155; }
 
     .btn-send {
-      background: #6366f1;
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -249,8 +248,11 @@
       transition: background .15s, opacity .15s;
       white-space: nowrap;
     }
-    .btn-send:hover    { background: #4f46e5; }
     .btn-send:disabled { opacity: .45; cursor: not-allowed; }
+    .btn-send-dify { background: #6366f1; }
+    .btn-send-dify:hover:not(:disabled) { background: #4f46e5; }
+    .btn-send-allm { background: #0ea5e9; }
+    .btn-send-allm:hover:not(:disabled) { background: #0284c7; }
 
     /* ── Config notice ───────────────────────────────────────────── */
     .notice {
@@ -264,10 +266,186 @@
       margin: 12px;
     }
 
+    /* ── Platform toggle ─────────────────────────────────────────── */
+    .platform-toggle {
+      display: flex;
+      background: #0f1117;
+      border: 1px solid #2d3148;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .toggle-btn {
+      font-size: 10px;
+      padding: 3px 9px;
+      background: transparent;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .toggle-btn.active { background: #6366f1; color: #fff; }
+    .toggle-btn:hover:not(.active) { background: #1e2235; color: #94a3b8; }
+
+    .logo-lc { background: #f97316; color: #fff; }
+
+    .replied-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: 8px;
+      background: #1e2235;
+      border: 1px solid #2d3148;
+      color: #6366f1;
+    }
+
+    /* ── LiveChat widget position ────────────────────────────────── */
+    #chat-widget-container,
+    #livechat-compact-container {
+      bottom: 70px !important;
+    }
+
     /* scrollbar */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #2d3148; border-radius: 4px; }
+
+    /* ── Settings Modal ──────────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: #1a1d27;
+      border: 1px solid #2d3148;
+      border-radius: 12px;
+      width: 480px;
+      max-width: calc(100vw - 32px);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .modal-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 18px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 2px;
+    }
+    .modal-close:hover { color: #e2e8f0; }
+
+    .modal-hint {
+      font-size: 11px;
+      color: #64748b;
+      background: #0f1117;
+      border: 1px solid #2d3148;
+      border-radius: 6px;
+      padding: 8px 10px;
+      line-height: 1.5;
+    }
+
+    .field-group { display: flex; flex-direction: column; gap: 12px; }
+
+    .field-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .field-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .field-input-wrap input {
+      width: 100%;
+      background: #0f1117;
+      border: 1px solid #2d3148;
+      border-radius: 7px;
+      color: #e2e8f0;
+      font-size: 13px;
+      padding: 8px 36px 8px 10px;
+      outline: none;
+      transition: border .15s;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .field-input-wrap input:focus { border-color: #6366f1; }
+    .field-input-wrap input::placeholder { color: #334155; font-family: inherit; }
+
+    .btn-eye {
+      position: absolute; right: 8px;
+      background: none; border: none;
+      color: #475569; cursor: pointer;
+      font-size: 13px; line-height: 1;
+      padding: 2px;
+    }
+    .btn-eye:hover { color: #94a3b8; }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding-top: 4px;
+      border-top: 1px solid #2d3148;
+    }
+    .btn-cancel {
+      background: transparent;
+      border: 1px solid #2d3148;
+      color: #94a3b8;
+      border-radius: 7px;
+      padding: 8px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .btn-cancel:hover { border-color: #475569; color: #e2e8f0; }
+
+    .btn-save {
+      background: #6366f1;
+      border: none;
+      color: #fff;
+      border-radius: 7px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .btn-save:hover { background: #4f46e5; }
+
+    .save-ok {
+      font-size: 11px;
+      color: #22c55e;
+      align-self: center;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .save-ok.show { opacity: 1; }
   </style>
 </head>
 <body>
@@ -282,6 +460,7 @@
     </div>
     <div class="badge clickable" onclick="window.open('http://localhost:3000','_blank')">⚙ Dify</div>
     <div class="badge clickable" onclick="window.open('http://localhost:3001','_blank')">⚙ AnythingLLM</div>
+    <div class="badge clickable" onclick="openSettings()" id="settings-badge">⚙ 設定</div>
   </div>
 </header>
 
@@ -346,6 +525,28 @@
     </div>
   </div>
 
+  <!-- LiveChat Panel -->
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-logo logo-lc">L</div>
+      <h2>LiveChat</h2>
+      <div class="panel-meta">
+        <div class="svc-dot" id="svc-lc"></div>
+        <div class="platform-toggle" title="選擇由哪個 AI 回覆 LiveChat">
+          <button class="toggle-btn" id="toggle-dify" onclick="setPlatform('dify')">Dify</button>
+          <button class="toggle-btn" id="toggle-allm" onclick="setPlatform('anythingllm')">AnythingLLM</button>
+        </div>
+        <button class="btn-clear" onclick="clearPanel('livechat')">清除</button>
+      </div>
+    </div>
+    <div class="chat-area" id="chat-livechat">
+      <div class="empty-state" id="empty-livechat">
+        <div class="empty-icon">💬</div>
+        <div>等待 LiveChat 訊息…</div>
+      </div>
+    </div>
+  </div>
+
   <!-- Input bar -->
   <div class="input-bar">
     <input
@@ -354,9 +555,67 @@
       placeholder="輸入訊息直接測試（或使用 LiveChat widget）"
       autocomplete="off"
     />
-    <button class="btn-send" id="btn-send" onclick="sendManual()">傳送</button>
+    <button class="btn-send btn-send-dify" id="btn-send-dify" onclick="sendManual('dify')">傳送 Dify</button>
+    <button class="btn-send btn-send-allm" id="btn-send-allm" onclick="sendManual('anythingllm')">傳送 AnythingLLM</button>
   </div>
 </main>
+
+<!-- Settings Modal -->
+<div class="modal-overlay" id="settings-overlay" onclick="overlayClick(event)">
+  <div class="modal">
+    <div class="modal-title">
+      <span>⚙ 設定</span>
+      <button class="modal-close" onclick="closeSettings()">✕</button>
+    </div>
+
+    <div class="modal-hint">
+      此處為主要設定來源，儲存於瀏覽器 localStorage 並即時套用至後端。<br>
+      重新整理頁面後自動還原。重啟容器後仍有效（頁面一開啟即自動套用）。
+    </div>
+
+    <div class="field-group">
+      <div>
+        <div class="field-label">Dify API Key</div>
+        <div class="field-input-wrap">
+          <input type="password" id="cfg-dify-key" placeholder="app-xxxxxxxxxxxxxxxx" />
+          <button class="btn-eye" onclick="toggleEye('cfg-dify-key', this)">👁</button>
+        </div>
+      </div>
+      <div>
+        <div class="field-label">AnythingLLM API Key</div>
+        <div class="field-input-wrap">
+          <input type="password" id="cfg-allm-key" placeholder="XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX" />
+          <button class="btn-eye" onclick="toggleEye('cfg-allm-key', this)">👁</button>
+        </div>
+      </div>
+      <div>
+        <div class="field-label">AnythingLLM Workspace</div>
+        <div class="field-input-wrap">
+          <input type="text" id="cfg-allm-ws" placeholder="ai-customer-service" />
+        </div>
+      </div>
+      <div>
+        <div class="field-label">LiveChat License ID</div>
+        <div class="field-input-wrap">
+          <input type="text" id="cfg-lc-id" placeholder="12345678" />
+        </div>
+      </div>
+      <div>
+        <div class="field-label">LiveChat Token (PAT)</div>
+        <div class="field-input-wrap">
+          <input type="password" id="cfg-lc-token" placeholder="Base64 encoded token" />
+          <button class="btn-eye" onclick="toggleEye('cfg-lc-token', this)">👁</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <span class="save-ok" id="save-ok">✓ 已儲存</span>
+      <button class="btn-cancel" onclick="closeSettings()">取消</button>
+      <button class="btn-save" onclick="saveSettings()">儲存並套用</button>
+    </div>
+  </div>
+</div>
 
 <!-- LiveChat widget (license injected via /api/config) -->
 <script id="lc-init">
@@ -391,12 +650,19 @@
   }
 
   // ── Render ───────────────────────────────────────────────────────────────────
-  function renderComparison({ message, dify, anythingllm, timestamp }) {
+  function renderComparison({ message, dify, anythingllm, timestamp, source, activePlatform, target }) {
     const time = new Date(timestamp).toLocaleTimeString('zh-TW', {
       hour: '2-digit', minute: '2-digit', second: '2-digit'
     });
-    appendMsg('dify', message, dify.answer, time, dify.ms);
-    appendMsg('allm', message, anythingllm.answer, time, anythingllm.ms);
+    if (!target || target === 'dify')        appendMsg('dify', message, dify.answer, time, dify.ms);
+    if (!target || target === 'anythingllm') appendMsg('allm', message, anythingllm.answer, time, anythingllm.ms);
+
+    if (source === 'livechat_rtm') {
+      const platform = activePlatform || 'dify';
+      const replied  = platform === 'anythingllm' ? anythingllm : dify;
+      const label    = platform === 'anythingllm' ? 'AnythingLLM' : 'Dify';
+      appendLivechatMsg(message, replied.answer, time, replied.ms, label);
+    }
   }
 
   function appendMsg(panel, userText, aiText, time, ms) {
@@ -449,10 +715,50 @@
     chatEl.scrollTop = chatEl.scrollHeight;
   }
 
+  function appendLivechatMsg(userText, aiText, time, ms, platformLabel) {
+    const chatEl = document.getElementById('chat-livechat');
+    const emptyEl = document.getElementById('empty-livechat');
+    if (emptyEl) emptyEl.remove();
+
+    const cls = msClass(ms);
+    const lbl = msLabel(ms);
+
+    const group = document.createElement('div');
+    group.className = 'msg-group';
+    group.innerHTML = `
+      <div class="msg-user">${escHtml(userText)}</div>
+      <div class="msg-ai">${escHtml(aiText || '（無回應）')}</div>
+      <div class="msg-footer">
+        <span class="msg-time">${time}</span>
+        <span class="replied-tag">${escHtml(platformLabel)}</span>
+        ${lbl ? `<span class="msg-ms ${cls}">${lbl}</span>` : ''}
+      </div>
+    `;
+    chatEl.appendChild(group);
+    chatEl.scrollTop = chatEl.scrollHeight;
+  }
+
   function clearPanel(panel) {
     const chatEl = document.getElementById(`chat-${panel}`);
     chatEl.innerHTML = '';
     pendingGroups[panel] = null;
+  }
+
+  // ── Platform toggle ──────────────────────────────────────────────────────────
+  function updateToggleUI(platform) {
+    document.getElementById('toggle-dify').classList.toggle('active', platform !== 'anythingllm');
+    document.getElementById('toggle-allm').classList.toggle('active', platform === 'anythingllm');
+  }
+
+  async function setPlatform(platform) {
+    updateToggleUI(platform);
+    try {
+      await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ activePlatform: platform }),
+      });
+    } catch (_) {}
   }
 
   // ── WebSocket ────────────────────────────────────────────────────────────────
@@ -481,45 +787,44 @@
   connectWS();
 
   // ── Manual send ──────────────────────────────────────────────────────────────
-  async function sendManual() {
+  const panelMap = { dify: 'dify', anythingllm: 'allm' };
+
+  async function sendManual(target) {
     const input = document.getElementById('msg-input');
-    const btn   = document.getElementById('btn-send');
+    const btn   = document.getElementById(`btn-send-${target === 'anythingllm' ? 'allm' : 'dify'}`);
     const msg   = input.value.trim();
     if (!msg) return;
 
     input.value = '';
     btn.disabled = true;
-    showLoading('dify', msg);
-    showLoading('allm', msg);
+    showLoading(panelMap[target], msg);
 
     try {
       const res = await fetch('/api/test', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: msg }),
+        body: JSON.stringify({ message: msg, target }),
       });
       if (!res.ok) {
         const d = await res.json().catch(() => ({}));
-        clearLoadings();
+        clearLoading(panelMap[target]);
         alert('請求失敗: ' + (d.error || res.status));
       }
-      // WS broadcast will call renderComparison, which removes the loading groups
+      // WS broadcast will call renderComparison, which removes the loading group
     } catch (err) {
-      clearLoadings();
+      clearLoading(panelMap[target]);
       alert('連線失敗，請確認 webhook-bridge 服務正在運行');
     } finally {
       btn.disabled = false;
     }
   }
 
-  function clearLoadings() {
-    ['dify','allm'].forEach(p => {
-      if (pendingGroups[p]) { pendingGroups[p].remove(); pendingGroups[p] = null; }
-    });
+  function clearLoading(panel) {
+    if (pendingGroups[panel]) { pendingGroups[panel].remove(); pendingGroups[panel] = null; }
   }
 
   document.getElementById('msg-input').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); sendManual(); }
+    if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); sendManual('dify'); }
   });
 
   // ── Service status polling ───────────────────────────────────────────────────
@@ -539,6 +844,7 @@
       if (typeof data.livechat_rtm === 'boolean') {
         document.getElementById('svc-rtm').style.display = 'flex';
         setDot('dot-rtm', data.livechat_rtm);
+        setDot('svc-lc',  data.livechat_rtm);
         document.getElementById('label-rtm').textContent = data.livechat_rtm ? '已連線' : '未連線';
       }
     } catch (_) {}
@@ -583,10 +889,79 @@
         window.__lc.license = lcId;
         window.LiveChatWidget.init();
       }
+
+      // Init platform toggle
+      if (cfg.activePlatform) updateToggleUI(cfg.activePlatform);
     } catch (_) {}
   }
 
   loadConfig();
+
+  // ── Settings ──────────────────────────────────────────────────────────────────
+  const STORAGE_KEY = 'ai_cs_settings';
+
+  function openSettings() {
+    const cfg = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    document.getElementById('cfg-dify-key').value   = cfg.difyApiKey           || '';
+    document.getElementById('cfg-allm-key').value   = cfg.anythingllmApiKey    || '';
+    document.getElementById('cfg-allm-ws').value    = cfg.anythingllmWorkspace || '';
+    document.getElementById('cfg-lc-id').value      = cfg.livechatLicenseId    || '';
+    document.getElementById('cfg-lc-token').value   = cfg.livechatToken        || '';
+    document.getElementById('settings-overlay').classList.add('open');
+  }
+
+  function closeSettings() {
+    document.getElementById('settings-overlay').classList.remove('open');
+  }
+
+  function overlayClick(e) {
+    if (e.target === document.getElementById('settings-overlay')) closeSettings();
+  }
+
+  function toggleEye(inputId, btn) {
+    const el = document.getElementById(inputId);
+    const isHidden = el.type === 'password';
+    el.type = isHidden ? 'text' : 'password';
+    btn.textContent = isHidden ? '🙈' : '👁';
+  }
+
+  async function saveSettings() {
+    const cfg = {
+      difyApiKey:           document.getElementById('cfg-dify-key').value.trim(),
+      anythingllmApiKey:    document.getElementById('cfg-allm-key').value.trim(),
+      anythingllmWorkspace: document.getElementById('cfg-allm-ws').value.trim(),
+      livechatLicenseId:    document.getElementById('cfg-lc-id').value.trim(),
+      livechatToken:        document.getElementById('cfg-lc-token').value.trim(),
+    };
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+    await applySettingsToServer(cfg);
+
+    const okEl = document.getElementById('save-ok');
+    okEl.classList.add('show');
+    setTimeout(() => { okEl.classList.remove('show'); closeSettings(); }, 1200);
+  }
+
+  async function applySettingsToServer(cfg) {
+    try {
+      await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cfg),
+      });
+    } catch (_) {}
+  }
+
+  // Auto-apply on page load; open modal if no settings saved yet
+  (function initSettings() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      applySettingsToServer(JSON.parse(raw));
+    } else {
+      // First visit — prompt user to configure
+      setTimeout(openSettings, 800);
+    }
+  })();
 </script>
 
 </body>

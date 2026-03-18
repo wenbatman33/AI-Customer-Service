@@ -154,6 +154,10 @@ services:
     networks:
       - ai-net
 
+  # NOTE: Ollama runs natively on the host (not in Docker) to use Apple Metal GPU.
+  #       Start it with: ollama serve
+  #       Required model: ollama pull llama3.1:8b
+
   # ──────────────────────────────────────────
   # AnythingLLM
   # ──────────────────────────────────────────
@@ -162,19 +166,19 @@ services:
     restart: always
     cap_add:
       - SYS_ADMIN
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       STORAGE_DIR: /app/server/storage
       JWT_SECRET: ${ANYTHINGLLM_JWT_SECRET:-anythingllm-jwt-secret-change-me}
       LLM_PROVIDER: ollama
       OLLAMA_BASE_PATH: http://host.docker.internal:11434
-      OLLAMA_MODEL_PREF: ${OLLAMA_MODEL:-llama3}
+      OLLAMA_MODEL_PREF: ${OLLAMA_MODEL:-llama3.1:8b}
       OLLAMA_MODEL_TOKEN_LIMIT: 4096
       EMBEDDING_ENGINE: native
       VECTOR_DB: lancedb
     volumes:
       - anythingllm-storage:/app/server/storage
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     networks:
       - ai-net
     ports:
@@ -189,15 +193,14 @@ services:
     environment:
       PORT: 3100
       DIFY_API_BASE: http://dify-api:5001
-      DIFY_API_KEY: ${DIFY_API_KEY:-}
       ANYTHINGLLM_BASE: http://anythingllm:3001
+      LIVECHAT_ACTIVE_PLATFORM: ${LIVECHAT_ACTIVE_PLATFORM:-both}
+      # API keys — read from .env at startup (can still be overridden via Demo UI settings modal)
+      DIFY_API_KEY: ${DIFY_API_KEY:-}
       ANYTHINGLLM_API_KEY: ${ANYTHINGLLM_API_KEY:-}
       ANYTHINGLLM_WORKSPACE: ${ANYTHINGLLM_WORKSPACE:-default}
       LIVECHAT_LICENSE_ID: ${LIVECHAT_LICENSE_ID:-}
       LIVECHAT_TOKEN: ${LIVECHAT_TOKEN:-}
-      LIVECHAT_CLIENT_ID: ${LIVECHAT_CLIENT_ID:-}
-      LIVECHAT_CLIENT_SECRET: ${LIVECHAT_CLIENT_SECRET:-}
-      LIVECHAT_ACTIVE_PLATFORM: ${LIVECHAT_ACTIVE_PLATFORM:-both}
     depends_on:
       - dify-api
       - anythingllm

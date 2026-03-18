@@ -16,17 +16,17 @@ const wss    = new WebSocket.Server({ server });
 const PORT = process.env.PORT || 3100;
 
 const DIFY_API_BASE = process.env.DIFY_API_BASE || 'http://dify-api:5001';
-const DIFY_API_KEY  = process.env.DIFY_API_KEY  || '';
+let DIFY_API_KEY  = process.env.DIFY_API_KEY  || '';
 
-const ANYTHINGLLM_BASE      = process.env.ANYTHINGLLM_BASE      || 'http://anythingllm:3001';
-const ANYTHINGLLM_API_KEY   = process.env.ANYTHINGLLM_API_KEY   || '';
-const ANYTHINGLLM_WORKSPACE = process.env.ANYTHINGLLM_WORKSPACE || 'default';
+const ANYTHINGLLM_BASE    = process.env.ANYTHINGLLM_BASE || 'http://anythingllm:3001';
+let ANYTHINGLLM_API_KEY   = process.env.ANYTHINGLLM_API_KEY   || '';
+let ANYTHINGLLM_WORKSPACE = process.env.ANYTHINGLLM_WORKSPACE || 'default';
 
-const LIVECHAT_LICENSE_ID    = process.env.LIVECHAT_LICENSE_ID    || '';
+let LIVECHAT_LICENSE_ID    = process.env.LIVECHAT_LICENSE_ID    || '';
 const LIVECHAT_CLIENT_ID     = process.env.LIVECHAT_CLIENT_ID     || '';
 const LIVECHAT_CLIENT_SECRET = process.env.LIVECHAT_CLIENT_SECRET || '';
-const LIVECHAT_TOKEN         = process.env.LIVECHAT_TOKEN         || '';
-const ACTIVE_PLATFORM        = process.env.LIVECHAT_ACTIVE_PLATFORM || 'both';
+let LIVECHAT_TOKEN         = process.env.LIVECHAT_TOKEN         || '';
+let ACTIVE_PLATFORM          = process.env.LIVECHAT_ACTIVE_PLATFORM || 'both';
 
 // Parse account ID from PAT token (format: accountId:region:pat)
 let MY_ACCOUNT_ID = null;
@@ -57,6 +57,7 @@ async function queryDify(message, sessionId) {
   try {
     const res = await fetch(`${DIFY_API_BASE}/v1/chat-messages`, {
       method: 'POST',
+      signal: AbortSignal.timeout(180000),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${DIFY_API_KEY}`,
@@ -75,8 +76,9 @@ async function queryDify(message, sessionId) {
     if (data.conversation_id) difyConversations[sessionId] = data.conversation_id;
     return { answer: data.answer || '', ms };
   } catch (err) {
-    console.error('[Dify]', err.message);
-    return { answer: `[Dify 錯誤] ${err.message}`, ms: Date.now() - t0 };
+    const msg = err.name === 'AbortError' ? '請求逾時（超過 3 分鐘）' : err.message;
+    console.error('[Dify]', msg);
+    return { answer: `[Dify 錯誤] ${msg}`, ms: Date.now() - t0 };
   }
 }
 
@@ -90,6 +92,7 @@ async function queryAnythingLLM(message, sessionId) {
       `${ANYTHINGLLM_BASE}/api/v1/workspace/${ANYTHINGLLM_WORKSPACE}/chat`,
       {
         method: 'POST',
+        signal: AbortSignal.timeout(180000),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${ANYTHINGLLM_API_KEY}`,
@@ -106,8 +109,9 @@ async function queryAnythingLLM(message, sessionId) {
     const data = await res.json();
     return { answer: data.textResponse || '', ms };
   } catch (err) {
-    console.error('[AnythingLLM]', err.message);
-    return { answer: `[AnythingLLM 錯誤] ${err.message}`, ms: Date.now() - t0 };
+    const msg = err.name === 'AbortError' ? '請求逾時（超過 3 分鐘）' : err.message;
+    console.error('[AnythingLLM]', msg);
+    return { answer: `[AnythingLLM 錯誤] ${msg}`, ms: Date.now() - t0 };
   }
 }
 
@@ -183,18 +187,82 @@ function connectRTM() {
     let msg;
     try { msg = JSON.parse(raw); } catch { return; }
 
+    // Debug: log ALL RTM messages except login
+    if (!msg.request_id?.startsWith('login_')) {
+      const successStr = 'success' in msg ? ` success=${msg.success}` : '';
+      console.log('[RTM] MSG type:', msg.type, '| action:', msg.action + successStr, JSON.stringify(msg.payload).slice(0, 300));
+    }
+
     // Login response
     if (msg.request_id?.startsWith('login_') && 'success' in msg) {
       if (msg.success) {
         MY_AGENT_EMAIL = msg.payload?.my_profile?.email || msg.payload?.my_profile?.login;
         console.log(`[RTM] Logged in: ${MY_AGENT_EMAIL}`);
+        // Set routing status so LiveChat routes incoming chats to this agent
+        rtmWs.send(JSON.stringify({
+          request_id: `routing_${rtmReqId++}`,
+          action: 'set_routing_status',
+          payload: { status: 'accepting_chats' },
+        }));
+        console.log('[RTM] Set routing status: accepting_chats');
       } else {
         console.error('[RTM] Login failed:', JSON.stringify(msg.payload));
       }
       return;
     }
 
-    // Incoming message event
+    // New chat routed to this agent (contains initial customer message)
+    if (msg.action === 'incoming_chat') {
+      const chat   = msg.payload?.chat;
+      const chatId = chat?.id;
+      if (!chatId) return;
+
+      // Find the latest customer message in the thread
+      const thread = chat?.thread;
+      const events = thread?.events || [];
+      const customerMsg = [...events].reverse().find(
+        e => e.type === 'message' && !String(e.author_id).includes('@')
+           && e.author_id !== MY_ACCOUNT_ID
+      );
+      if (!customerMsg) return;
+
+      if (replyCooldown.has(chatId)) return;
+      replyCooldown.add(chatId);
+      setTimeout(() => replyCooldown.delete(chatId), 5000);
+
+      const text = customerMsg.text;
+      console.log(`[RTM] incoming_chat [${chatId}]: ${text}`);
+
+      const difyPromise = ACTIVE_PLATFORM !== 'anythingllm'
+        ? queryDify(text, chatId)
+        : Promise.resolve({ answer: '', ms: 0 });
+      const allmPromise = ACTIVE_PLATFORM !== 'dify'
+        ? queryAnythingLLM(text, chatId)
+        : Promise.resolve({ answer: '', ms: 0 });
+
+      const replySource = ACTIVE_PLATFORM === 'anythingllm' ? allmPromise : difyPromise;
+      replySource.then((result) => {
+        if (result.answer) {
+          console.log(`[RTM] Replying to [${chatId}]: ${result.answer.slice(0, 60)}...`);
+          setTimeout(() => sendLiveChatRTMReply(chatId, result.answer), 1200);
+        }
+      });
+
+      const [difyResult, allmResult] = await Promise.all([difyPromise, allmPromise]);
+      broadcast({
+        type: 'comparison',
+        chatId,
+        message: text,
+        dify:        { answer: difyResult.answer, ms: difyResult.ms },
+        anythingllm: { answer: allmResult.answer, ms: allmResult.ms },
+        timestamp: new Date().toISOString(),
+        source: 'livechat_rtm',
+        activePlatform: ACTIVE_PLATFORM,
+      });
+      return;
+    }
+
+    // Incoming message event (subsequent messages in existing chats)
     if (msg.action === 'incoming_event') {
       const event  = msg.payload?.event;
       const chatId = msg.payload?.chat_id;
@@ -216,10 +284,24 @@ function connectRTM() {
 
       console.log(`[RTM] Customer [${chatId}]: ${text}`);
 
-      const [difyResult, allmResult] = await Promise.all([
-        ACTIVE_PLATFORM !== 'anythingllm' ? queryDify(text, chatId)        : Promise.resolve({ answer: '', ms: 0 }),
-        ACTIVE_PLATFORM !== 'dify'        ? queryAnythingLLM(text, chatId) : Promise.resolve({ answer: '', ms: 0 }),
-      ]);
+      const difyPromise = ACTIVE_PLATFORM !== 'anythingllm'
+        ? queryDify(text, chatId)
+        : Promise.resolve({ answer: '', ms: 0 });
+      const allmPromise = ACTIVE_PLATFORM !== 'dify'
+        ? queryAnythingLLM(text, chatId)
+        : Promise.resolve({ answer: '', ms: 0 });
+
+      // Reply to LiveChat as soon as the primary platform responds (don't wait for both)
+      const replySource = ACTIVE_PLATFORM === 'anythingllm' ? allmPromise : difyPromise;
+      replySource.then((result) => {
+        if (result.answer) {
+          console.log(`[RTM] Replying to [${chatId}]: ${result.answer.slice(0, 60)}...`);
+          setTimeout(() => sendLiveChatRTMReply(chatId, result.answer), 1200);
+        }
+      });
+
+      // Wait for both to complete before broadcasting comparison
+      const [difyResult, allmResult] = await Promise.all([difyPromise, allmPromise]);
 
       broadcast({
         type: 'comparison',
@@ -229,17 +311,8 @@ function connectRTM() {
         anythingllm: { answer: allmResult.answer, ms: allmResult.ms },
         timestamp: new Date().toISOString(),
         source: 'livechat_rtm',
+        activePlatform: ACTIVE_PLATFORM,
       });
-
-      // Reply back to LiveChat
-      let replyText;
-      if (ACTIVE_PLATFORM === 'dify')         replyText = difyResult.answer;
-      else if (ACTIVE_PLATFORM === 'anythingllm') replyText = allmResult.answer;
-      else replyText = difyResult.answer || allmResult.answer; // both: first non-empty
-
-      if (replyText) {
-        setTimeout(() => sendLiveChatRTMReply(chatId, replyText), 1200);
-      }
     }
   });
 
@@ -260,14 +333,53 @@ function connectRTM() {
 // Health check
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
+// Settings — update runtime config from client (stored in browser localStorage)
+app.post('/api/settings', (req, res) => {
+  const { difyApiKey, anythingllmApiKey, anythingllmWorkspace, livechatLicenseId, livechatToken, activePlatform } = req.body;
+
+  if (difyApiKey           !== undefined) DIFY_API_KEY           = difyApiKey;
+  if (anythingllmApiKey    !== undefined) ANYTHINGLLM_API_KEY    = anythingllmApiKey;
+  if (anythingllmWorkspace !== undefined) ANYTHINGLLM_WORKSPACE  = anythingllmWorkspace;
+  if (livechatLicenseId    !== undefined) LIVECHAT_LICENSE_ID    = livechatLicenseId;
+  if (activePlatform       !== undefined) ACTIVE_PLATFORM        = activePlatform;
+
+  if (livechatToken !== undefined && livechatToken !== LIVECHAT_TOKEN) {
+    LIVECHAT_TOKEN = livechatToken;
+    MY_ACCOUNT_ID  = null;
+    if (livechatToken) {
+      try {
+        MY_ACCOUNT_ID = Buffer.from(livechatToken, 'base64').toString('utf-8').split(':')[0];
+      } catch (_) {}
+      // Reconnect RTM with new token
+      if (rtmWs) { rtmWs.terminate(); rtmWs = null; }
+      setTimeout(connectRTM, 500);
+    }
+  }
+
+  console.log('[Settings] Updated:', {
+    difyApiKey: DIFY_API_KEY ? '✓' : '✗',
+    anythingllmApiKey: ANYTHINGLLM_API_KEY ? '✓' : '✗',
+    anythingllmWorkspace: ANYTHINGLLM_WORKSPACE,
+    livechatLicenseId: LIVECHAT_LICENSE_ID || '(not set)',
+    livechatToken: LIVECHAT_TOKEN ? '✓' : '✗',
+    activePlatform: ACTIVE_PLATFORM,
+  });
+
+  res.json({ ok: true });
+});
+
 // Config — used by demo-ui to inject LiveChat license and show setup status
 app.get('/api/config', (_req, res) => {
   res.json({
-    livechatLicenseId: LIVECHAT_LICENSE_ID,
-    activePlatform:    ACTIVE_PLATFORM,
-    difyConfigured:    !!DIFY_API_KEY,
+    livechatLicenseId:     LIVECHAT_LICENSE_ID,
+    activePlatform:        ACTIVE_PLATFORM,
+    difyConfigured:        !!DIFY_API_KEY,
     anythingllmConfigured: !!ANYTHINGLLM_API_KEY,
     livechatRtmConfigured: !!LIVECHAT_TOKEN,
+    difyApiKey:            DIFY_API_KEY,
+    anythingllmApiKey:     ANYTHINGLLM_API_KEY,
+    anythingllmWorkspace:  ANYTHINGLLM_WORKSPACE,
+    livechatToken:         LIVECHAT_TOKEN,
   });
 });
 
@@ -328,16 +440,18 @@ app.post('/webhook/livechat', async (req, res) => {
 });
 
 // Manual test — simulate a message without LiveChat
+// target: 'dify' | 'anythingllm' | undefined (both)
 app.post('/api/test', async (req, res) => {
-  const { message } = req.body;
+  const { message, target } = req.body;
   if (!message) return res.status(400).json({ error: 'message required' });
 
   const sessionId = `manual-${Date.now()}`;
 
-  const [difyResult, allmResult] = await Promise.all([
-    queryDify(message, sessionId),
-    queryAnythingLLM(message, sessionId),
-  ]);
+  let difyResult = { answer: '', ms: 0 };
+  let allmResult = { answer: '', ms: 0 };
+
+  if (!target || target === 'dify')        difyResult = await queryDify(message, sessionId);
+  if (!target || target === 'anythingllm') allmResult = await queryAnythingLLM(message, sessionId);
 
   const result = {
     type: 'comparison',
@@ -346,6 +460,7 @@ app.post('/api/test', async (req, res) => {
     dify:        { answer: difyResult.answer, ms: difyResult.ms },
     anythingllm: { answer: allmResult.answer, ms: allmResult.ms },
     timestamp: new Date().toISOString(),
+    target,
   };
 
   broadcast(result);
