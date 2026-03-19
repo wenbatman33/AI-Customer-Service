@@ -154,9 +154,27 @@ services:
     networks:
       - ai-net
 
-  # NOTE: Ollama runs natively on the host (not in Docker) to use Apple Metal GPU.
-  #       Start it with: ollama serve
-  #       Required model: ollama pull llama3.1:8b
+  # ──────────────────────────────────────────
+  # Ollama — LLM Engine
+  # ──────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    restart: always
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - ai-net
+    ports:
+      - "11434:11434"
+    entrypoint: ["/bin/sh", "-c", "ollama serve & sleep 10 && ollama pull ${OLLAMA_MODEL:-llama3.1:8b} && wait"]
+    # 若有 NVIDIA GPU，取消下方註解：
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
 
   # ──────────────────────────────────────────
   # AnythingLLM
@@ -166,19 +184,19 @@ services:
     restart: always
     cap_add:
       - SYS_ADMIN
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     environment:
       STORAGE_DIR: /app/server/storage
       JWT_SECRET: ${ANYTHINGLLM_JWT_SECRET:-anythingllm-jwt-secret-change-me}
       LLM_PROVIDER: ollama
-      OLLAMA_BASE_PATH: ${OLLAMA_BASE_PATH:-http://host.docker.internal:11434}
+      OLLAMA_BASE_PATH: http://ollama:11434
       OLLAMA_MODEL_PREF: ${OLLAMA_MODEL:-llama3.1:8b}
       OLLAMA_MODEL_TOKEN_LIMIT: 4096
       EMBEDDING_ENGINE: native
       VECTOR_DB: lancedb
     volumes:
       - anythingllm-storage:/app/server/storage
+    depends_on:
+      - ollama
     networks:
       - ai-net
     ports:
@@ -230,3 +248,4 @@ volumes:
   dify-qdrant-data:
   dify-storage:
   anythingllm-storage:
+  ollama-data:
