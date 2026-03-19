@@ -138,8 +138,8 @@ services:
     image: langgenius/dify-web:0.9.1
     restart: always
     environment:
-      CONSOLE_API_URL: http://localhost:5001
-      APP_API_URL: http://localhost:5001
+      CONSOLE_API_URL: ${DIFY_API_URL:-http://localhost:5001}
+      APP_API_URL: ${DIFY_API_URL:-http://localhost:5001}
     networks:
       - ai-net
     ports:
@@ -172,7 +172,7 @@ services:
       STORAGE_DIR: /app/server/storage
       JWT_SECRET: ${ANYTHINGLLM_JWT_SECRET:-anythingllm-jwt-secret-change-me}
       LLM_PROVIDER: ollama
-      OLLAMA_BASE_PATH: http://host.docker.internal:11434
+      OLLAMA_BASE_PATH: ${OLLAMA_BASE_PATH:-http://host.docker.internal:11434}
       OLLAMA_MODEL_PREF: ${OLLAMA_MODEL:-llama3.1:8b}
       OLLAMA_MODEL_TOKEN_LIMIT: 4096
       EMBEDDING_ENGINE: native
