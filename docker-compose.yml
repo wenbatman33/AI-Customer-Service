@@ -138,26 +138,12 @@ services:
     image: langgenius/dify-web:0.9.1
     restart: always
     environment:
-      CONSOLE_API_URL: ${DIFY_API_URL:-http://localhost}
-      APP_API_URL: ${DIFY_API_URL:-http://localhost}
+      CONSOLE_API_URL: ${DIFY_API_URL:-http://localhost:5001}
+      APP_API_URL: ${DIFY_API_URL:-http://localhost:5001}
     networks:
       - ai-net
     ports:
       - "3000:3000"
-
-  # ── Nginx — reverse proxy for Dify (port 80) ──────────────
-  dify-nginx:
-    image: nginx:alpine
-    restart: always
-    volumes:
-      - ./nginx/dify.conf:/etc/nginx/conf.d/default.conf:ro
-    ports:
-      - "80:80"
-    depends_on:
-      - dify-web
-      - dify-api
-    networks:
-      - ai-net
 
   dify-sandbox:
     image: langgenius/dify-sandbox:0.2.9
