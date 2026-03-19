@@ -142,6 +142,8 @@ services:
       APP_API_URL: ${DIFY_API_URL:-http://localhost}
     networks:
       - ai-net
+    ports:
+      - "3000:3000"
 
   # ── Nginx — reverse proxy for Dify (port 80) ──────────────
   dify-nginx:
