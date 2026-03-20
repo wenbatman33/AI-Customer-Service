@@ -143,6 +143,9 @@ services:
     environment:
       CONSOLE_API_URL: ${DIFY_WEB_URL:-http://localhost:3000}
       APP_API_URL: ${DIFY_WEB_URL:-http://localhost:3000}
+    volumes:
+      - ./dify-web-init.sh:/dify-web-init.sh:ro
+    entrypoint: ["/bin/bash", "/dify-web-init.sh"]
     networks:
       - ai-net
     # port 3000 透過 dify-nginx 對外，不直接暴露
