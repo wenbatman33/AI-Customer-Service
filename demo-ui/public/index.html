@@ -968,14 +968,16 @@
     } catch (_) {}
   }
 
-  // Auto-apply on page load; open modal if no settings saved yet
-  (function initSettings() {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      applySettingsToServer(JSON.parse(raw));
-    } else {
-      // First visit — prompt user to configure
-      setTimeout(openSettings, 800);
+  // Auto-open modal only if server has no keys configured yet
+  (async function initSettings() {
+    try {
+      const res = await fetch('/api/config');
+      const cfg = await res.json();
+      const hasKeys = cfg.difyConfigured || cfg.anythingllmConfigured || cfg.livechatRtmConfigured;
+      if (!hasKeys) setTimeout(openSettings, 800);
+    } catch (_) {
+      // Server unreachable — fall back to localStorage check
+      if (!localStorage.getItem(STORAGE_KEY)) setTimeout(openSettings, 800);
     }
   })();
 </script>
