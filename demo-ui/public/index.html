@@ -569,8 +569,8 @@
     </div>
 
     <div class="modal-hint">
-      此處為主要設定來源，儲存於瀏覽器 localStorage 並即時套用至後端。<br>
-      重新整理頁面後自動還原。重啟容器後仍有效（頁面一開啟即自動套用）。
+      設定儲存於伺服器 PostgreSQL，任何裝置開啟皆可共用。<br>
+      儲存後即時生效，重啟容器後自動還原。
     </div>
 
     <div class="field-group">
@@ -907,12 +907,19 @@
   // ── Settings ──────────────────────────────────────────────────────────────────
   const STORAGE_KEY = 'ai_cs_settings';
 
-  function openSettings() {
-    const cfg = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-    document.getElementById('cfg-dify-key').value   = cfg.difyApiKey           || '';
-    document.getElementById('cfg-allm-key').value   = cfg.anythingllmApiKey    || '';
-    document.getElementById('cfg-allm-ws').value    = cfg.anythingllmWorkspace || '';
-    document.getElementById('cfg-lc-id').value      = cfg.livechatLicenseId    || '';
+  async function openSettings() {
+    // Load from server (PostgreSQL) as source of truth
+    let cfg = {};
+    try {
+      const res = await fetch('/api/config');
+      if (res.ok) cfg = await res.json();
+    } catch (_) {
+      cfg = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    }
+    document.getElementById('cfg-dify-key').value      = cfg.difyApiKey           || '';
+    document.getElementById('cfg-allm-key').value      = cfg.anythingllmApiKey    || '';
+    document.getElementById('cfg-allm-ws').value       = cfg.anythingllmWorkspace || '';
+    document.getElementById('cfg-lc-id').value         = cfg.livechatLicenseId    || '';
     document.getElementById('cfg-lc-token').value      = cfg.livechatToken        || '';
     document.getElementById('cfg-aviation-key').value  = cfg.aviationstackApiKey  || '';
     document.getElementById('settings-overlay').classList.add('open');
