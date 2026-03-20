@@ -607,6 +607,13 @@
           <button class="btn-eye" onclick="toggleEye('cfg-lc-token', this)">👁</button>
         </div>
       </div>
+      <div>
+        <div class="field-label">AviationStack API Key</div>
+        <div class="field-input-wrap">
+          <input type="password" id="cfg-aviation-key" placeholder="AviationStack API Key" />
+          <button class="btn-eye" onclick="toggleEye('cfg-aviation-key', this)">👁</button>
+        </div>
+      </div>
     </div>
 
     <div class="modal-footer">
@@ -906,7 +913,8 @@
     document.getElementById('cfg-allm-key').value   = cfg.anythingllmApiKey    || '';
     document.getElementById('cfg-allm-ws').value    = cfg.anythingllmWorkspace || '';
     document.getElementById('cfg-lc-id').value      = cfg.livechatLicenseId    || '';
-    document.getElementById('cfg-lc-token').value   = cfg.livechatToken        || '';
+    document.getElementById('cfg-lc-token').value      = cfg.livechatToken        || '';
+    document.getElementById('cfg-aviation-key').value  = cfg.aviationstackApiKey  || '';
     document.getElementById('settings-overlay').classList.add('open');
   }
 
@@ -932,6 +940,7 @@
       anythingllmWorkspace: document.getElementById('cfg-allm-ws').value.trim(),
       livechatLicenseId:    document.getElementById('cfg-lc-id').value.trim(),
       livechatToken:        document.getElementById('cfg-lc-token').value.trim(),
+      aviationstackApiKey:  document.getElementById('cfg-aviation-key').value.trim(),
     };
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));

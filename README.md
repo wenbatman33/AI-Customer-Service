@@ -125,6 +125,24 @@ ollama pull llama3.1:8b
 | Dify API | :5001 | REST API |
 | AnythingLLM | :3001 | 管理介面 + API |
 | Webhook Bridge | :3100 | LiveChat RTM + REST + WebSocket |
+| Webhook DB | (內部) | 獨立 PostgreSQL，存放 API Keys 等設定 |
+
+## 設定持久化
+
+所有 API Keys 與設定儲存在獨立的 **PostgreSQL（webhook-db）**，不依賴 `.env`：
+
+- **第一次啟動**：從 `.env` 讀取初始值，寫入 DB
+- **之後重啟**：從 DB 讀取，`.env` 不再影響
+- **修改設定**：透過 Demo Dashboard → ⚙️ 設定 → 儲存並套用，即時更新 DB
+
+儲存的欄位：Dify API Key、AnythingLLM API Key、AnythingLLM Workspace、LiveChat License ID、LiveChat Token、Active Platform、AviationStack API Key
+
+## 腳本說明
+
+| 腳本 | 執行位置 | 說明 |
+|------|----------|------|
+| `deploy.sh` | Host（你手動執行） | 部署入口：`docker compose down` 再重建 demo-ui、webhook-bridge、dify-web |
+| `dify-web-init.sh` | dify-web 容器內部（自動） | 容器啟動時將 Next.js bundle 裡寫死的 `127.0.0.1:5001` 替換成正確的 `CONSOLE_API_URL`，再啟動 pm2 |
 
 ## Intent Router（關鍵字攔截 + 外部 API）
 
@@ -157,11 +175,7 @@ check flight AA100
 **啟用步驟：**
 
 1. 至 https://aviationstack.com/ 免費註冊，取得 API Key
-2. 填入 `.env`：
-   ```
-   AVIATIONSTACK_API_KEY=你的KEY
-   ```
-3. 重新部署：`./deploy.sh`
+2. 在 Demo Dashboard → ⚙️ 設定 → **AviationStack API Key** 欄位貼上並儲存（即時生效，無需重啟）
 
 ### 新增自訂 Intent
 
@@ -234,11 +248,11 @@ tar --exclude='*/node_modules' \
 infra 解壓後的部署順序：
 
 1. `cp .env.example .env` — 填入伺服器 IP 等基本設定
-2. `docker compose up -d` — 啟動所有服務
-3. 進入 Dify UI 初始化，取得 `DIFY_API_KEY`
-4. 進入 AnythingLLM UI 初始化，取得 `ANYTHINGLLM_API_KEY`
-5. 取得 LiveChat PAT Token，填入 `LIVECHAT_TOKEN`
-6. `docker compose restart webhook-bridge` — 讓 API Key 生效
+2. `docker compose up -d` — 啟動所有服務（約 1~2 分鐘）
+3. 進入 Dify UI 初始化，取得 API Key
+4. 進入 AnythingLLM UI 初始化，取得 API Key
+5. 取得 LiveChat PAT Token
+6. 開啟 Demo Dashboard `:8080` → ⚙️ 設定 → 填入所有 Key → 儲存並套用（自動寫入 DB，無需重啟）
 
 ## 常見問題
 

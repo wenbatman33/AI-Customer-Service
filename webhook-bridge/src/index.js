@@ -16,27 +16,26 @@ const wss    = new WebSocket.Server({ server });
 // ── Config ────────────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3100;
 
-const DIFY_API_BASE = process.env.DIFY_API_BASE || 'http://dify-api:5001';
-let DIFY_API_KEY  = process.env.DIFY_API_KEY  || '';
-
-const ANYTHINGLLM_BASE    = process.env.ANYTHINGLLM_BASE || 'http://anythingllm:3001';
-let ANYTHINGLLM_API_KEY   = process.env.ANYTHINGLLM_API_KEY   || '';
-let ANYTHINGLLM_WORKSPACE = process.env.ANYTHINGLLM_WORKSPACE || 'default';
-
-let LIVECHAT_LICENSE_ID    = process.env.LIVECHAT_LICENSE_ID    || '';
+const DIFY_API_BASE          = process.env.DIFY_API_BASE    || 'http://dify-api:5001';
+const ANYTHINGLLM_BASE       = process.env.ANYTHINGLLM_BASE || 'http://anythingllm:3001';
 const LIVECHAT_CLIENT_ID     = process.env.LIVECHAT_CLIENT_ID     || '';
 const LIVECHAT_CLIENT_SECRET = process.env.LIVECHAT_CLIENT_SECRET || '';
-let LIVECHAT_TOKEN         = process.env.LIVECHAT_TOKEN         || '';
-let ACTIVE_PLATFORM          = process.env.LIVECHAT_ACTIVE_PLATFORM || 'both';
 
-// Parse account ID from PAT token (format: accountId:region:pat)
+// ── Persistent Config (PostgreSQL — survives restarts, shared across team) ─────
+const configStore = require('./config');
+
+// Start with env defaults; overwritten by DB values in async startup below
+let DIFY_API_KEY           = process.env.DIFY_API_KEY             || '';
+let ANYTHINGLLM_API_KEY    = process.env.ANYTHINGLLM_API_KEY      || '';
+let ANYTHINGLLM_WORKSPACE  = process.env.ANYTHINGLLM_WORKSPACE    || 'default';
+let LIVECHAT_LICENSE_ID    = process.env.LIVECHAT_LICENSE_ID      || '';
+let LIVECHAT_TOKEN         = process.env.LIVECHAT_TOKEN           || '';
+let ACTIVE_PLATFORM        = process.env.LIVECHAT_ACTIVE_PLATFORM || 'both';
+let AVIATIONSTACK_API_KEY  = process.env.AVIATIONSTACK_API_KEY    || '';
+
+// Parsed from LIVECHAT_TOKEN after DB load in async startup
 let MY_ACCOUNT_ID = null;
 let MY_AGENT_EMAIL = null;
-if (LIVECHAT_TOKEN) {
-  try {
-    MY_ACCOUNT_ID = Buffer.from(LIVECHAT_TOKEN, 'base64').toString('utf-8').split(':')[0];
-  } catch (_) {}
-}
 
 // In-memory store: session → dify conversation_id
 const difyConversations = {};
@@ -376,13 +375,17 @@ app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
 // Settings — update runtime config from client (stored in browser localStorage)
 app.post('/api/settings', (req, res) => {
-  const { difyApiKey, anythingllmApiKey, anythingllmWorkspace, livechatLicenseId, livechatToken, activePlatform } = req.body;
+  const { difyApiKey, anythingllmApiKey, anythingllmWorkspace, livechatLicenseId, livechatToken, activePlatform, aviationstackApiKey } = req.body;
 
   if (difyApiKey           !== undefined) DIFY_API_KEY           = difyApiKey;
   if (anythingllmApiKey    !== undefined) ANYTHINGLLM_API_KEY    = anythingllmApiKey;
   if (anythingllmWorkspace !== undefined) ANYTHINGLLM_WORKSPACE  = anythingllmWorkspace;
   if (livechatLicenseId    !== undefined) LIVECHAT_LICENSE_ID    = livechatLicenseId;
   if (activePlatform       !== undefined) ACTIVE_PLATFORM        = activePlatform;
+  if (aviationstackApiKey  !== undefined) {
+    AVIATIONSTACK_API_KEY = aviationstackApiKey;
+    process.env.AVIATIONSTACK_API_KEY = aviationstackApiKey;
+  }
 
   if (livechatToken !== undefined && livechatToken !== LIVECHAT_TOKEN) {
     LIVECHAT_TOKEN = livechatToken;
@@ -396,6 +399,17 @@ app.post('/api/settings', (req, res) => {
       setTimeout(connectRTM, 500);
     }
   }
+
+  // Persist to disk so settings survive restarts and are shared across the team
+  configStore.save({
+    difyApiKey:           DIFY_API_KEY,
+    anythingllmApiKey:    ANYTHINGLLM_API_KEY,
+    anythingllmWorkspace: ANYTHINGLLM_WORKSPACE,
+    livechatLicenseId:    LIVECHAT_LICENSE_ID,
+    livechatToken:        LIVECHAT_TOKEN,
+    activePlatform:       ACTIVE_PLATFORM,
+    aviationstackApiKey:  AVIATIONSTACK_API_KEY,
+  });
 
   console.log('[Settings] Updated:', {
     difyApiKey: DIFY_API_KEY ? '✓' : '✗',
@@ -421,6 +435,7 @@ app.get('/api/config', (_req, res) => {
     anythingllmApiKey:     ANYTHINGLLM_API_KEY,
     anythingllmWorkspace:  ANYTHINGLLM_WORKSPACE,
     livechatToken:         LIVECHAT_TOKEN,
+    aviationstackApiKey:   AVIATIONSTACK_API_KEY,
   });
 });
 
@@ -544,13 +559,33 @@ app.post('/api/test', async (req, res) => {
 });
 
 // ── Start ─────────────────────────────────────────────────────────────────────
-server.listen(PORT, () => {
-  console.log(`[webhook-bridge] port ${PORT}`);
-  console.log(`  Dify         : ${DIFY_API_BASE} (key: ${DIFY_API_KEY ? '✓' : '✗ not set'})`);
-  console.log(`  AnythingLLM  : ${ANYTHINGLLM_BASE} (key: ${ANYTHINGLLM_API_KEY ? '✓' : '✗ not set'})`);
-  console.log(`  Platform     : ${ACTIVE_PLATFORM}`);
-  console.log(`  LiveChat ID  : ${LIVECHAT_LICENSE_ID || '(not set)'}`);
-  console.log(`  LiveChat RTM : ${LIVECHAT_TOKEN ? '✓ token set' : '✗ not set'}`);
+(async () => {
+  // Load persisted config from PostgreSQL before accepting requests
+  const cfg = await configStore.load();
+  DIFY_API_KEY          = cfg.difyApiKey;
+  ANYTHINGLLM_API_KEY   = cfg.anythingllmApiKey;
+  ANYTHINGLLM_WORKSPACE = cfg.anythingllmWorkspace;
+  LIVECHAT_LICENSE_ID   = cfg.livechatLicenseId;
+  LIVECHAT_TOKEN        = cfg.livechatToken;
+  ACTIVE_PLATFORM       = cfg.activePlatform;
+  AVIATIONSTACK_API_KEY = cfg.aviationstackApiKey;
+  process.env.AVIATIONSTACK_API_KEY = AVIATIONSTACK_API_KEY;
 
-  connectRTM();
-});
+  // Parse account ID from loaded token
+  if (LIVECHAT_TOKEN) {
+    try {
+      MY_ACCOUNT_ID = Buffer.from(LIVECHAT_TOKEN, 'base64').toString('utf-8').split(':')[0];
+    } catch (_) {}
+  }
+
+  server.listen(PORT, () => {
+    console.log(`[webhook-bridge] port ${PORT}`);
+    console.log(`  Dify         : ${DIFY_API_BASE} (key: ${DIFY_API_KEY ? '✓' : '✗ not set'})`);
+    console.log(`  AnythingLLM  : ${ANYTHINGLLM_BASE} (key: ${ANYTHINGLLM_API_KEY ? '✓' : '✗ not set'})`);
+    console.log(`  Platform     : ${ACTIVE_PLATFORM}`);
+    console.log(`  LiveChat ID  : ${LIVECHAT_LICENSE_ID || '(not set)'}`);
+    console.log(`  LiveChat RTM : ${LIVECHAT_TOKEN ? '✓ token set' : '✗ not set'}`);
+
+    connectRTM();
+  });
+})();

@@ -227,6 +227,26 @@ services:
       - "3001:3001"
 
   # ──────────────────────────────────────────
+  # Webhook Bridge — Config DB
+  # ──────────────────────────────────────────
+  webhook-db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: webhook
+      POSTGRES_PASSWORD: webhook
+      POSTGRES_DB: webhook
+    volumes:
+      - webhook-db-data:/var/lib/postgresql/data
+    networks:
+      - ai-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U webhook"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ──────────────────────────────────────────
   # Webhook Bridge
   # ──────────────────────────────────────────
   webhook-bridge:
@@ -237,7 +257,7 @@ services:
       DIFY_API_BASE: http://dify-api:5001
       ANYTHINGLLM_BASE: http://anythingllm:3001
       LIVECHAT_ACTIVE_PLATFORM: ${LIVECHAT_ACTIVE_PLATFORM:-both}
-      # API keys — read from .env at startup (can still be overridden via Demo UI settings modal)
+      # Initial API keys — seeded into DB on first run, managed via Demo UI thereafter
       DIFY_API_KEY: ${DIFY_API_KEY:-}
       ANYTHINGLLM_API_KEY: ${ANYTHINGLLM_API_KEY:-}
       ANYTHINGLLM_WORKSPACE: ${ANYTHINGLLM_WORKSPACE:-default}
@@ -245,9 +265,19 @@ services:
       LIVECHAT_TOKEN: ${LIVECHAT_TOKEN:-}
       # Intent Router API keys
       AVIATIONSTACK_API_KEY: ${AVIATIONSTACK_API_KEY:-}
+      # Config DB
+      WEBHOOK_DB_HOST: webhook-db
+      WEBHOOK_DB_PORT: 5432
+      WEBHOOK_DB_NAME: webhook
+      WEBHOOK_DB_USER: webhook
+      WEBHOOK_DB_PASSWORD: webhook
     depends_on:
-      - dify-api
-      - anythingllm
+      webhook-db:
+        condition: service_healthy
+      dify-api:
+        condition: service_started
+      anythingllm:
+        condition: service_started
     networks:
       - ai-net
     ports:
@@ -275,3 +305,4 @@ volumes:
   dify-storage:
   anythingllm-storage:
   ollama-data:
+  webhook-db-data:
