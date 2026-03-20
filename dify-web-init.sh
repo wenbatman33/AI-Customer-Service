@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 # Next.js NEXT_PUBLIC_* vars are baked at build time with http://127.0.0.1:5001
