@@ -1,11 +1,14 @@
 #!/bin/sh
 set -e
 
-# Next.js NEXT_PUBLIC_* vars are baked at build time with http://127.0.0.1:5001
-# We must replace them in the compiled JS files at runtime
+# Next.js NEXT_PUBLIC_* vars are baked at build time.
+# Dify image may use http://localhost:5001 or http://127.0.0.1:5001 as default.
+# Replace both to cover all cases.
 if [ -n "$CONSOLE_API_URL" ]; then
-  echo "[dify-web-init] Replacing 127.0.0.1:5001 -> $CONSOLE_API_URL in Next.js bundle..."
-  find /app/web/.next -type f -name '*.js' \
+  echo "[dify-web-init] Replacing baked-in API URLs -> $CONSOLE_API_URL ..."
+  find /app/web/.next -type f \( -name '*.js' -o -name '*.json' \) \
+    -exec sed -i "s|http://localhost:5001|${CONSOLE_API_URL}|g" {} +
+  find /app/web/.next -type f \( -name '*.js' -o -name '*.json' \) \
     -exec sed -i "s|http://127.0.0.1:5001|${CONSOLE_API_URL}|g" {} +
   echo "[dify-web-init] Done."
 fi
