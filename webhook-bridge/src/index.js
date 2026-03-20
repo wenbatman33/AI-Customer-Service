@@ -4,6 +4,7 @@ const cors    = require('cors');
 const http    = require('http');
 const WebSocket = require('ws');
 const fetch   = require('node-fetch');
+const { routeIntent } = require('./intent-router');
 
 const app    = express();
 app.use(cors());
@@ -233,6 +234,26 @@ function connectRTM() {
       const text = customerMsg.text;
       console.log(`[RTM] incoming_chat [${chatId}]: ${text}`);
 
+      // Intent Router: check before sending to AI
+      const intentResult = await routeIntent(text, chatId);
+      if (intentResult.handled) {
+        const { response: answer, ms = 0, intent: intentName } = intentResult;
+        console.log(`[IntentRouter] [${chatId}] handled by ${intentName}`);
+        setTimeout(() => sendLiveChatRTMReply(chatId, answer), 1200);
+        broadcast({
+          type: 'comparison',
+          chatId,
+          message: text,
+          dify:        { answer, ms },
+          anythingllm: { answer, ms },
+          timestamp: new Date().toISOString(),
+          source: 'livechat_rtm',
+          activePlatform: ACTIVE_PLATFORM,
+          intentHandled: intentName,
+        });
+        return;
+      }
+
       const difyPromise = ACTIVE_PLATFORM !== 'anythingllm'
         ? queryDify(text, chatId)
         : Promise.resolve({ answer: '', ms: 0 });
@@ -283,6 +304,26 @@ function connectRTM() {
       setTimeout(() => replyCooldown.delete(chatId), 5000);
 
       console.log(`[RTM] Customer [${chatId}]: ${text}`);
+
+      // Intent Router: check before sending to AI
+      const intentResult = await routeIntent(text, chatId);
+      if (intentResult.handled) {
+        const { response: answer, ms = 0, intent: intentName } = intentResult;
+        console.log(`[IntentRouter] [${chatId}] handled by ${intentName}`);
+        setTimeout(() => sendLiveChatRTMReply(chatId, answer), 1200);
+        broadcast({
+          type: 'comparison',
+          chatId,
+          message: text,
+          dify:        { answer, ms },
+          anythingllm: { answer, ms },
+          timestamp: new Date().toISOString(),
+          source: 'livechat_rtm',
+          activePlatform: ACTIVE_PLATFORM,
+          intentHandled: intentName,
+        });
+        return;
+      }
 
       const difyPromise = ACTIVE_PLATFORM !== 'anythingllm'
         ? queryDify(text, chatId)
@@ -415,6 +456,24 @@ app.post('/webhook/livechat', async (req, res) => {
 
   res.status(200).json({ ok: true }); // respond to LiveChat immediately
 
+  // Intent Router: check before sending to AI
+  const intentResult = await routeIntent(message, chatId);
+  if (intentResult.handled) {
+    const { response: answer, ms = 0, intent: intentName } = intentResult;
+    console.log(`[IntentRouter] [${chatId}] handled by ${intentName}`);
+    await sendLiveChatResponse(chatId, answer);
+    broadcast({
+      type: 'comparison',
+      chatId,
+      message,
+      dify:        { answer, ms },
+      anythingllm: { answer, ms },
+      timestamp: new Date().toISOString(),
+      intentHandled: intentName,
+    });
+    return;
+  }
+
   const [difyResult, allmResult] = await Promise.all([
     ACTIVE_PLATFORM !== 'anythingllm' ? queryDify(message, chatId)       : Promise.resolve({ answer: '', ms: 0 }),
     ACTIVE_PLATFORM !== 'dify'        ? queryAnythingLLM(message, chatId) : Promise.resolve({ answer: '', ms: 0 }),
@@ -446,6 +505,23 @@ app.post('/api/test', async (req, res) => {
   if (!message) return res.status(400).json({ error: 'message required' });
 
   const sessionId = `manual-${Date.now()}`;
+
+  // Intent Router: check before sending to AI
+  const intentResult = await routeIntent(message, sessionId);
+  if (intentResult.handled) {
+    const { response: answer, ms = 0, intent: intentName } = intentResult;
+    const result = {
+      type: 'comparison',
+      chatId: sessionId,
+      message,
+      dify:        { answer, ms },
+      anythingllm: { answer, ms },
+      timestamp: new Date().toISOString(),
+      intentHandled: intentName,
+    };
+    broadcast(result);
+    return res.json(result);
+  }
 
   let difyResult = { answer: '', ms: 0 };
   let allmResult = { answer: '', ms: 0 };

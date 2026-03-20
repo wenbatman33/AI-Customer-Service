@@ -126,12 +126,91 @@ ollama pull llama3.1:8b
 | AnythingLLM | :3001 | 管理介面 + API |
 | Webhook Bridge | :3100 | LiveChat RTM + REST + WebSocket |
 
+## Intent Router（關鍵字攔截 + 外部 API）
+
+訊息進來後，**優先比對關鍵字**，命中就直接呼叫外部 API 回傳結果，不送 AI 平台。
+
+### 架構
+
+```
+訊息進來
+  │
+  ▼
+[Intent Router] ── 命中 ──> 呼叫外部 API ──> 回傳結果（跳過 AI）
+  │
+  └── 未命中 ──> Dify / AnythingLLM（原本流程）
+```
+
+### 已內建 Intent：航班查詢
+
+使用 [AviationStack API](https://aviationstack.com/)（免費 500 次/月）查詢即時航班狀態。
+
+**觸發關鍵字範例：**
+
+```
+查詢 CI123 航班
+CI123 航班狀態
+航班 BR215 幾點到
+check flight AA100
+```
+
+**啟用步驟：**
+
+1. 至 https://aviationstack.com/ 免費註冊，取得 API Key
+2. 填入 `.env`：
+   ```
+   AVIATIONSTACK_API_KEY=你的KEY
+   ```
+3. 重新部署：`./deploy.sh`
+
+### 新增自訂 Intent
+
+1. 在 `webhook-bridge/src/intents/` 新增一個檔案，例如 `weather.js`：
+
+   ```js
+   const patterns = [
+     /查詢(.+)天氣/,
+     /(.+)今天天氣/,
+   ];
+
+   async function handler(match, message, sessionId) {
+     const city = match[1].trim();
+     // 呼叫天氣 API...
+     return `${city} 今天晴天，28°C`;
+   }
+
+   module.exports = { name: 'weather', patterns, handler };
+   ```
+
+2. 在 `webhook-bridge/src/intents/index.js` 取消對應那行的註解：
+
+   ```js
+   const weatherIntent = require('./weather');
+
+   module.exports = [
+     flightIntent,
+     weatherIntent,  // ← 加這行
+   ];
+   ```
+
+3. 重新部署即生效，無需修改其他程式碼。
+
+---
+
 ## 手動測試（不需要 LiveChat）
 
 ```bash
 curl -X POST http://localhost:3100/api/test \
   -H "Content-Type: application/json" \
   -d '{"message": "你好，我需要退貨協助"}'
+```
+
+測試 Intent Router（有 `intentHandled` 欄位代表命中）：
+
+```bash
+curl -X POST http://localhost:3100/api/test \
+  -H "Content-Type: application/json" \
+  -d '{"message": "查詢 CI123 航班"}' | jq .
 ```
 
 ## 停止服務

@@ -243,6 +243,8 @@ services:
       ANYTHINGLLM_WORKSPACE: ${ANYTHINGLLM_WORKSPACE:-default}
       LIVECHAT_LICENSE_ID: ${LIVECHAT_LICENSE_ID:-}
       LIVECHAT_TOKEN: ${LIVECHAT_TOKEN:-}
+      # Intent Router API keys
+      AVIATIONSTACK_API_KEY: ${AVIATIONSTACK_API_KEY:-}
     depends_on:
       - dify-api
       - anythingllm
