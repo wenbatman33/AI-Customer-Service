@@ -1,9 +1,0 @@
-version: "2"
-authtoken: YOUR_NGROK_AUTH_TOKEN   # https://dashboard.ngrok.com/get-started/your-authtoken
-
-tunnels:
-  webhook-bridge:
-    proto: http
-    addr: 3100
-    # 取得此網址後填入 LiveChat → Settings → Integrations → Webhooks
-    # 例如: https://abc123.ngrok.io/webhook/livechat
