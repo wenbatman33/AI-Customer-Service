@@ -439,6 +439,15 @@ app.get('/api/config', (_req, res) => {
   });
 });
 
+// Reconnect RTM
+app.post('/api/reconnect-rtm', (_req, res) => {
+  if (rtmWs) { rtmWs.terminate(); rtmWs = null; }
+  rtmConnecting = false;
+  setTimeout(connectRTM, 500);
+  console.log('[RTM] Manual reconnect triggered');
+  res.json({ ok: true });
+});
+
 // Status — check if downstream services are reachable
 app.get('/api/status', async (_req, res) => {
   const [difyOk, allmOk] = await Promise.all([

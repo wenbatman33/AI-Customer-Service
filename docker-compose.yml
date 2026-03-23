@@ -58,10 +58,10 @@ services:
       SECRET_KEY: ${DIFY_SECRET_KEY:-your-secret-key-change-me-32chars}
       LOG_LEVEL: INFO
       # Public URLs shown in Dify UI
-      CONSOLE_API_URL: ${DIFY_WEB_URL:-http://localhost:3000}
-      CONSOLE_WEB_URL: ${DIFY_WEB_URL:-http://localhost:3000}
-      APP_WEB_URL: ${DIFY_WEB_URL:-http://localhost:3000}
-      SERVICE_API_URL: ${DIFY_WEB_URL:-http://localhost:3000}
+      CONSOLE_API_URL: ''
+      CONSOLE_WEB_URL: ''
+      APP_WEB_URL: ''
+      SERVICE_API_URL: ''
       # DB
       DB_USERNAME: ${DIFY_DB_USER:-postgres}
       DB_PASSWORD: ${DIFY_DB_PASSWORD:-difyai123456}
@@ -110,10 +110,10 @@ services:
     environment:
       MODE: worker
       SECRET_KEY: ${DIFY_SECRET_KEY:-your-secret-key-change-me-32chars}
-      CONSOLE_API_URL: ${DIFY_WEB_URL:-http://localhost:3000}
-      CONSOLE_WEB_URL: ${DIFY_WEB_URL:-http://localhost:3000}
-      APP_WEB_URL: ${DIFY_WEB_URL:-http://localhost:3000}
-      SERVICE_API_URL: ${DIFY_WEB_URL:-http://localhost:3000}
+      CONSOLE_API_URL: ''
+      CONSOLE_WEB_URL: ''
+      APP_WEB_URL: ''
+      SERVICE_API_URL: ''
       DB_USERNAME: ${DIFY_DB_USER:-postgres}
       DB_PASSWORD: ${DIFY_DB_PASSWORD:-difyai123456}
       DB_HOST: dify-db
@@ -147,8 +147,8 @@ services:
     image: langgenius/dify-web:0.9.1
     restart: always
     environment:
-      CONSOLE_API_URL: ${DIFY_WEB_URL:-http://localhost:3000}
-      APP_API_URL: ${DIFY_WEB_URL:-http://localhost:3000}
+      CONSOLE_API_URL: ''
+      APP_API_URL: ''
     volumes:
       - ./dify-web-init.sh:/dify-web-init.sh:ro
     entrypoint: ["/bin/sh", "/dify-web-init.sh"]
