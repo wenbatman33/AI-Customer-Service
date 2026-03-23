@@ -1,0 +1,3728 @@
+{
+  "chats": [
+    {
+      "id": "TC7CT6ROSP",
+      "users": [
+        {
+          "id": "b8b1d1d1-ef57-4e83-938b-8555b3c6986d",
+          "name": "2313",
+          "events_seen_up_to": "2026-03-23T05:17:19.664000Z",
+          "type": "customer",
+          "present": true,
+          "name_is_default": false,
+          "created_at": "2026-03-23T05:17:09.000000Z",
+          "visit": {
+            "id": 1,
+            "started_at": "2026-03-23T05:17:09.000000Z",
+            "ended_at": "2026-03-23T05:40:09.000000Z",
+            "ip": "111.58.0.251",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+            "browser_language": "zh-CN",
+            "geolocation": {
+              "country": "China",
+              "country_code": "CN",
+              "region": "Guangxi",
+              "city": "Yu-lin",
+              "timezone": "Asia/Shanghai",
+              "latitude": "22.63",
+              "longitude": "110.15"
+            },
+            "last_pages": [
+              {
+                "opened_at": "2026-03-23T05:17:09Z",
+                "url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=",
+                "title": "Contact us via LiveChat!"
+              }
+            ]
+          },
+          "statistics": {
+            "chats_count": 1,
+            "threads_count": 1,
+            "visits_count": 1,
+            "page_views_count": 1,
+            "greetings_accepted_count": 0,
+            "greetings_converted_count": 0,
+            "tickets_count": 0,
+            "tickets_inbox_count": 0,
+            "tickets_archive_count": 0,
+            "tickets_spam_count": 0,
+            "tickets_trash_count": 0,
+            "orders_count": 0,
+            "last_activity_at": "2026-03-23T05:40:09.000000Z",
+            "last_visit_at": "2026-03-23T05:40:09.000000Z",
+            "last_chat_at": "2026-03-23T05:21:48.000000Z"
+          },
+          "agent_last_event_created_at": "2026-03-23T05:21:43.928000Z",
+          "customer_last_event_created_at": "2026-03-23T05:17:19.664000Z",
+          "followed": false,
+          "online": false,
+          "group_ids": [
+            2
+          ],
+          "state": "offline",
+          "greeting_id": 8,
+          "email_verified": false
+        },
+        {
+          "id": "kyle@dd99.games",
+          "name": "馨儿",
+          "email": "kyle@dd99.games",
+          "events_seen_up_to": "2026-03-23T05:21:43.928000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/3935c295-bf31-4ba4-9c16-36a916cdcd76/af297877-e7e4-4a7c-803f-b33d4e7f6384.jpeg",
+          "visibility": "all"
+        }
+      ],
+      "thread": {
+        "id": "TC7CT6ROTP",
+        "active": false,
+        "user_ids": [
+          "kyle@dd99.games",
+          "b8b1d1d1-ef57-4e83-938b-8555b3c6986d"
+        ],
+        "properties": {
+          "routing": {
+            "continuous": false,
+            "group_status_at_start": "online",
+            "idle": false,
+            "pinned": false,
+            "start_url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=",
+            "unassigned": false,
+            "unreplied": false
+          },
+          "source": {
+            "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+            "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+          }
+        },
+        "access": {
+          "group_ids": [
+            2
+          ]
+        },
+        "tags": [
+          "O4-推销广告"
+        ],
+        "created_at": "2026-03-23T05:17:13.612000Z",
+        "customer_visit": {
+          "ip": "111.58.0.251",
+          "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+          "geolocation": {
+            "country": "China",
+            "country_code": "CN",
+            "region": "Guangxi",
+            "city": "Yu-lin",
+            "timezone": "Asia/Shanghai",
+            "latitude": "22.63",
+            "longitude": "110.15"
+          }
+        },
+        "events": [
+          {
+            "id": "TC7CT6ROTP_1",
+            "created_at": "2026-03-23T05:17:13.613009Z",
+            "visibility": "all",
+            "type": "filled_form",
+            "properties": {
+              "lc2": {
+                "form_type": "prechat"
+              },
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "b8b1d1d1-ef57-4e83-938b-8555b3c6986d",
+            "custom_id": "19eimxfsxoj",
+            "form_id": "173673702290008638",
+            "form_type": "prechat",
+            "fields": [
+              {
+                "id": "173673702290006054",
+                "type": "name",
+                "label": "用户名：",
+                "answer": "2313"
+              },
+              {
+                "id": "173673702290007023",
+                "type": "select",
+                "label": "请选择需咨询项目：",
+                "answer": {
+                  "id": "1",
+                  "label": "存款问题"
+                }
+              }
+            ]
+          },
+          {
+            "id": "TC7CT6ROTP_2",
+            "created_at": "2026-03-23T05:17:13.614009Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "chats": {
+                "welcome_message_source": "welcome_phrase"
+              },
+              "lc2": {
+                "welcome_message": true
+              }
+            },
+            "text": "新利将于11/3全面改版升级～操作更便捷、更流畅，立即前往体验：xl18.cc",
+            "author_id": "kyle@dd99.games"
+          },
+          {
+            "id": "TC7CT6ROTP_3",
+            "created_at": "2026-03-23T05:17:16.567000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "您好❤️，我是客服馨儿，很高兴为您服务，请问有什么可以帮助您的呢？(❁´◡`❁)",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774243036823.59388942895"
+          },
+          {
+            "id": "TC7CT6ROTP_4",
+            "created_at": "2026-03-23T05:17:19.271000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "生活原本沉闷，但跑起来就有风。你还在抱怨公司对你的不公，你不花心思用自己的职位权利赚点钱，就没人对你公平。有空聊聊合作，我的技术能让你月入十万以上，也许能让你财富自由。飞机号telegram：@GT1685",
+            "author_id": "b8b1d1d1-ef57-4e83-938b-8555b3c6986d",
+            "custom_id": "huhax64rx86"
+          },
+          {
+            "id": "TC7CT6ROTP_5",
+            "created_at": "2026-03-23T05:17:19.664000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "生活原本沉闷，但跑起来就有风。你还在抱怨公司对你的不公，你不花心思用自己的职位权利赚点钱，就没人对你公平。有空聊聊合作，我的技术能让你月入十万以上，也许能让你财富自由。飞机号telegram：@GT1685",
+            "author_id": "b8b1d1d1-ef57-4e83-938b-8555b3c6986d",
+            "custom_id": "wl6ogtq4ucp"
+          },
+          {
+            "id": "TC7CT6ROTP_6",
+            "created_at": "2026-03-23T05:17:33.736000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "好的亲，已经转达相关单位评估，若是有任何需求会联系您的",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774243053993.63921222796"
+          },
+          {
+            "id": "TC7CT6ROTP_7",
+            "created_at": "2026-03-23T05:17:36.828000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，请问是否有其他问题是馨儿可以协助您的呢~?",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774243057085.60745252777"
+          },
+          {
+            "id": "TC7CT6ROTP_8",
+            "created_at": "2026-03-23T05:21:43.928000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，因您长时间没有回复，系统会关闭与您的对话，如果您有任何问题欢迎您再与《在线客服》联系哦，谢谢您",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774243304186.52697308217"
+          },
+          {
+            "id": "TC7CT6ROTP_9",
+            "created_at": "2026-03-23T05:21:48.473000Z",
+            "visibility": "all",
+            "type": "system_message",
+            "text": "馨儿 archived the chat",
+            "system_message_type": "manual_archived_agent",
+            "text_vars": {
+              "agent": "馨儿"
+            }
+          }
+        ]
+      },
+      "properties": {
+        "routing": {
+          "continuous": false,
+          "pinned": false,
+          "was_pinned": false
+        },
+        "source": {
+          "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+          "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+        }
+      },
+      "access": {
+        "group_ids": [
+          2
+        ]
+      },
+      "is_followed": false
+    },
+    {
+      "id": "SZ4Q5KERGZ",
+      "users": [
+        {
+          "id": "c49502a1-65d1-4923-8df1-ace312afcf9f",
+          "name": "shishi159",
+          "events_seen_up_to": "2026-03-23T04:59:31.642999Z",
+          "type": "customer",
+          "present": true,
+          "name_is_default": false,
+          "created_at": "2025-07-21T06:31:03.000000Z",
+          "visit": {
+            "id": 3,
+            "started_at": "2026-03-23T04:51:13.000000Z",
+            "ended_at": "2026-03-23T05:09:31.000000Z",
+            "referrer": "https://www.x2h6d.com/",
+            "ip": "125.64.110.107",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "browser_language": "zh-CN",
+            "geolocation": {
+              "country": "China",
+              "country_code": "CN",
+              "region": "Sichuan",
+              "city": "Chengdu",
+              "timezone": "Asia/Shanghai",
+              "latitude": "30.67",
+              "longitude": "104.07"
+            },
+            "last_pages": [
+              {
+                "opened_at": "2026-03-23T04:51:13Z",
+                "url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=0d2dd1a56d5667226d92df2874a06a94db457f0d57cc736af5f24c5f1061785568624444f1c5f78bcc4f5bfa799a5175988192e8a3e627b702d50ccde8f2df0037791492b179d274cac6e8628fe4af20&name=shishi159",
+                "title": "Contact us via LiveChat!"
+              }
+            ],
+            "previous_visit_started_at": "2025-07-21T11:07:20.000000Z"
+          },
+          "statistics": {
+            "chats_count": 1,
+            "threads_count": 2,
+            "visits_count": 3,
+            "page_views_count": 3,
+            "greetings_accepted_count": 0,
+            "greetings_converted_count": 0,
+            "tickets_count": 0,
+            "tickets_inbox_count": 0,
+            "tickets_archive_count": 0,
+            "tickets_spam_count": 0,
+            "tickets_trash_count": 0,
+            "orders_count": 0,
+            "last_activity_at": "2026-03-23T04:59:35.000000Z",
+            "last_visit_at": "2026-03-23T04:51:13.000000Z",
+            "last_chat_at": "2026-03-23T04:59:35.000000Z"
+          },
+          "agent_last_event_created_at": "2026-03-23T04:59:31.642000Z",
+          "customer_last_event_created_at": "2026-03-23T04:51:52.850000Z",
+          "followed": false,
+          "online": false,
+          "group_ids": [
+            2
+          ],
+          "state": "offline",
+          "greeting_id": 9,
+          "email_verified": false
+        },
+        {
+          "id": "gwen.chou@dd99.games",
+          "name": "小娟",
+          "email": "gwen.chou@dd99.games",
+          "events_seen_up_to": "2026-03-23T04:59:31.642000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/28d0374b-8bdb-4e32-87f1-e1dad7abcd22/72e4ca40-eb3b-444a-8615-4b5af352e12f.jpeg",
+          "visibility": "all"
+        }
+      ],
+      "thread": {
+        "id": "TC7CT5IHCW",
+        "active": false,
+        "user_ids": [
+          "gwen.chou@dd99.games",
+          "c49502a1-65d1-4923-8df1-ace312afcf9f"
+        ],
+        "properties": {
+          "routing": {
+            "continuous": false,
+            "group_status_at_start": "online",
+            "idle": false,
+            "referrer": "https://www.x2h6d.com/",
+            "start_url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=0d2dd1a56d5667226d92df2874a06a94db457f0d57cc736af5f24c5f1061785568624444f1c5f78bcc4f5bfa799a5175988192e8a3e627b702d50ccde8f2df0037791492b179d274cac6e8628fe4af20&name=shishi159",
+            "unassigned": false,
+            "unreplied": false
+          },
+          "source": {
+            "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+            "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+          }
+        },
+        "access": {
+          "group_ids": [
+            2
+          ]
+        },
+        "tags": [
+          "W2-7-提款失败-总提>总存 1.5",
+          "C4-USDT"
+        ],
+        "previous_thread_id": "SZ4Q5KERHZ",
+        "previous_accessible_thread_id": "SZ4Q5KERHZ",
+        "created_at": "2026-03-23T04:51:32.619000Z",
+        "customer_visit": {
+          "ip": "125.64.110.107",
+          "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+          "geolocation": {
+            "country": "China",
+            "country_code": "CN",
+            "region": "Sichuan",
+            "city": "Chengdu",
+            "timezone": "Asia/Shanghai",
+            "latitude": "30.67",
+            "longitude": "104.07"
+          }
+        },
+        "events": [
+          {
+            "id": "TC7CT5IHCW_1",
+            "created_at": "2026-03-23T04:51:32.619004Z",
+            "visibility": "all",
+            "type": "filled_form",
+            "properties": {
+              "lc2": {
+                "form_type": "prechat"
+              },
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "c49502a1-65d1-4923-8df1-ace312afcf9f",
+            "custom_id": "abmcwilb1m",
+            "form_id": "173673702290008638",
+            "form_type": "prechat",
+            "fields": [
+              {
+                "id": "173673702290006054",
+                "type": "name",
+                "label": "用户名：",
+                "answer": "shishi159"
+              },
+              {
+                "id": "173673702290007023",
+                "type": "select",
+                "label": "请选择需咨询项目：",
+                "answer": {
+                  "id": "2",
+                  "label": "提款问题"
+                }
+              }
+            ]
+          },
+          {
+            "id": "TC7CT5IHCW_2",
+            "created_at": "2026-03-23T04:51:32.620006Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "chats": {
+                "welcome_message_source": "welcome_phrase"
+              },
+              "lc2": {
+                "welcome_message": true
+              }
+            },
+            "text": "新利将于11/3全面改版升级～操作更便捷、更流畅，立即前往体验：xl18.cc",
+            "author_id": "gwen.chou@dd99.games"
+          },
+          {
+            "id": "TC7CT5IHCW_3",
+            "created_at": "2026-03-23T04:51:40.580000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "您好～我是客服小天使小娟，请问有什么能为您服务的吗？(○´∀`○)ﾉ",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774241499392.88280501170"
+          },
+          {
+            "id": "TC7CT5IHCW_4",
+            "created_at": "2026-03-23T04:51:52.850000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "shishi159   怎么提款退回了",
+            "author_id": "c49502a1-65d1-4923-8df1-ace312afcf9f",
+            "custom_id": "2305q1m0tye"
+          },
+          {
+            "id": "TC7CT5IHCW_5",
+            "created_at": "2026-03-23T04:52:23.930000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，经查询您的账号平台正在审核中，故退回了您的提款申请，审核期间不影响您继续进行游戏，建议您可以先持续进行游戏，晚些再重新提交提款尝试下，若金额退回代表还在审核中，需要请您耐心等候审核完毕，若成功提款就表示已审核完毕了哦，谢谢您",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774241542736.15720132286"
+          },
+          {
+            "id": "TC7CT5IHCW_6",
+            "created_at": "2026-03-23T04:56:16.614000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "请问还有其他地方需要小娟再帮您服务的吗(｡•ㅅ•｡)♡",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774241775425.70802260615"
+          },
+          {
+            "id": "TC7CT5IHCW_7",
+            "created_at": "2026-03-23T04:59:31.642000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，由于您长时间未回覆，这边会退出对话，若之后还有需要协助的地方，欢迎再进线客服谘询哦，小娟祝您有美好的一天，再见♡",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774241970453.14236621106"
+          },
+          {
+            "id": "TC7CT5IHCW_8",
+            "created_at": "2026-03-23T04:59:35.010000Z",
+            "visibility": "all",
+            "type": "system_message",
+            "text": "小娟 archived the chat",
+            "system_message_type": "manual_archived_agent",
+            "text_vars": {
+              "agent": "小娟"
+            }
+          }
+        ]
+      },
+      "properties": {
+        "routing": {
+          "continuous": false,
+          "pinned": false,
+          "was_pinned": false
+        },
+        "source": {
+          "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+          "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+        }
+      },
+      "access": {
+        "group_ids": [
+          2
+        ]
+      },
+      "is_followed": false
+    },
+    {
+      "id": "TC7CT487NU",
+      "users": [
+        {
+          "id": "7d232c11-d980-43d7-8b33-1c7d1a7826b9",
+          "name": "turandaidai",
+          "events_seen_up_to": "2026-03-23T04:27:15.255999Z",
+          "type": "customer",
+          "present": true,
+          "name_is_default": false,
+          "created_at": "2026-03-23T04:23:46.000000Z",
+          "visit": {
+            "id": 1,
+            "started_at": "2026-03-23T04:23:46.000000Z",
+            "ended_at": "2026-03-23T04:31:43.000000Z",
+            "referrer": "https://w3.18luck56.com/profile",
+            "ip": "49.93.230.82",
+            "user_agent": "Mozilla/5.0 (Linux; Android 15; 23049RAD8C Build/AQ3A.250226.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.98 Mobile Safari/537.36 T7/15.48 SP-engine/3.55.0 bd_dvt/0 baiduboxapp/15.48.5.10 (Baidu; P1 15) NABar/1.0",
+            "browser_language": "zh-CN",
+            "geolocation": {
+              "country": "China",
+              "country_code": "CN",
+              "region": "Jiangsu",
+              "city": "Nanjing",
+              "timezone": "Asia/Shanghai",
+              "latitude": "32.06",
+              "longitude": "118.78"
+            },
+            "last_pages": [
+              {
+                "opened_at": "2026-03-23T04:23:45Z",
+                "url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=f65fe25b4774a20996bcb28025419046f86f7918b6face3b461728073a934461403543be5a87745a0cf346b410e44784d820559d9ff13d04aec6d4e45c884109cd3d541fb41f8fab0ba49e3d1ac840d302590cbd0ee77eb64763bfcafc72b288&name=turandaidai",
+                "title": "Contact us via LiveChat!"
+              }
+            ]
+          },
+          "statistics": {
+            "chats_count": 1,
+            "threads_count": 1,
+            "visits_count": 1,
+            "page_views_count": 1,
+            "greetings_accepted_count": 0,
+            "greetings_converted_count": 0,
+            "tickets_count": 0,
+            "tickets_inbox_count": 0,
+            "tickets_archive_count": 0,
+            "tickets_spam_count": 0,
+            "tickets_trash_count": 0,
+            "orders_count": 0,
+            "last_activity_at": "2026-03-23T04:31:44.000000Z",
+            "last_visit_at": "2026-03-23T04:31:43.000000Z",
+            "last_chat_at": "2026-03-23T04:31:44.000000Z"
+          },
+          "agent_last_event_created_at": "2026-03-23T04:31:40.495000Z",
+          "customer_last_event_created_at": "2026-03-23T04:24:45.633000Z",
+          "followed": false,
+          "online": false,
+          "group_ids": [
+            2
+          ],
+          "state": "offline",
+          "greeting_id": 8,
+          "email_verified": false
+        },
+        {
+          "id": "kyle@dd99.games",
+          "name": "馨儿",
+          "email": "kyle@dd99.games",
+          "events_seen_up_to": "2026-03-23T04:31:40.495000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/3935c295-bf31-4ba4-9c16-36a916cdcd76/af297877-e7e4-4a7c-803f-b33d4e7f6384.jpeg",
+          "visibility": "all"
+        }
+      ],
+      "thread": {
+        "id": "TC7CT487OU",
+        "active": false,
+        "user_ids": [
+          "kyle@dd99.games",
+          "7d232c11-d980-43d7-8b33-1c7d1a7826b9"
+        ],
+        "properties": {
+          "routing": {
+            "continuous": false,
+            "group_status_at_start": "online",
+            "idle": false,
+            "pinned": false,
+            "referrer": "https://w3.18luck56.com/profile",
+            "start_url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=f65fe25b4774a20996bcb28025419046f86f7918b6face3b461728073a934461403543be5a87745a0cf346b410e44784d820559d9ff13d04aec6d4e45c884109cd3d541fb41f8fab0ba49e3d1ac840d302590cbd0ee77eb64763bfcafc72b288&name=turandaidai",
+            "unassigned": false,
+            "unreplied": false
+          },
+          "source": {
+            "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+            "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+          }
+        },
+        "access": {
+          "group_ids": [
+            2
+          ]
+        },
+        "tags": [
+          "D2-存款催到账",
+          "C5-数字人民币"
+        ],
+        "created_at": "2026-03-23T04:23:54.547000Z",
+        "customer_visit": {
+          "ip": "49.93.230.82",
+          "user_agent": "Mozilla/5.0 (Linux; Android 15; 23049RAD8C Build/AQ3A.250226.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.98 Mobile Safari/537.36 T7/15.48 SP-engine/3.55.0 bd_dvt/0 baiduboxapp/15.48.5.10 (Baidu; P1 15) NABar/1.0",
+          "geolocation": {
+            "country": "China",
+            "country_code": "CN",
+            "region": "Jiangsu",
+            "city": "Nanjing",
+            "timezone": "Asia/Shanghai",
+            "latitude": "32.06",
+            "longitude": "118.78"
+          }
+        },
+        "events": [
+          {
+            "id": "TC7CT487OU_1",
+            "created_at": "2026-03-23T04:23:54.548009Z",
+            "visibility": "all",
+            "type": "filled_form",
+            "properties": {
+              "lc2": {
+                "form_type": "prechat"
+              },
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "7d232c11-d980-43d7-8b33-1c7d1a7826b9",
+            "custom_id": "47xo3q2gljg",
+            "form_id": "173673702290008638",
+            "form_type": "prechat",
+            "fields": [
+              {
+                "id": "173673702290006054",
+                "type": "name",
+                "label": "用户名：",
+                "answer": "turandaidai"
+              },
+              {
+                "id": "173673702290007023",
+                "type": "select",
+                "label": "请选择需咨询项目：",
+                "answer": {
+                  "id": "1",
+                  "label": "存款问题"
+                }
+              }
+            ]
+          },
+          {
+            "id": "TC7CT487OU_2",
+            "created_at": "2026-03-23T04:23:54.549007Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "chats": {
+                "welcome_message_source": "welcome_phrase"
+              },
+              "lc2": {
+                "welcome_message": true
+              }
+            },
+            "text": "新利将于11/3全面改版升级～操作更便捷、更流畅，立即前往体验：xl18.cc",
+            "author_id": "kyle@dd99.games"
+          },
+          {
+            "id": "TC7CT487OU_3",
+            "created_at": "2026-03-23T04:23:57.540000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "您好❤️，我是客服馨儿，很高兴为您服务，请问有什么可以帮助您的呢？(❁´◡`❁)",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774239837783.9773222720"
+          },
+          {
+            "id": "TC7CT487OU_4",
+            "created_at": "2026-03-23T04:24:13.965000Z",
+            "visibility": "all",
+            "type": "file",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "7d232c11-d980-43d7-8b33-1c7d1a7826b9",
+            "custom_id": "xkcmcgxrihr",
+            "name": "Screenshot_2026-03-23-12-23-33-523_cn.gov.pbc.dcep.jpg",
+            "url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/a11bb6b92cdc1c7bc6b93b2d427c5e09/Screenshot_2026-03-23-12-23-33-523_cn.gov.pbc.dcep.jpg",
+            "thumbnail_url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/a11bb6b92cdc1c7bc6b93b2d427c5e09/Screenshot_2026-03-23-12-23-33-523_cn.gov.pbc.dcep.jpg?impolicy=thumbnail",
+            "thumbnail2x_url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/a11bb6b92cdc1c7bc6b93b2d427c5e09/Screenshot_2026-03-23-12-23-33-523_cn.gov.pbc.dcep.jpg?impolicy=thumbnail2x",
+            "content_type": "image/jpeg",
+            "width": 1080,
+            "height": 2400,
+            "size": 230840
+          },
+          {
+            "id": "TC7CT487OU_5",
+            "created_at": "2026-03-23T04:24:23.215000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "存款未到",
+            "author_id": "7d232c11-d980-43d7-8b33-1c7d1a7826b9",
+            "custom_id": "p7qpt24gysc"
+          },
+          {
+            "id": "TC7CT487OU_6",
+            "created_at": "2026-03-23T04:24:32.141000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，请提供您的会员帐号，以便为您确认，谢谢。",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774239872383.69279397641"
+          },
+          {
+            "id": "TC7CT487OU_7",
+            "created_at": "2026-03-23T04:24:45.633000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "turandaidai",
+            "author_id": "7d232c11-d980-43d7-8b33-1c7d1a7826b9",
+            "custom_id": "50yz87vbit"
+          },
+          {
+            "id": "TC7CT487OU_8",
+            "created_at": "2026-03-23T04:25:02.262000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "谢谢您的提供，馨儿已为您提交财务确认，麻烦请您稍待",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774239902501.76785912933"
+          },
+          {
+            "id": "TC7CT487OU_9",
+            "created_at": "2026-03-23T04:27:13.733000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "不好意思让您久等了，目前您的存款已到帐成功~请您刷新下钱包确认，谢谢ヾ(*´∀ˋ*)ﾉ",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774240033976.37482258588"
+          },
+          {
+            "id": "TC7CT487OU_10",
+            "created_at": "2026-03-23T04:27:15.255000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "感谢您的耐心等候，请问还有其他需要馨儿为您服务的地方吗(｡•ㅅ•｡)♡",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774240035499.92919577800"
+          },
+          {
+            "id": "TC7CT487OU_11",
+            "created_at": "2026-03-23T04:31:40.495000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，因您长时间没有回复，系统会关闭与您的对话，如果您有任何问题欢迎您再与《在线客服》联系哦，谢谢您",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774240300740.24854918102"
+          },
+          {
+            "id": "TC7CT487OU_12",
+            "created_at": "2026-03-23T04:31:44.008000Z",
+            "visibility": "all",
+            "type": "system_message",
+            "text": "turandaidai left the chat",
+            "system_message_type": "archived_customer_disconnected",
+            "text_vars": {
+              "customer": "turandaidai"
+            }
+          }
+        ]
+      },
+      "properties": {
+        "routing": {
+          "continuous": false,
+          "pinned": false,
+          "was_pinned": false
+        },
+        "source": {
+          "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+          "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+        }
+      },
+      "access": {
+        "group_ids": [
+          2
+        ]
+      },
+      "is_followed": false
+    },
+    {
+      "id": "T90HA870GW",
+      "users": [
+        {
+          "id": "c8c5ba8e-2b63-4b92-a657-53450ae39103",
+          "name": "c12345",
+          "events_seen_up_to": "2026-03-23T03:29:33.482999Z",
+          "type": "customer",
+          "present": true,
+          "name_is_default": false,
+          "created_at": "2026-01-26T14:52:38.000000Z",
+          "visit": {
+            "id": 45,
+            "started_at": "2026-03-23T03:26:50.000000Z",
+            "ended_at": "2026-03-23T04:10:06.000000Z",
+            "referrer": "https://www.x5y2b.com/",
+            "ip": "223.104.164.63",
+            "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36",
+            "browser_language": "zh-CN",
+            "geolocation": {
+              "country": "China",
+              "country_code": "CN",
+              "region": "Zhejiang",
+              "city": "Hangzhou",
+              "timezone": "Asia/Shanghai",
+              "latitude": "30.26",
+              "longitude": "120.17"
+            },
+            "last_pages": [
+              {
+                "opened_at": "2026-03-23T03:26:50Z",
+                "url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=5a387f0584a67cef506c2d96c61f1200279adc33ea7ab33d4135abc68c89425988a0982dccdd76adda5d379297044320c408f6d2374804575996789be3c0689d7abc4e870830fd248004cb965352f2eea8f87f81d66b29a964dd727b3525429d&name=c12345",
+                "title": "Contact us via LiveChat!"
+              }
+            ],
+            "previous_visit_started_at": "2026-03-23T01:18:26.000000Z"
+          },
+          "statistics": {
+            "chats_count": 1,
+            "threads_count": 26,
+            "visits_count": 45,
+            "page_views_count": 45,
+            "greetings_accepted_count": 0,
+            "greetings_converted_count": 0,
+            "tickets_count": 0,
+            "tickets_inbox_count": 0,
+            "tickets_archive_count": 0,
+            "tickets_spam_count": 0,
+            "tickets_trash_count": 0,
+            "orders_count": 0,
+            "last_activity_at": "2026-03-23T03:35:41.000000Z",
+            "last_visit_at": "2026-03-23T03:26:50.000000Z",
+            "last_chat_at": "2026-03-23T03:35:41.000000Z"
+          },
+          "agent_last_event_created_at": "2026-03-23T03:35:38.513000Z",
+          "customer_last_event_created_at": "2026-03-23T03:29:28.441000Z",
+          "followed": false,
+          "online": false,
+          "group_ids": [
+            2
+          ],
+          "state": "offline",
+          "greeting_id": 9,
+          "email_verified": false
+        },
+        {
+          "id": "carol.cheng@dd99.games",
+          "name": "小枫",
+          "email": "carol.cheng@dd99.games",
+          "events_seen_up_to": "2026-03-21T09:15:28.418000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/ac4fb90d-3d90-4717-8d74-b6bad1d45143/0164cb3f-1921-4e13-b05c-768bbebad5ce.png",
+          "visibility": "all"
+        },
+        {
+          "id": "andy@dd99.games",
+          "name": "小迪",
+          "email": "andy@dd99.games",
+          "events_seen_up_to": "2026-02-08T04:21:19.763000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/79675349-40c8-4341-9a55-d53a5243ead2/5d082c5c-ae2e-4c93-96fb-598bbf84d43d.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "gwen.chou@dd99.games",
+          "name": "小娟",
+          "email": "gwen.chou@dd99.games",
+          "events_seen_up_to": "2026-03-23T03:35:38.513000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/28d0374b-8bdb-4e32-87f1-e1dad7abcd22/72e4ca40-eb3b-444a-8615-4b5af352e12f.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "winnie.zeng@dd99.games",
+          "name": "婷婷",
+          "email": "winnie.zeng@dd99.games",
+          "events_seen_up_to": "2026-03-07T13:37:47.524000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/5293e877-0cea-4206-b3a2-7cbcb5339ace/f6621e6c-aa09-4d97-8c2b-62b8930ab2f7.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "david@dd99.games",
+          "name": "佳佳",
+          "email": "david@dd99.games",
+          "events_seen_up_to": "2026-01-26T14:54:08.234000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/7dfcb60b-3d91-4063-acfc-caa590ac12b9/959b953b-32f4-4de8-9f16-43ddecb50ee5.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "kyle@dd99.games",
+          "name": "馨儿",
+          "email": "kyle@dd99.games",
+          "events_seen_up_to": "2026-03-02T08:13:11.588000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/3935c295-bf31-4ba4-9c16-36a916cdcd76/af297877-e7e4-4a7c-803f-b33d4e7f6384.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "stan@dd99.games",
+          "name": "璇璇",
+          "email": "stan@dd99.games",
+          "events_seen_up_to": "2026-03-09T14:28:41.253000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/2f365991-0ab7-42bd-870d-026d01b779dc/d1635efb-7de5-41c6-bd25-9ba65b4fe22e.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "yuyu.cheng@dd99.games",
+          "name": "涵涵",
+          "email": "yuyu.cheng@dd99.games",
+          "events_seen_up_to": "2026-03-08T09:58:49.000000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/88791a27-28c3-4ae7-8a4c-0ebcc123633f/4ec7e278-e330-44d4-982b-38bb93d611e7.jpeg",
+          "visibility": "agents"
+        },
+        {
+          "id": "joan.wu@dd99.games",
+          "name": "文文",
+          "email": "joan.wu@dd99.games",
+          "events_seen_up_to": "2026-03-21T09:55:11.088000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/9d0c264a-40e1-4be6-80a8-d544fef7376b/b43d92c9-2eea-4d4a-8d8b-899a327abe74.png",
+          "visibility": "all"
+        }
+      ],
+      "thread": {
+        "id": "TC7CS1QKGV",
+        "active": false,
+        "user_ids": [
+          "gwen.chou@dd99.games",
+          "c8c5ba8e-2b63-4b92-a657-53450ae39103"
+        ],
+        "properties": {
+          "routing": {
+            "continuous": false,
+            "group_status_at_start": "online",
+            "idle": false,
+            "referrer": "https://www.x5y2b.com/",
+            "start_url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=5a387f0584a67cef506c2d96c61f1200279adc33ea7ab33d4135abc68c89425988a0982dccdd76adda5d379297044320c408f6d2374804575996789be3c0689d7abc4e870830fd248004cb965352f2eea8f87f81d66b29a964dd727b3525429d&name=c12345",
+            "unassigned": false,
+            "unreplied": false
+          },
+          "source": {
+            "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+            "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+          }
+        },
+        "access": {
+          "group_ids": [
+            2
+          ]
+        },
+        "tags": [
+          "D2-存款催到账",
+          "C5-数字人民币"
+        ],
+        "previous_thread_id": "TC780TPUNU",
+        "previous_accessible_thread_id": "TC780TPUNU",
+        "created_at": "2026-03-23T03:26:55.493000Z",
+        "customer_visit": {
+          "ip": "223.104.164.7",
+          "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36",
+          "geolocation": {
+            "country": "China",
+            "country_code": "CN",
+            "region": "Zhejiang",
+            "city": "Hangzhou",
+            "timezone": "Asia/Shanghai",
+            "latitude": "30.26",
+            "longitude": "120.17"
+          }
+        },
+        "events": [
+          {
+            "id": "TC7CS1QKGV_1",
+            "created_at": "2026-03-23T03:26:55.493004Z",
+            "visibility": "all",
+            "type": "filled_form",
+            "properties": {
+              "lc2": {
+                "form_type": "prechat"
+              },
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "c8c5ba8e-2b63-4b92-a657-53450ae39103",
+            "custom_id": "dqrf91f2ah",
+            "form_id": "173673702290008638",
+            "form_type": "prechat",
+            "fields": [
+              {
+                "id": "173673702290006054",
+                "type": "name",
+                "label": "用户名：",
+                "answer": "c12345"
+              },
+              {
+                "id": "173673702290007023",
+                "type": "select",
+                "label": "请选择需咨询项目：",
+                "answer": {
+                  "id": "1",
+                  "label": "存款问题"
+                }
+              }
+            ]
+          },
+          {
+            "id": "TC7CS1QKGV_2",
+            "created_at": "2026-03-23T03:26:55.495002Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "chats": {
+                "welcome_message_source": "welcome_phrase"
+              },
+              "lc2": {
+                "welcome_message": true
+              }
+            },
+            "text": "新利将于11/3全面改版升级～操作更便捷、更流畅，立即前往体验：xl18.cc",
+            "author_id": "gwen.chou@dd99.games"
+          },
+          {
+            "id": "TC7CS1QKGV_3",
+            "created_at": "2026-03-23T03:27:01.584000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "您好～我是客服小天使小娟，请问有什么能为您服务的吗？(○´∀`○)ﾉ",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774236420452.39073002473"
+          },
+          {
+            "id": "TC7CS1QKGV_4",
+            "created_at": "2026-03-23T03:29:10.017000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "存款没到账",
+            "author_id": "c8c5ba8e-2b63-4b92-a657-53450ae39103",
+            "custom_id": "8v7ohp3obed"
+          },
+          {
+            "id": "TC7CS1QKGV_5",
+            "created_at": "2026-03-23T03:29:14.270000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，请您提供下会员帐号跟电子回单截图，以利小娟为您确认",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774236553133.32312452421"
+          },
+          {
+            "id": "TC7CS1QKGV_6",
+            "created_at": "2026-03-23T03:29:24.284000Z",
+            "visibility": "all",
+            "type": "file",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "c8c5ba8e-2b63-4b92-a657-53450ae39103",
+            "custom_id": "zjpebz3drz",
+            "name": "Screenshot_20260323-112900.jpg",
+            "url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/172b4a945d70954e5b7ebeec3a66ea28/Screenshot_20260323-112900.jpg",
+            "thumbnail_url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/172b4a945d70954e5b7ebeec3a66ea28/Screenshot_20260323-112900.jpg?impolicy=thumbnail",
+            "thumbnail2x_url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/172b4a945d70954e5b7ebeec3a66ea28/Screenshot_20260323-112900.jpg?impolicy=thumbnail2x",
+            "content_type": "image/jpeg",
+            "width": 1080,
+            "height": 2400,
+            "size": 209896
+          },
+          {
+            "id": "TC7CS1QKGV_7",
+            "created_at": "2026-03-23T03:29:28.441000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "c12345",
+            "author_id": "c8c5ba8e-2b63-4b92-a657-53450ae39103",
+            "custom_id": "e2xo6knrado"
+          },
+          {
+            "id": "TC7CS1QKGV_8",
+            "created_at": "2026-03-23T03:29:33.482000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "小娟查看您的存款已经到帐添加了，请您刷新页面确认下，谢谢您(˶˚ ᗨ ˚˶)",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774236572350.3180012526"
+          },
+          {
+            "id": "TC7CS1QKGV_9",
+            "created_at": "2026-03-23T03:32:09.132000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "感谢您对新利的支持与爱护，请问还有其他需要小娟能为您服务的地方吗(｡•ㅅ•｡)♡",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774236727998.28937469130"
+          },
+          {
+            "id": "TC7CS1QKGV_10",
+            "created_at": "2026-03-23T03:35:38.513000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，由于您长时间未回覆，这边会退出对话，若之后还有需要协助的地方，欢迎再进线客服谘询哦，小娟祝您有美好的一天，再见♡",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774236937376.53069740942"
+          },
+          {
+            "id": "TC7CS1QKGV_11",
+            "created_at": "2026-03-23T03:35:41.849000Z",
+            "visibility": "all",
+            "type": "system_message",
+            "text": "小娟 archived the chat",
+            "system_message_type": "manual_archived_agent",
+            "text_vars": {
+              "agent": "小娟"
+            }
+          }
+        ]
+      },
+      "properties": {
+        "routing": {
+          "continuous": false,
+          "pinned": false,
+          "was_pinned": false
+        },
+        "source": {
+          "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+          "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+        }
+      },
+      "access": {
+        "group_ids": [
+          2
+        ]
+      },
+      "is_followed": false
+    },
+    {
+      "id": "T007R6MXFB",
+      "users": [
+        {
+          "id": "9d4b27b6-45f3-4b23-b53b-23c381c91655",
+          "name": "jiang191jie12",
+          "events_seen_up_to": "2026-03-23T03:18:49.421999Z",
+          "type": "customer",
+          "present": true,
+          "name_is_default": false,
+          "created_at": "2025-07-30T05:50:55.000000Z",
+          "visit": {
+            "id": 2,
+            "started_at": "2026-03-23T03:05:14.000000Z",
+            "ended_at": "2026-03-23T03:44:13.000000Z",
+            "referrer": "https://www.18luck5888.com/",
+            "ip": "116.169.5.199",
+            "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1AC Build/UKQ1.240624.001) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.86 Mobile Safari/537.36",
+            "browser_language": "zh-CN",
+            "geolocation": {
+              "country": "China",
+              "country_code": "CN",
+              "region": "Sichuan",
+              "city": "Chengdu",
+              "timezone": "Asia/Shanghai",
+              "latitude": "30.67",
+              "longitude": "104.07"
+            },
+            "last_pages": [
+              {
+                "opened_at": "2026-03-23T03:05:14Z",
+                "url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=90bf7f7da6f805a2f7957b622a576359d182dcfd38916635cd49f98f0b79d830921a0cf86a10ad5dae42c0d5463ed0bd1a1057d4b82f747f9d44431b9c7e21752b19606753796591e697563ca00b4b35caa8077963346846cb4a8032d9ccdb5b&name=jiang191jie12",
+                "title": "Contact us via LiveChat!"
+              }
+            ],
+            "previous_visit_started_at": "2025-07-30T05:50:55.000000Z"
+          },
+          "statistics": {
+            "chats_count": 1,
+            "threads_count": 2,
+            "visits_count": 2,
+            "page_views_count": 2,
+            "greetings_accepted_count": 0,
+            "greetings_converted_count": 0,
+            "tickets_count": 0,
+            "tickets_inbox_count": 0,
+            "tickets_archive_count": 0,
+            "tickets_spam_count": 0,
+            "tickets_trash_count": 0,
+            "orders_count": 0,
+            "last_activity_at": "2026-03-23T03:44:13.000000Z",
+            "last_visit_at": "2026-03-23T03:44:13.000000Z",
+            "last_chat_at": "2026-03-23T03:23:36.000000Z"
+          },
+          "agent_last_event_created_at": "2026-03-23T03:23:30.546000Z",
+          "customer_last_event_created_at": "2026-03-23T03:18:24.369000Z",
+          "followed": false,
+          "online": false,
+          "group_ids": [
+            2
+          ],
+          "state": "offline",
+          "greeting_id": 9,
+          "email_verified": false
+        },
+        {
+          "id": "lun.shi@dd99.games",
+          "name": "毛毛♡",
+          "email": "lun.shi@dd99.games",
+          "events_seen_up_to": "2025-07-30T05:57:52.096000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/6fb4671f-baaa-4c82-a176-7760cae46b14/341235ac-d6ee-40ad-8606-919f0c41119d.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "kyle@dd99.games",
+          "name": "馨儿",
+          "email": "kyle@dd99.games",
+          "events_seen_up_to": "2026-03-23T03:23:30.546000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/3935c295-bf31-4ba4-9c16-36a916cdcd76/af297877-e7e4-4a7c-803f-b33d4e7f6384.jpeg",
+          "visibility": "all"
+        }
+      ],
+      "thread": {
+        "id": "TC7CS0JLIA",
+        "active": false,
+        "user_ids": [
+          "kyle@dd99.games",
+          "9d4b27b6-45f3-4b23-b53b-23c381c91655"
+        ],
+        "properties": {
+          "routing": {
+            "continuous": false,
+            "group_status_at_start": "online",
+            "idle": false,
+            "referrer": "https://www.18luck5888.com/",
+            "start_url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=90bf7f7da6f805a2f7957b622a576359d182dcfd38916635cd49f98f0b79d830921a0cf86a10ad5dae42c0d5463ed0bd1a1057d4b82f747f9d44431b9c7e21752b19606753796591e697563ca00b4b35caa8077963346846cb4a8032d9ccdb5b&name=jiang191jie12",
+            "unassigned": false,
+            "unreplied": false
+          },
+          "source": {
+            "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+            "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+          }
+        },
+        "access": {
+          "group_ids": [
+            2
+          ]
+        },
+        "tags": [
+          "D2-存款催到账",
+          "C3-支付宝",
+          "D2-1-超过10分钟未到账"
+        ],
+        "previous_thread_id": "T007R6MXGB",
+        "previous_accessible_thread_id": "T007R6MXGB",
+        "created_at": "2026-03-23T03:05:34.608000Z",
+        "customer_visit": {
+          "ip": "116.169.4.14",
+          "user_agent": "Mozilla/5.0 (Linux; Android 14; M2102K1AC Build/UKQ1.240624.001) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.86 Mobile Safari/537.36",
+          "geolocation": {
+            "country": "China",
+            "country_code": "CN",
+            "region": "Sichuan",
+            "city": "Chengdu",
+            "timezone": "Asia/Shanghai",
+            "latitude": "30.67",
+            "longitude": "104.07"
+          }
+        },
+        "events": [
+          {
+            "id": "TC7CS0JLIA_1",
+            "created_at": "2026-03-23T03:05:34.608004Z",
+            "visibility": "all",
+            "type": "filled_form",
+            "properties": {
+              "lc2": {
+                "form_type": "prechat"
+              },
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "9d4b27b6-45f3-4b23-b53b-23c381c91655",
+            "custom_id": "kmyrs4h5pb",
+            "form_id": "173673702290008638",
+            "form_type": "prechat",
+            "fields": [
+              {
+                "id": "173673702290006054",
+                "type": "name",
+                "label": "用户名：",
+                "answer": "jiang191jie12"
+              },
+              {
+                "id": "173673702290007023",
+                "type": "select",
+                "label": "请选择需咨询项目：",
+                "answer": {
+                  "id": "1",
+                  "label": "存款问题"
+                }
+              }
+            ]
+          },
+          {
+            "id": "TC7CS0JLIA_2",
+            "created_at": "2026-03-23T03:05:34.609013Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "chats": {
+                "welcome_message_source": "welcome_phrase"
+              },
+              "lc2": {
+                "welcome_message": true
+              }
+            },
+            "text": "新利将于11/3全面改版升级～操作更便捷、更流畅，立即前往体验：xl18.cc",
+            "author_id": "kyle@dd99.games"
+          },
+          {
+            "id": "TC7CS0JLIA_3",
+            "created_at": "2026-03-23T03:05:39.412000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "您好❤️，我是客服馨儿，很高兴为您服务，请问有什么可以帮助您的呢？(❁´◡`❁)",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235139635.22737275464"
+          },
+          {
+            "id": "TC7CS0JLIA_4",
+            "created_at": "2026-03-23T03:05:45.107000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "支付宝900",
+            "author_id": "9d4b27b6-45f3-4b23-b53b-23c381c91655",
+            "custom_id": "dctp4293zr"
+          },
+          {
+            "id": "TC7CS0JLIA_5",
+            "created_at": "2026-03-23T03:05:51.116000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "没到",
+            "author_id": "9d4b27b6-45f3-4b23-b53b-23c381c91655",
+            "custom_id": "laow3sdx37"
+          },
+          {
+            "id": "TC7CS0JLIA_6",
+            "created_at": "2026-03-23T03:05:51.510000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，请提供您的会员帐号，以便为您确认，谢谢。",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235151733.73287217315"
+          },
+          {
+            "id": "TC7CS0JLIA_7",
+            "created_at": "2026-03-23T03:06:02.979000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "jiang191jie12",
+            "author_id": "9d4b27b6-45f3-4b23-b53b-23c381c91655",
+            "custom_id": "8jirgftk4x"
+          },
+          {
+            "id": "TC7CS0JLIA_8",
+            "created_at": "2026-03-23T03:06:05.808000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，请稍等，馨儿帮您查询下 (๑´ㅂ`๑)",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235166020.4062783552"
+          },
+          {
+            "id": "TC7CS0JLIA_9",
+            "created_at": "2026-03-23T03:06:15.365000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，请您提供下您支付成功的电子回单截图，馨儿为您提交财务查询~",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235175587.27310339751"
+          },
+          {
+            "id": "TC7CS0JLIA_10",
+            "created_at": "2026-03-23T03:06:36.411000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "在那个手机上",
+            "author_id": "9d4b27b6-45f3-4b23-b53b-23c381c91655",
+            "custom_id": "o4f0kmskm2f"
+          },
+          {
+            "id": "TC7CS0JLIA_11",
+            "created_at": "2026-03-23T03:06:41.912000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "等几分钟",
+            "author_id": "9d4b27b6-45f3-4b23-b53b-23c381c91655",
+            "custom_id": "ulf92m56pqo"
+          },
+          {
+            "id": "TC7CS0JLIA_12",
+            "created_at": "2026-03-23T03:07:04.012000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "好的亲亲，再麻烦您提供了，谢谢",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235224103.34808118145"
+          },
+          {
+            "id": "TC7CS0JLIA_13",
+            "created_at": "2026-03-23T03:13:03.003000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲亲，请问您现在能提供截图以利为您查询吗？",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235583227.75855225343"
+          },
+          {
+            "id": "TC7CS0JLIA_14",
+            "created_at": "2026-03-23T03:13:15.449000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "是否有遇到什么困难呢？",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235595673.68909688550"
+          },
+          {
+            "id": "TC7CS0JLIA_15",
+            "created_at": "2026-03-23T03:13:47.773000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲亲，若您是两部手机，您可以尝试用联系客服这部手机拍摄回单截图，尽量拍摄清晰一些，以利馨儿为您提交财务查询看是否可以使用该截图呢。",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235627997.16090842636"
+          },
+          {
+            "id": "TC7CS0JLIA_16",
+            "created_at": "2026-03-23T03:15:59.302000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "不好意思让您久等了，目前您的存款已到帐成功~请您刷新下钱包确认，谢谢ヾ(*´∀ˋ*)ﾉ",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235759527.93583546771"
+          },
+          {
+            "id": "TC7CS0JLIA_17",
+            "created_at": "2026-03-23T03:16:06.590000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "感谢您的耐心等候，请问还有其他需要馨儿为您服务的地方吗(｡•ㅅ•｡)♡",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235766813.99972956991"
+          },
+          {
+            "id": "TC7CS0JLIA_18",
+            "created_at": "2026-03-23T03:18:16.375000Z",
+            "visibility": "all",
+            "type": "file",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "9d4b27b6-45f3-4b23-b53b-23c381c91655",
+            "custom_id": "c9cgni7hkyw",
+            "name": "IMG_20260323_111757.jpg",
+            "url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/4e99269d512aab0ac06615a480121159/IMG_20260323_111757.jpg",
+            "thumbnail_url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/4e99269d512aab0ac06615a480121159/IMG_20260323_111757.jpg?impolicy=thumbnail",
+            "thumbnail2x_url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/4e99269d512aab0ac06615a480121159/IMG_20260323_111757.jpg?impolicy=thumbnail2x",
+            "content_type": "image/jpeg",
+            "width": 3968,
+            "height": 2232,
+            "size": 2582052
+          },
+          {
+            "id": "TC7CS0JLIA_19",
+            "created_at": "2026-03-23T03:18:24.369000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "支付宝900没到",
+            "author_id": "9d4b27b6-45f3-4b23-b53b-23c381c91655",
+            "custom_id": "icvvvyoaqag"
+          },
+          {
+            "id": "TC7CS0JLIA_20",
+            "created_at": "2026-03-23T03:18:49.421000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲亲，您的该笔存款已经到账了呢，麻烦您刷新查看一下",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235929636.40405420250"
+          },
+          {
+            "id": "TC7CS0JLIA_21",
+            "created_at": "2026-03-23T03:19:26.671000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，请问是否有其他问题是馨儿可以协助您的呢~?",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774235966868.66432097277"
+          },
+          {
+            "id": "TC7CS0JLIA_22",
+            "created_at": "2026-03-23T03:23:30.546000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，因您长时间没有回复，系统会关闭与您的对话，如果您有任何问题欢迎您再与《在线客服》联系哦，谢谢您",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774236210765.80868013725"
+          },
+          {
+            "id": "TC7CS0JLIA_23",
+            "created_at": "2026-03-23T03:23:36.606000Z",
+            "visibility": "all",
+            "type": "system_message",
+            "text": "馨儿 archived the chat",
+            "system_message_type": "manual_archived_agent",
+            "text_vars": {
+              "agent": "馨儿"
+            }
+          }
+        ]
+      },
+      "properties": {
+        "routing": {
+          "continuous": false,
+          "pinned": false,
+          "was_pinned": false
+        },
+        "source": {
+          "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+          "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+        }
+      },
+      "access": {
+        "group_ids": [
+          2
+        ]
+      },
+      "is_followed": false
+    },
+    {
+      "id": "T321L5Y9RV",
+      "users": [
+        {
+          "id": "d4fadcaf-24c6-4d7c-a961-4becfe8ddb4a",
+          "name": "pengfei927",
+          "events_seen_up_to": "2026-03-23T02:59:00.623000Z",
+          "type": "customer",
+          "present": true,
+          "name_is_default": false,
+          "created_at": "2025-09-23T07:10:27.000000Z",
+          "visit": {
+            "id": 107,
+            "started_at": "2026-03-23T02:57:51.000000Z",
+            "ended_at": "2026-03-23T03:07:55.000000Z",
+            "referrer": "https://www.luc8313.com/",
+            "ip": "39.144.57.210",
+            "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Mobile/15E148 Safari/604.1",
+            "browser_language": "zh-CN",
+            "geolocation": {
+              "country": "China",
+              "country_code": "CN",
+              "region": "Liaoning",
+              "city": "Shenyang",
+              "timezone": "Asia/Shanghai",
+              "latitude": "41.80",
+              "longitude": "123.41"
+            },
+            "last_pages": [
+              {
+                "opened_at": "2026-03-23T02:57:51Z",
+                "url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=88c8049acc1729e50a42231c07f2f04a34951a1f2a3eca2c8faafeb0d1ef7b0cc28fbe43f63c1bbcf5bd9c5d0748003fb6a773453c16bc9c08e9ce0a41157d3015e0dbde33da318669bef9a5e9d9642bb2b5a4caf406c65a6fa9635364426f0d&name=pengfei927",
+                "title": "Contact us via LiveChat!"
+              }
+            ],
+            "previous_visit_started_at": "2026-03-22T14:32:13.000000Z"
+          },
+          "statistics": {
+            "chats_count": 1,
+            "threads_count": 73,
+            "visits_count": 107,
+            "page_views_count": 107,
+            "greetings_accepted_count": 0,
+            "greetings_converted_count": 0,
+            "tickets_count": 0,
+            "tickets_inbox_count": 0,
+            "tickets_archive_count": 0,
+            "tickets_spam_count": 0,
+            "tickets_trash_count": 0,
+            "orders_count": 0,
+            "last_activity_at": "2026-03-23T03:07:56.000000Z",
+            "last_visit_at": "2026-03-23T03:07:55.000000Z",
+            "last_chat_at": "2026-03-23T03:07:56.000000Z"
+          },
+          "agent_last_event_created_at": "2026-03-23T03:04:19.627000Z",
+          "customer_last_event_created_at": "2026-03-23T02:59:00.623000Z",
+          "followed": false,
+          "online": false,
+          "group_ids": [
+            2
+          ],
+          "state": "offline",
+          "greeting_id": 9,
+          "email_verified": false
+        },
+        {
+          "id": "zoe.wu@dd99.games",
+          "name": "花花",
+          "email": "zoe.wu@dd99.games",
+          "events_seen_up_to": "2026-03-13T02:03:32.000000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/317f278d-2637-453b-b498-fbd292c69714/72858014-2ac4-412b-8ef8-9dc116f72e7c.jpeg",
+          "visibility": "agents"
+        },
+        {
+          "id": "lun.shi@dd99.games",
+          "name": "毛毛♡",
+          "email": "lun.shi@dd99.games",
+          "events_seen_up_to": "2026-03-21T23:48:28.335000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/6fb4671f-baaa-4c82-a176-7760cae46b14/341235ac-d6ee-40ad-8606-919f0c41119d.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "joan.wu@dd99.games",
+          "name": "文文",
+          "email": "joan.wu@dd99.games",
+          "events_seen_up_to": "2026-03-22T14:31:04.088000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/9d0c264a-40e1-4be6-80a8-d544fef7376b/b43d92c9-2eea-4d4a-8d8b-899a327abe74.png",
+          "visibility": "all"
+        },
+        {
+          "id": "kyle@dd99.games",
+          "name": "馨儿",
+          "email": "kyle@dd99.games",
+          "events_seen_up_to": "2026-03-22T08:33:05.625000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/3935c295-bf31-4ba4-9c16-36a916cdcd76/af297877-e7e4-4a7c-803f-b33d4e7f6384.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "gwen.chou@dd99.games",
+          "name": "小娟",
+          "email": "gwen.chou@dd99.games",
+          "events_seen_up_to": "2026-03-23T03:04:19.627000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/28d0374b-8bdb-4e32-87f1-e1dad7abcd22/72e4ca40-eb3b-444a-8615-4b5af352e12f.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "stan@dd99.games",
+          "name": "璇璇",
+          "email": "stan@dd99.games",
+          "events_seen_up_to": "2026-01-30T14:57:42.985000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/2f365991-0ab7-42bd-870d-026d01b779dc/d1635efb-7de5-41c6-bd25-9ba65b4fe22e.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "carin.hsieh@dd99.games",
+          "name": "桂桂",
+          "email": "carin.hsieh@dd99.games",
+          "events_seen_up_to": "2025-11-03T04:01:17.101000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/23d6e9cc-7763-4c10-88af-ac3c1c32349c/58e50d71-be23-48f3-aef8-634e7f722400.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "carol.cheng@dd99.games",
+          "name": "小枫",
+          "email": "carol.cheng@dd99.games",
+          "events_seen_up_to": "2026-03-22T08:26:28.000000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/ac4fb90d-3d90-4717-8d74-b6bad1d45143/0164cb3f-1921-4e13-b05c-768bbebad5ce.png",
+          "visibility": "agents"
+        },
+        {
+          "id": "yuyu.cheng@dd99.games",
+          "name": "涵涵",
+          "email": "yuyu.cheng@dd99.games",
+          "events_seen_up_to": "2026-02-01T13:31:28.000000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/88791a27-28c3-4ae7-8a4c-0ebcc123633f/4ec7e278-e330-44d4-982b-38bb93d611e7.jpeg",
+          "visibility": "agents"
+        },
+        {
+          "id": "winnie.zeng@dd99.games",
+          "name": "婷婷",
+          "email": "winnie.zeng@dd99.games",
+          "events_seen_up_to": "2026-03-20T12:55:36.294000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/5293e877-0cea-4206-b3a2-7cbcb5339ace/f6621e6c-aa09-4d97-8c2b-62b8930ab2f7.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "andy@dd99.games",
+          "name": "小迪",
+          "email": "andy@dd99.games",
+          "events_seen_up_to": "2026-02-04T01:51:15.296000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/79675349-40c8-4341-9a55-d53a5243ead2/5d082c5c-ae2e-4c93-96fb-598bbf84d43d.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "david@dd99.games",
+          "name": "佳佳",
+          "email": "david@dd99.games",
+          "events_seen_up_to": "2026-03-16T09:52:02.579000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/7dfcb60b-3d91-4063-acfc-caa590ac12b9/959b953b-32f4-4de8-9f16-43ddecb50ee5.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "hsiu.yen@dd99.games",
+          "name": "琪琪",
+          "email": "hsiu.yen@dd99.games",
+          "events_seen_up_to": "2026-03-20T01:10:05.388000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/5c6d1149-b03a-498f-ae79-2a4a5555a524/2ca81bcb-2274-4ff0-b116-01877b4fb2d3.jpeg",
+          "visibility": "all"
+        }
+      ],
+      "thread": {
+        "id": "TC7CS0H86N",
+        "active": false,
+        "user_ids": [
+          "gwen.chou@dd99.games",
+          "d4fadcaf-24c6-4d7c-a961-4becfe8ddb4a"
+        ],
+        "properties": {
+          "routing": {
+            "continuous": false,
+            "group_status_at_start": "online",
+            "idle": false,
+            "referrer": "https://www.luc8313.com/",
+            "start_url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=88c8049acc1729e50a42231c07f2f04a34951a1f2a3eca2c8faafeb0d1ef7b0cc28fbe43f63c1bbcf5bd9c5d0748003fb6a773453c16bc9c08e9ce0a41157d3015e0dbde33da318669bef9a5e9d9642bb2b5a4caf406c65a6fa9635364426f0d&name=pengfei927",
+            "unassigned": false,
+            "unreplied": false
+          },
+          "source": {
+            "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+            "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+          }
+        },
+        "access": {
+          "group_ids": [
+            2
+          ]
+        },
+        "tags": [
+          "W10-3提款自动审核机制无法提款-流水延迟"
+        ],
+        "previous_thread_id": "TC7BK1RGY6",
+        "previous_accessible_thread_id": "TC7BK1RGY6",
+        "created_at": "2026-03-23T02:57:59.346000Z",
+        "customer_visit": {
+          "ip": "39.144.57.210",
+          "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Mobile/15E148 Safari/604.1",
+          "geolocation": {
+            "country": "China",
+            "country_code": "CN",
+            "region": "Liaoning",
+            "city": "Shenyang",
+            "timezone": "Asia/Shanghai",
+            "latitude": "41.80",
+            "longitude": "123.41"
+          }
+        },
+        "events": [
+          {
+            "id": "TC7CS0H86N_1",
+            "created_at": "2026-03-23T02:57:59.347003Z",
+            "visibility": "all",
+            "type": "filled_form",
+            "properties": {
+              "lc2": {
+                "form_type": "prechat"
+              },
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "d4fadcaf-24c6-4d7c-a961-4becfe8ddb4a",
+            "custom_id": "o8aslfxzpcq",
+            "form_id": "173673702290008638",
+            "form_type": "prechat",
+            "fields": [
+              {
+                "id": "173673702290006054",
+                "type": "name",
+                "label": "用户名：",
+                "answer": "pengfei927"
+              },
+              {
+                "id": "173673702290007023",
+                "type": "select",
+                "label": "请选择需咨询项目：",
+                "answer": {
+                  "id": "2",
+                  "label": "提款问题"
+                }
+              }
+            ]
+          },
+          {
+            "id": "TC7CS0H86N_2",
+            "created_at": "2026-03-23T02:57:59.348003Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "chats": {
+                "welcome_message_source": "welcome_phrase"
+              },
+              "lc2": {
+                "welcome_message": true
+              }
+            },
+            "text": "新利将于11/3全面改版升级～操作更便捷、更流畅，立即前往体验：xl18.cc",
+            "author_id": "gwen.chou@dd99.games"
+          },
+          {
+            "id": "TC7CS0H86N_3",
+            "created_at": "2026-03-23T02:58:06.893000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "您好～我是客服小天使小娟，请问有什么能为您服务的吗？(○´∀`○)ﾉ",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774234685772.76840468820"
+          },
+          {
+            "id": "TC7CS0H86N_4",
+            "created_at": "2026-03-23T02:58:17.090000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "提款说流水不足",
+            "author_id": "d4fadcaf-24c6-4d7c-a961-4becfe8ddb4a",
+            "custom_id": "5yqfn32hjmo"
+          },
+          {
+            "id": "TC7CS0H86N_5",
+            "created_at": "2026-03-23T02:58:26.478000Z",
+            "visibility": "all",
+            "type": "file",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "d4fadcaf-24c6-4d7c-a961-4becfe8ddb4a",
+            "custom_id": "0l8ijwx2rg6d",
+            "name": "IMG_8096.png",
+            "url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/62b7735d6fa18c5a40308671733139d6/IMG_8096.png",
+            "thumbnail_url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/62b7735d6fa18c5a40308671733139d6/IMG_8096.png?impolicy=thumbnail",
+            "thumbnail2x_url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/62b7735d6fa18c5a40308671733139d6/IMG_8096.png?impolicy=thumbnail2x",
+            "content_type": "image/png",
+            "width": 1179,
+            "height": 2556,
+            "size": 357415
+          },
+          {
+            "id": "TC7CS0H86N_6",
+            "created_at": "2026-03-23T02:58:26.790000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，请您提供下会员帐号，以利为您确认｡◕‿◕｡",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774234705675.63301669082"
+          },
+          {
+            "id": "TC7CS0H86N_7",
+            "created_at": "2026-03-23T02:58:33.905000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "pengfei927",
+            "author_id": "d4fadcaf-24c6-4d7c-a961-4becfe8ddb4a",
+            "custom_id": "fcbusnk7kj8"
+          },
+          {
+            "id": "TC7CS0H86N_8",
+            "created_at": "2026-03-23T02:58:43.098000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "我一共错了3000",
+            "author_id": "d4fadcaf-24c6-4d7c-a961-4becfe8ddb4a",
+            "custom_id": "vvnkjjv71f"
+          },
+          {
+            "id": "TC7CS0H86N_9",
+            "created_at": "2026-03-23T02:58:51.634000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "打了6000了还不足",
+            "author_id": "d4fadcaf-24c6-4d7c-a961-4becfe8ddb4a",
+            "custom_id": "s6x8cm6q8os"
+          },
+          {
+            "id": "TC7CS0H86N_10",
+            "created_at": "2026-03-23T02:59:00.623000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "系统有病了吗",
+            "author_id": "d4fadcaf-24c6-4d7c-a961-4becfe8ddb4a",
+            "custom_id": "3sfzknjcgzk"
+          },
+          {
+            "id": "TC7CS0H86N_11",
+            "created_at": "2026-03-23T02:59:19.192000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "请您稍等会，这边为您确认下哦",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774234758073.56430225505"
+          },
+          {
+            "id": "TC7CS0H86N_12",
+            "created_at": "2026-03-23T03:02:52.947000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "抱歉让您久等了，请您刷新后重新尝试下提款哦",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774234971833.16517369643"
+          },
+          {
+            "id": "TC7CS0H86N_13",
+            "created_at": "2026-03-23T03:04:19.627000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "感谢您的耐心等候，请问还有其他地方需要小娟再帮您服务的吗(｡•ㅅ•｡)♡",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774235058497.61843231170"
+          },
+          {
+            "id": "TC7CS0H86N_14",
+            "created_at": "2026-03-23T03:07:55.916000Z",
+            "visibility": "all",
+            "type": "system_message",
+            "text": "pengfei927 left the chat",
+            "system_message_type": "archived_customer_disconnected",
+            "text_vars": {
+              "customer": "pengfei927"
+            }
+          }
+        ]
+      },
+      "properties": {
+        "routing": {
+          "continuous": false,
+          "pinned": false,
+          "was_pinned": false
+        },
+        "source": {
+          "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+          "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+        }
+      },
+      "access": {
+        "group_ids": [
+          2
+        ]
+      },
+      "is_followed": false
+    },
+    {
+      "id": "TC7CS0G484",
+      "users": [
+        {
+          "id": "2301cbb5-2b72-472b-8f58-7a0adecb8197",
+          "name": "ff596160",
+          "events_seen_up_to": "2026-03-23T02:57:34.197999Z",
+          "type": "customer",
+          "present": true,
+          "name_is_default": false,
+          "created_at": "2026-03-23T02:55:03.000000Z",
+          "visit": {
+            "id": 1,
+            "started_at": "2026-03-23T02:55:03.000000Z",
+            "ended_at": "2026-03-23T03:08:34.000000Z",
+            "ip": "175.10.4.219",
+            "user_agent": "Mozilla/5.0 (Linux; Android 12; HarmonyOS; BRE-AL00b; HMSCore 6.15.4.342) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.196 HuaweiBrowser/17.0.1.301 Mobile Safari/537.36",
+            "browser_language": "zh-CN",
+            "geolocation": {
+              "country": "China",
+              "country_code": "CN",
+              "region": "Hunan",
+              "city": "Zhuzhou",
+              "timezone": "Asia/Shanghai",
+              "latitude": "27.83",
+              "longitude": "113.15"
+            },
+            "last_pages": [
+              {
+                "opened_at": "2026-03-23T02:55:03Z",
+                "url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=236feaf9a3daab1a8b47e3be5581bdd739ab81c157ab72d7451d655cab8ce69d0f74b5c6d61cac171703aa93f811a8b8be8c33267fcd2764624318a13e7c01472694f4dfe276fb7fd1b92a57d22d4502&name=ff596160",
+                "title": "Contact us via LiveChat!"
+              }
+            ]
+          },
+          "statistics": {
+            "chats_count": 1,
+            "threads_count": 1,
+            "visits_count": 1,
+            "page_views_count": 1,
+            "greetings_accepted_count": 0,
+            "greetings_converted_count": 0,
+            "tickets_count": 0,
+            "tickets_inbox_count": 0,
+            "tickets_archive_count": 0,
+            "tickets_spam_count": 0,
+            "tickets_trash_count": 0,
+            "orders_count": 0,
+            "last_activity_at": "2026-03-23T03:02:31.000000Z",
+            "last_visit_at": "2026-03-23T02:55:03.000000Z",
+            "last_chat_at": "2026-03-23T03:02:31.000000Z"
+          },
+          "agent_last_event_created_at": "2026-03-23T03:02:28.883000Z",
+          "customer_last_event_created_at": "2026-03-23T02:56:47.459000Z",
+          "followed": false,
+          "online": false,
+          "group_ids": [
+            2
+          ],
+          "state": "offline",
+          "greeting_id": 8,
+          "email_verified": false
+        },
+        {
+          "id": "kyle@dd99.games",
+          "name": "馨儿",
+          "email": "kyle@dd99.games",
+          "events_seen_up_to": "2026-03-23T03:02:28.883000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/3935c295-bf31-4ba4-9c16-36a916cdcd76/af297877-e7e4-4a7c-803f-b33d4e7f6384.jpeg",
+          "visibility": "all"
+        }
+      ],
+      "thread": {
+        "id": "TC7CS0G494",
+        "active": false,
+        "user_ids": [
+          "kyle@dd99.games",
+          "2301cbb5-2b72-472b-8f58-7a0adecb8197"
+        ],
+        "properties": {
+          "routing": {
+            "continuous": false,
+            "group_status_at_start": "online",
+            "idle": false,
+            "pinned": false,
+            "start_url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=236feaf9a3daab1a8b47e3be5581bdd739ab81c157ab72d7451d655cab8ce69d0f74b5c6d61cac171703aa93f811a8b8be8c33267fcd2764624318a13e7c01472694f4dfe276fb7fd1b92a57d22d4502&name=ff596160",
+            "unassigned": false,
+            "unreplied": false
+          },
+          "source": {
+            "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+            "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+          }
+        },
+        "access": {
+          "group_ids": [
+            2
+          ]
+        },
+        "tags": [
+          "C1-金流APP下载/注册相关",
+          "C15-988pay"
+        ],
+        "created_at": "2026-03-23T02:55:16.641000Z",
+        "customer_visit": {
+          "ip": "175.10.4.219",
+          "user_agent": "Mozilla/5.0 (Linux; Android 12; HarmonyOS; BRE-AL00b; HMSCore 6.15.4.342) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.196 HuaweiBrowser/17.0.1.301 Mobile Safari/537.36",
+          "geolocation": {
+            "country": "China",
+            "country_code": "CN",
+            "region": "Hunan",
+            "city": "Zhuzhou",
+            "timezone": "Asia/Shanghai",
+            "latitude": "27.83",
+            "longitude": "113.15"
+          }
+        },
+        "events": [
+          {
+            "id": "TC7CS0G494_1",
+            "created_at": "2026-03-23T02:55:16.642007Z",
+            "visibility": "all",
+            "type": "filled_form",
+            "properties": {
+              "lc2": {
+                "form_type": "prechat"
+              },
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "2301cbb5-2b72-472b-8f58-7a0adecb8197",
+            "custom_id": "rvv4xwrt1tc",
+            "form_id": "173673702290008638",
+            "form_type": "prechat",
+            "fields": [
+              {
+                "id": "173673702290006054",
+                "type": "name",
+                "label": "用户名：",
+                "answer": "ff596160"
+              },
+              {
+                "id": "173673702290007023",
+                "type": "select",
+                "label": "请选择需咨询项目：",
+                "answer": {
+                  "id": "1",
+                  "label": "存款问题"
+                }
+              }
+            ]
+          },
+          {
+            "id": "TC7CS0G494_2",
+            "created_at": "2026-03-23T02:55:16.643006Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "chats": {
+                "welcome_message_source": "welcome_phrase"
+              },
+              "lc2": {
+                "welcome_message": true
+              }
+            },
+            "text": "新利将于11/3全面改版升级～操作更便捷、更流畅，立即前往体验：xl18.cc",
+            "author_id": "kyle@dd99.games"
+          },
+          {
+            "id": "TC7CS0G494_3",
+            "created_at": "2026-03-23T02:55:20.558000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "您好❤️，我是客服馨儿，很高兴为您服务，请问有什么可以帮助您的呢？(❁´◡`❁)",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774234520779.56367466015"
+          },
+          {
+            "id": "TC7CS0G494_4",
+            "created_at": "2026-03-23T02:55:51.532000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "发个988Pay钱包连接给我",
+            "author_id": "2301cbb5-2b72-472b-8f58-7a0adecb8197",
+            "custom_id": "pvrushqggv8"
+          },
+          {
+            "id": "TC7CS0G494_5",
+            "created_at": "2026-03-23T02:56:28.424002Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲亲，请问您是咨询988pay的网址吗？",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774234588644.4031999234"
+          },
+          {
+            "id": "TC7CS0G494_6",
+            "created_at": "2026-03-23T02:56:47.459000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "是的",
+            "author_id": "2301cbb5-2b72-472b-8f58-7a0adecb8197",
+            "custom_id": "607md38fphv"
+          },
+          {
+            "id": "TC7CS0G494_7",
+            "created_at": "2026-03-23T02:57:09.551000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，请稍等，馨儿帮您查询下 (๑´ㅂ`๑)",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774234629772.5197597709"
+          },
+          {
+            "id": "TC7CS0G494_8",
+            "created_at": "2026-03-23T02:57:34.197000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "https://988payvip.com/home.html",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774234654419.83774576826"
+          },
+          {
+            "id": "TC7CS0G494_9",
+            "created_at": "2026-03-23T02:57:39.464000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "感谢您的耐心等候，请问还有其他需要馨儿为您服务的地方吗(｡•ㅅ•｡)♡",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774234659685.12246480757"
+          },
+          {
+            "id": "TC7CS0G494_10",
+            "created_at": "2026-03-23T03:02:28.883000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，因您长时间没有回复，系统会关闭与您的对话，如果您有任何问题欢迎您再与《在线客服》联系哦，谢谢您",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774234949105.63328174586"
+          },
+          {
+            "id": "TC7CS0G494_11",
+            "created_at": "2026-03-23T03:02:31.263000Z",
+            "visibility": "all",
+            "type": "system_message",
+            "text": "馨儿 archived the chat",
+            "system_message_type": "manual_archived_agent",
+            "text_vars": {
+              "agent": "馨儿"
+            }
+          }
+        ]
+      },
+      "properties": {
+        "routing": {
+          "continuous": false,
+          "pinned": false,
+          "was_pinned": false
+        },
+        "source": {
+          "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+          "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+        }
+      },
+      "access": {
+        "group_ids": [
+          2
+        ]
+      },
+      "is_followed": false
+    },
+    {
+      "id": "TC7BSZEO8W",
+      "users": [
+        {
+          "id": "7f4c5f9e-4e03-4dfc-87d4-ac031583db96",
+          "name": "zxy520",
+          "events_seen_up_to": "2026-03-23T02:53:51.247999Z",
+          "type": "customer",
+          "present": true,
+          "name_is_default": false,
+          "created_at": "2026-03-23T02:46:02.000000Z",
+          "visit": {
+            "id": 2,
+            "started_at": "2026-03-23T02:56:10.000000Z",
+            "ended_at": "2026-03-23T03:01:55.000000Z",
+            "referrer": "https://88luck32.com/",
+            "ip": "119.39.85.91",
+            "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 26_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/146.0.7680.151 Mobile/15E148 Safari/604.1",
+            "browser_language": "zh-CN",
+            "geolocation": {
+              "country": "China",
+              "country_code": "CN",
+              "region": "Hunan",
+              "city": "Ch'ang-sha",
+              "timezone": "Asia/Shanghai",
+              "latitude": "28.20",
+              "longitude": "112.97"
+            },
+            "last_pages": [
+              {
+                "opened_at": "2026-03-23T02:56:10Z",
+                "url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=9a2caac67d0976320539852614744f1ff4cccb72fd3c24dd4b6cb7b3d84772efa1a4cff6acf1e914901e4841ec8abeaaeb431b609a040e2b9763d2c4b4649731dd9b4514a5ad879100623dc47dbda6e5a8f87f81d66b29a964dd727b3525429d&name=zxy520",
+                "title": "Contact us via LiveChat!"
+              }
+            ],
+            "previous_visit_started_at": "2026-03-23T02:46:02.000000Z"
+          },
+          "statistics": {
+            "chats_count": 1,
+            "threads_count": 1,
+            "visits_count": 2,
+            "page_views_count": 2,
+            "greetings_accepted_count": 0,
+            "greetings_converted_count": 0,
+            "tickets_count": 0,
+            "tickets_inbox_count": 0,
+            "tickets_archive_count": 0,
+            "tickets_spam_count": 0,
+            "tickets_trash_count": 0,
+            "orders_count": 0,
+            "last_activity_at": "2026-03-23T03:01:55.000000Z",
+            "last_visit_at": "2026-03-23T03:01:55.000000Z",
+            "last_chat_at": "2026-03-23T02:55:55.000000Z"
+          },
+          "agent_last_event_created_at": "2026-03-23T02:53:51.247000Z",
+          "customer_last_event_created_at": "2026-03-23T02:48:27.039000Z",
+          "followed": false,
+          "online": false,
+          "group_ids": [
+            2
+          ],
+          "state": "offline",
+          "greeting_id": 9,
+          "email_verified": false
+        },
+        {
+          "id": "gwen.chou@dd99.games",
+          "name": "小娟",
+          "email": "gwen.chou@dd99.games",
+          "events_seen_up_to": "2026-03-23T02:53:51.247000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/28d0374b-8bdb-4e32-87f1-e1dad7abcd22/72e4ca40-eb3b-444a-8615-4b5af352e12f.jpeg",
+          "visibility": "all"
+        }
+      ],
+      "thread": {
+        "id": "TC7BSZEO9W",
+        "active": false,
+        "user_ids": [
+          "gwen.chou@dd99.games",
+          "7f4c5f9e-4e03-4dfc-87d4-ac031583db96"
+        ],
+        "properties": {
+          "routing": {
+            "continuous": false,
+            "group_status_at_start": "online",
+            "idle": false,
+            "pinned": false,
+            "referrer": "https://88luck32.com/",
+            "start_url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=9a2caac67d0976320539852614744f1ff4cccb72fd3c24dd4b6cb7b3d84772efa1a4cff6acf1e914901e4841ec8abeaaeb431b609a040e2b9763d2c4b4649731dd9b4514a5ad879100623dc47dbda6e5a8f87f81d66b29a964dd727b3525429d&name=zxy520",
+            "unassigned": false,
+            "unreplied": false
+          },
+          "source": {
+            "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+            "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+          }
+        },
+        "access": {
+          "group_ids": [
+            2
+          ]
+        },
+        "tags": [
+          "W1-提款到帐咨询",
+          "W1-4-提款风控审核中",
+          "C17-JDPay"
+        ],
+        "created_at": "2026-03-23T02:46:08.153000Z",
+        "customer_visit": {
+          "ip": "119.39.85.91",
+          "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 26_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/146.0.7680.151 Mobile/15E148 Safari/604.1",
+          "geolocation": {
+            "country": "China",
+            "country_code": "CN",
+            "region": "Hunan",
+            "city": "Ch'ang-sha",
+            "timezone": "Asia/Shanghai",
+            "latitude": "28.20",
+            "longitude": "112.97"
+          }
+        },
+        "events": [
+          {
+            "id": "TC7BSZEO9W_1",
+            "created_at": "2026-03-23T02:46:08.153013Z",
+            "visibility": "all",
+            "type": "filled_form",
+            "properties": {
+              "lc2": {
+                "form_type": "prechat"
+              },
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "7f4c5f9e-4e03-4dfc-87d4-ac031583db96",
+            "custom_id": "rgxkyqp0br",
+            "form_id": "173673702290008638",
+            "form_type": "prechat",
+            "fields": [
+              {
+                "id": "173673702290006054",
+                "type": "name",
+                "label": "用户名：",
+                "answer": "zxy520"
+              },
+              {
+                "id": "173673702290007023",
+                "type": "select",
+                "label": "请选择需咨询项目：",
+                "answer": {
+                  "id": "3",
+                  "label": "游戏问题"
+                }
+              }
+            ]
+          },
+          {
+            "id": "TC7BSZEO9W_2",
+            "created_at": "2026-03-23T02:46:08.154009Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "chats": {
+                "welcome_message_source": "welcome_phrase"
+              },
+              "lc2": {
+                "welcome_message": true
+              }
+            },
+            "text": "新利将于11/3全面改版升级～操作更便捷、更流畅，立即前往体验：xl18.cc",
+            "author_id": "gwen.chou@dd99.games"
+          },
+          {
+            "id": "TC7BSZEO9W_3",
+            "created_at": "2026-03-23T02:46:12.848000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "您好～我是客服小天使小娟，请问有什么能为您服务的吗？(○´∀`○)ﾉ",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774233971741.58375268262"
+          },
+          {
+            "id": "TC7BSZEO9W_4",
+            "created_at": "2026-03-23T02:46:20.914000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "你们现在提款怎么这么久",
+            "author_id": "7f4c5f9e-4e03-4dfc-87d4-ac031583db96",
+            "custom_id": "a2j97dg1o8g"
+          },
+          {
+            "id": "TC7BSZEO9W_5",
+            "created_at": "2026-03-23T02:46:33.035000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，请您先提供下会员帐号，以利为您确认｡◕‿◕｡",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774233991928.67582544973"
+          },
+          {
+            "id": "TC7BSZEO9W_6",
+            "created_at": "2026-03-23T02:48:27.039000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "Zxy520",
+            "author_id": "7f4c5f9e-4e03-4dfc-87d4-ac031583db96",
+            "custom_id": "9ot6brr96e"
+          },
+          {
+            "id": "TC7BSZEO9W_7",
+            "created_at": "2026-03-23T02:49:15.406000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "抱歉让您久等了，小娟查看您的提款还在等候财务审核中，审核作业会需要一些时间，待审核完成即会出款的，请您耐心等待就可以的",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774234154284.19930493914"
+          },
+          {
+            "id": "TC7BSZEO9W_8",
+            "created_at": "2026-03-23T02:53:51.247000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "请问还有其他地方需要小娟再帮您服务的吗(｡•ㅅ•｡)♡",
+            "author_id": "gwen.chou@dd99.games",
+            "custom_id": "1774234430131.42539693361"
+          },
+          {
+            "id": "TC7BSZEO9W_9",
+            "created_at": "2026-03-23T02:55:55.100000Z",
+            "visibility": "all",
+            "type": "system_message",
+            "text": "zxy520 left the chat",
+            "system_message_type": "archived_customer_disconnected",
+            "text_vars": {
+              "customer": "zxy520"
+            }
+          }
+        ]
+      },
+      "properties": {
+        "routing": {
+          "continuous": false,
+          "pinned": false,
+          "was_pinned": false
+        },
+        "source": {
+          "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+          "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+        }
+      },
+      "access": {
+        "group_ids": [
+          2
+        ]
+      },
+      "is_followed": false
+    },
+    {
+      "id": "TC7BRP4ZWQ",
+      "users": [
+        {
+          "id": "cfef992c-cd81-434e-abbc-5b3c55547fb2",
+          "name": "yuan2021",
+          "events_seen_up_to": "2026-03-23T02:08:06.084000Z",
+          "type": "customer",
+          "present": true,
+          "name_is_default": false,
+          "created_at": "2026-03-22T23:16:34.000000Z",
+          "visit": {
+            "id": 2,
+            "started_at": "2026-03-23T02:07:38.000000Z",
+            "ended_at": "2026-03-23T02:18:33.000000Z",
+            "referrer": "https://www.1188luck.com:27004/",
+            "ip": "223.84.71.226",
+            "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.1 Mobile/15E148 Safari/604.1",
+            "browser_language": "zh-CN",
+            "geolocation": {
+              "country": "China",
+              "country_code": "CN",
+              "region": "Jiangxi",
+              "city": "Nan-chang",
+              "timezone": "Asia/Shanghai",
+              "latitude": "28.68",
+              "longitude": "115.88"
+            },
+            "last_pages": [
+              {
+                "opened_at": "2026-03-23T02:07:38Z",
+                "url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=51dd4447f7f7ef8bdf1882afa8a2022bc6453cd5873c0f58aa9d7d29079cb24c2c4fa01ed7230bc70f693e88554d1e1f99026a721dfb978eb1280166c1a99fa72694f4dfe276fb7fd1b92a57d22d4502&name=yuan2021",
+                "title": "Contact us via LiveChat!"
+              }
+            ],
+            "previous_visit_started_at": "2026-03-22T23:16:34.000000Z"
+          },
+          "statistics": {
+            "chats_count": 1,
+            "threads_count": 2,
+            "visits_count": 2,
+            "page_views_count": 2,
+            "greetings_accepted_count": 0,
+            "greetings_converted_count": 0,
+            "tickets_count": 0,
+            "tickets_inbox_count": 0,
+            "tickets_archive_count": 0,
+            "tickets_spam_count": 0,
+            "tickets_trash_count": 0,
+            "orders_count": 0,
+            "last_activity_at": "2026-03-23T02:18:33.000000Z",
+            "last_visit_at": "2026-03-23T02:18:33.000000Z",
+            "last_chat_at": "2026-03-23T02:18:13.000000Z"
+          },
+          "agent_last_event_created_at": "2026-03-23T02:18:10.989000Z",
+          "customer_last_event_created_at": "2026-03-23T02:08:06.084000Z",
+          "followed": false,
+          "online": false,
+          "group_ids": [
+            2
+          ],
+          "state": "offline",
+          "greeting_id": 9,
+          "email_verified": false
+        },
+        {
+          "id": "kyle@dd99.games",
+          "name": "馨儿",
+          "email": "kyle@dd99.games",
+          "events_seen_up_to": "2026-03-23T02:18:10.989000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/3935c295-bf31-4ba4-9c16-36a916cdcd76/af297877-e7e4-4a7c-803f-b33d4e7f6384.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "lun.shi@dd99.games",
+          "name": "毛毛♡",
+          "email": "lun.shi@dd99.games",
+          "events_seen_up_to": "2026-03-22T23:19:19.234000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/6fb4671f-baaa-4c82-a176-7760cae46b14/341235ac-d6ee-40ad-8606-919f0c41119d.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "hsiu.yen@dd99.games",
+          "name": "琪琪",
+          "email": "hsiu.yen@dd99.games",
+          "events_seen_up_to": "2026-03-22T23:20:03.000000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/5c6d1149-b03a-498f-ae79-2a4a5555a524/2ca81bcb-2274-4ff0-b116-01877b4fb2d3.jpeg",
+          "visibility": "agents"
+        }
+      ],
+      "thread": {
+        "id": "TC7BSX4WLX",
+        "active": false,
+        "user_ids": [
+          "kyle@dd99.games",
+          "cfef992c-cd81-434e-abbc-5b3c55547fb2"
+        ],
+        "properties": {
+          "routing": {
+            "continuous": false,
+            "group_status_at_start": "online",
+            "idle": false,
+            "referrer": "https://www.1188luck.com:27004/",
+            "start_url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=51dd4447f7f7ef8bdf1882afa8a2022bc6453cd5873c0f58aa9d7d29079cb24c2c4fa01ed7230bc70f693e88554d1e1f99026a721dfb978eb1280166c1a99fa72694f4dfe276fb7fd1b92a57d22d4502&name=yuan2021",
+            "unassigned": false,
+            "unreplied": false
+          },
+          "source": {
+            "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+            "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+          }
+        },
+        "access": {
+          "group_ids": [
+            2
+          ]
+        },
+        "tags": [
+          "D2-存款催到账",
+          "C3-支付宝"
+        ],
+        "previous_thread_id": "TC7BRP4ZXQ",
+        "previous_accessible_thread_id": "TC7BRP4ZXQ",
+        "created_at": "2026-03-23T02:07:45.864000Z",
+        "customer_visit": {
+          "ip": "223.84.71.226",
+          "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.1 Mobile/15E148 Safari/604.1",
+          "geolocation": {
+            "country": "China",
+            "country_code": "CN",
+            "region": "Jiangxi",
+            "city": "Nan-chang",
+            "timezone": "Asia/Shanghai",
+            "latitude": "28.68",
+            "longitude": "115.88"
+          }
+        },
+        "events": [
+          {
+            "id": "TC7BSX4WLX_1",
+            "created_at": "2026-03-23T02:07:45.864004Z",
+            "visibility": "all",
+            "type": "filled_form",
+            "properties": {
+              "lc2": {
+                "form_type": "prechat"
+              },
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "cfef992c-cd81-434e-abbc-5b3c55547fb2",
+            "custom_id": "qdviewwhv5r",
+            "form_id": "173673702290008638",
+            "form_type": "prechat",
+            "fields": [
+              {
+                "id": "173673702290006054",
+                "type": "name",
+                "label": "用户名：",
+                "answer": "yuan2021"
+              },
+              {
+                "id": "173673702290007023",
+                "type": "select",
+                "label": "请选择需咨询项目：",
+                "answer": {
+                  "id": "1",
+                  "label": "存款问题"
+                }
+              }
+            ]
+          },
+          {
+            "id": "TC7BSX4WLX_2",
+            "created_at": "2026-03-23T02:07:45.865015Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "chats": {
+                "welcome_message_source": "welcome_phrase"
+              },
+              "lc2": {
+                "welcome_message": true
+              }
+            },
+            "text": "新利将于11/3全面改版升级～操作更便捷、更流畅，立即前往体验：xl18.cc",
+            "author_id": "kyle@dd99.games"
+          },
+          {
+            "id": "TC7BSX4WLX_3",
+            "created_at": "2026-03-23T02:07:53.482000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "您好❤️，我是客服馨儿，很高兴为您服务，请问有什么可以帮助您的呢？(❁´◡`❁)",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774231673691.18631491955"
+          },
+          {
+            "id": "TC7BSX4WLX_4",
+            "created_at": "2026-03-23T02:07:55.352000Z",
+            "visibility": "all",
+            "type": "file",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "cfef992c-cd81-434e-abbc-5b3c55547fb2",
+            "custom_id": "9mk8sjzdnge",
+            "name": "IMG_6212.png",
+            "url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/538d1d1003515414a27242f418ead909/IMG_6212.png",
+            "thumbnail_url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/538d1d1003515414a27242f418ead909/IMG_6212.png?impolicy=thumbnail",
+            "thumbnail2x_url": "https://cdn.files-text.com/us-south1/api/lc/att/18976839/538d1d1003515414a27242f418ead909/IMG_6212.png?impolicy=thumbnail2x",
+            "content_type": "image/png",
+            "width": 1125,
+            "height": 2436,
+            "size": 238837
+          },
+          {
+            "id": "TC7BSX4WLX_5",
+            "created_at": "2026-03-23T02:08:03.186000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "Yuan2021",
+            "author_id": "cfef992c-cd81-434e-abbc-5b3c55547fb2",
+            "custom_id": "9ufomgbdsa"
+          },
+          {
+            "id": "TC7BSX4WLX_6",
+            "created_at": "2026-03-23T02:08:06.084000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "没到",
+            "author_id": "cfef992c-cd81-434e-abbc-5b3c55547fb2",
+            "custom_id": "1tawyxlwaddi"
+          },
+          {
+            "id": "TC7BSX4WLX_7",
+            "created_at": "2026-03-23T02:08:09.151000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，请稍等，馨儿帮您查询下 (๑´ㅂ`๑)",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774231689361.10681949465"
+          },
+          {
+            "id": "TC7BSX4WLX_8",
+            "created_at": "2026-03-23T02:08:33.319000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "谢谢您的提供，馨儿已为您提交财务确认，麻烦请您稍待",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774231713530.98006587610"
+          },
+          {
+            "id": "TC7BSX4WLX_9",
+            "created_at": "2026-03-23T02:11:55.843000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，财务查询需要一些时间，还请再稍等等哦",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774231916054.23452439962"
+          },
+          {
+            "id": "TC7BSX4WLX_10",
+            "created_at": "2026-03-23T02:12:03.023000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "不好意思让您久等了，目前您的存款已到帐成功~请您刷新下钱包确认，谢谢ヾ(*´∀ˋ*)ﾉ",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774231923235.20732480170"
+          },
+          {
+            "id": "TC7BSX4WLX_11",
+            "created_at": "2026-03-23T02:12:04.203000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "感谢您的耐心等候，请问还有其他需要馨儿为您服务的地方吗(｡•ㅅ•｡)♡",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774231924408.71099437916"
+          },
+          {
+            "id": "TC7BSX4WLX_12",
+            "created_at": "2026-03-23T02:18:10.989000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，因您长时间没有回复，系统会关闭与您的对话，如果您有任何问题欢迎您再与《在线客服》联系哦，谢谢您",
+            "author_id": "kyle@dd99.games",
+            "custom_id": "1774232291201.84858376204"
+          },
+          {
+            "id": "TC7BSX4WLX_13",
+            "created_at": "2026-03-23T02:18:13.126000Z",
+            "visibility": "all",
+            "type": "system_message",
+            "text": "馨儿 archived the chat",
+            "system_message_type": "manual_archived_agent",
+            "text_vars": {
+              "agent": "馨儿"
+            }
+          }
+        ]
+      },
+      "properties": {
+        "routing": {
+          "continuous": false,
+          "pinned": false,
+          "was_pinned": false
+        },
+        "source": {
+          "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+          "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+        }
+      },
+      "access": {
+        "group_ids": [
+          2
+        ]
+      },
+      "is_followed": false
+    },
+    {
+      "id": "T25QGJUKRK",
+      "users": [
+        {
+          "id": "5af04071-242b-4097-84d8-014d8c752b16",
+          "name": "cjx1234",
+          "events_seen_up_to": "2026-03-23T00:22:19.775000Z",
+          "type": "customer",
+          "present": true,
+          "name_is_default": false,
+          "created_at": "2025-09-17T13:45:44.000000Z",
+          "visit": {
+            "id": 118,
+            "started_at": "2026-03-23T00:27:53.000000Z",
+            "ended_at": "2026-03-23T00:32:51.000000Z",
+            "referrer": "https://www.x2h6d.com/",
+            "ip": "112.114.167.29",
+            "user_agent": "Mozilla/5.0 (Phone; OpenHarmony 6.0; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36  ArkWeb/6.0.0.130 Mobile HuaweiBrowser/6.1.1.303",
+            "browser_language": "zh-CN",
+            "geolocation": {
+              "country": "China",
+              "country_code": "CN",
+              "region": "Yunnan",
+              "city": "Kunming",
+              "timezone": "Asia/Shanghai",
+              "latitude": "25.04",
+              "longitude": "102.72"
+            },
+            "last_pages": [
+              {
+                "opened_at": "2026-03-23T00:27:53Z",
+                "url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=51a98d53620bc6e8ae46256f3924cd473517c73e0fbecc1576594778e45736178fe244de535481d3c64c2db56a6ceddf3a0ad431823651771897f35173b125f3d4e8e966a7c8ad36daccc612218291bb02590cbd0ee77eb64763bfcafc72b288&name=cjx1234",
+                "title": "Contact us via LiveChat!"
+              }
+            ],
+            "previous_visit_started_at": "2026-03-23T00:20:04.000000Z"
+          },
+          "statistics": {
+            "chats_count": 1,
+            "threads_count": 109,
+            "visits_count": 118,
+            "page_views_count": 118,
+            "greetings_accepted_count": 0,
+            "greetings_converted_count": 0,
+            "tickets_count": 0,
+            "tickets_inbox_count": 0,
+            "tickets_archive_count": 0,
+            "tickets_spam_count": 0,
+            "tickets_trash_count": 0,
+            "orders_count": 0,
+            "last_activity_at": "2026-03-23T00:32:51.000000Z",
+            "last_visit_at": "2026-03-23T00:32:51.000000Z",
+            "last_chat_at": "2026-03-23T00:26:51.000000Z"
+          },
+          "agent_last_event_created_at": "2026-03-23T00:26:17.418000Z",
+          "customer_last_event_created_at": "2026-03-23T00:22:19.775000Z",
+          "followed": false,
+          "online": false,
+          "group_ids": [
+            2
+          ],
+          "state": "offline",
+          "greeting_id": 9,
+          "email_verified": false
+        },
+        {
+          "id": "david@dd99.games",
+          "name": "佳佳",
+          "email": "david@dd99.games",
+          "events_seen_up_to": "2026-03-21T12:40:04.624000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/7dfcb60b-3d91-4063-acfc-caa590ac12b9/959b953b-32f4-4de8-9f16-43ddecb50ee5.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "andy@dd99.games",
+          "name": "小迪",
+          "email": "andy@dd99.games",
+          "events_seen_up_to": "2026-02-05T04:19:11.168000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/79675349-40c8-4341-9a55-d53a5243ead2/5d082c5c-ae2e-4c93-96fb-598bbf84d43d.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "hsiu.yen@dd99.games",
+          "name": "琪琪",
+          "email": "hsiu.yen@dd99.games",
+          "events_seen_up_to": "2026-03-22T19:42:56.000000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/5c6d1149-b03a-498f-ae79-2a4a5555a524/2ca81bcb-2274-4ff0-b116-01877b4fb2d3.jpeg",
+          "visibility": "agents"
+        },
+        {
+          "id": "stan@dd99.games",
+          "name": "璇璇",
+          "email": "stan@dd99.games",
+          "events_seen_up_to": "2026-02-09T17:20:21.506000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/2f365991-0ab7-42bd-870d-026d01b779dc/d1635efb-7de5-41c6-bd25-9ba65b4fe22e.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "carol.cheng@dd99.games",
+          "name": "小枫",
+          "email": "carol.cheng@dd99.games",
+          "events_seen_up_to": "2026-03-21T06:51:19.783000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/ac4fb90d-3d90-4717-8d74-b6bad1d45143/0164cb3f-1921-4e13-b05c-768bbebad5ce.png",
+          "visibility": "all"
+        },
+        {
+          "id": "zoe.wu@dd99.games",
+          "name": "花花",
+          "email": "zoe.wu@dd99.games",
+          "events_seen_up_to": "2026-01-22T08:54:47.000000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/317f278d-2637-453b-b498-fbd292c69714/72858014-2ac4-412b-8ef8-9dc116f72e7c.jpeg",
+          "visibility": "agents"
+        },
+        {
+          "id": "carin.hsieh@dd99.games",
+          "name": "桂桂",
+          "email": "carin.hsieh@dd99.games",
+          "events_seen_up_to": "2025-11-23T03:33:24.302000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/23d6e9cc-7763-4c10-88af-ac3c1c32349c/58e50d71-be23-48f3-aef8-634e7f722400.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "kyle@dd99.games",
+          "name": "馨儿",
+          "email": "kyle@dd99.games",
+          "events_seen_up_to": "2026-02-28T08:38:11.951000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/3935c295-bf31-4ba4-9c16-36a916cdcd76/af297877-e7e4-4a7c-803f-b33d4e7f6384.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "lun.shi@dd99.games",
+          "name": "毛毛♡",
+          "email": "lun.shi@dd99.games",
+          "events_seen_up_to": "2026-03-23T00:26:17.418000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/6fb4671f-baaa-4c82-a176-7760cae46b14/341235ac-d6ee-40ad-8606-919f0c41119d.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "gwen.chou@dd99.games",
+          "name": "小娟",
+          "email": "gwen.chou@dd99.games",
+          "events_seen_up_to": "2026-03-15T02:56:28.403000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/28d0374b-8bdb-4e32-87f1-e1dad7abcd22/72e4ca40-eb3b-444a-8615-4b5af352e12f.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "yuyu.cheng@dd99.games",
+          "name": "涵涵",
+          "email": "yuyu.cheng@dd99.games",
+          "events_seen_up_to": "2026-02-24T11:30:50.109000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/88791a27-28c3-4ae7-8a4c-0ebcc123633f/4ec7e278-e330-44d4-982b-38bb93d611e7.jpeg",
+          "visibility": "all"
+        },
+        {
+          "id": "joan.wu@dd99.games",
+          "name": "文文",
+          "email": "joan.wu@dd99.games",
+          "events_seen_up_to": "2026-03-11T10:18:13.016000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/9d0c264a-40e1-4be6-80a8-d544fef7376b/b43d92c9-2eea-4d4a-8d8b-899a327abe74.png",
+          "visibility": "all"
+        },
+        {
+          "id": "winnie.zeng@dd99.games",
+          "name": "婷婷",
+          "email": "winnie.zeng@dd99.games",
+          "events_seen_up_to": "2026-02-24T12:34:43.324000Z",
+          "type": "agent",
+          "present": false,
+          "avatar": "https://cdn.files-text.com/api/accounts/avatars/2225d98c-40cd-4e97-a3f6-8b6963d21c0e/5293e877-0cea-4206-b3a2-7cbcb5339ace/f6621e6c-aa09-4d97-8c2b-62b8930ab2f7.jpeg",
+          "visibility": "all"
+        }
+      ],
+      "thread": {
+        "id": "TC7BRSGXYQ",
+        "active": false,
+        "user_ids": [
+          "lun.shi@dd99.games",
+          "5af04071-242b-4097-84d8-014d8c752b16"
+        ],
+        "properties": {
+          "routing": {
+            "continuous": false,
+            "group_status_at_start": "online",
+            "idle": false,
+            "referrer": "https://www.x2h6d.com/",
+            "start_url": "https://secure.livechatinc.com/licence/18976839/v2/open_chat.cgi?groups=2&name=&extradata=51a98d53620bc6e8ae46256f3924cd473517c73e0fbecc1576594778e45736178fe244de535481d3c64c2db56a6ceddf3a0ad431823651771897f35173b125f3d4e8e966a7c8ad36daccc612218291bb02590cbd0ee77eb64763bfcafc72b288&name=cjx1234",
+            "unassigned": false,
+            "unreplied": false
+          },
+          "source": {
+            "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+            "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+          }
+        },
+        "access": {
+          "group_ids": [
+            2
+          ]
+        },
+        "tags": [
+          "W3-取消提款",
+          "C2-网银"
+        ],
+        "previous_thread_id": "TC7BPGK1V6",
+        "previous_accessible_thread_id": "TC7BPGK1V6",
+        "created_at": "2026-03-23T00:20:14.041000Z",
+        "customer_visit": {
+          "ip": "112.114.167.29",
+          "user_agent": "Mozilla/5.0 (Phone; OpenHarmony 6.0; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36  ArkWeb/6.0.0.130 Mobile HuaweiBrowser/6.1.1.303",
+          "geolocation": {
+            "country": "China",
+            "country_code": "CN",
+            "region": "Yunnan",
+            "city": "Kunming",
+            "timezone": "Asia/Shanghai",
+            "latitude": "25.04",
+            "longitude": "102.72"
+          }
+        },
+        "events": [
+          {
+            "id": "TC7BRSGXYQ_1",
+            "created_at": "2026-03-23T00:20:14.041004Z",
+            "visibility": "all",
+            "type": "filled_form",
+            "properties": {
+              "lc2": {
+                "form_type": "prechat"
+              },
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "author_id": "5af04071-242b-4097-84d8-014d8c752b16",
+            "custom_id": "mpu18cskte9",
+            "form_id": "173673702290008638",
+            "form_type": "prechat",
+            "fields": [
+              {
+                "id": "173673702290006054",
+                "type": "name",
+                "label": "用户名：",
+                "answer": "cjx1234"
+              },
+              {
+                "id": "173673702290007023",
+                "type": "select",
+                "label": "请选择需咨询项目：",
+                "answer": {
+                  "id": "2",
+                  "label": "提款问题"
+                }
+              }
+            ]
+          },
+          {
+            "id": "TC7BRSGXYQ_2",
+            "created_at": "2026-03-23T00:20:14.042006Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "chats": {
+                "welcome_message_source": "welcome_phrase"
+              },
+              "lc2": {
+                "welcome_message": true
+              }
+            },
+            "text": "新利将于11/3全面改版升级～操作更便捷、更流畅，立即前往体验：xl18.cc",
+            "author_id": "lun.shi@dd99.games"
+          },
+          {
+            "id": "TC7BRSGXYQ_3",
+            "created_at": "2026-03-23T00:20:20.585000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲您好～❤️我是客服毛毛♡ 请问有什么能为您服务的呢？(´,,•ω•,,)♡",
+            "author_id": "lun.shi@dd99.games",
+            "custom_id": "1774225219701.76758783445"
+          },
+          {
+            "id": "TC7BRSGXYQ_4",
+            "created_at": "2026-03-23T00:20:21.739000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "cjx1234",
+            "author_id": "5af04071-242b-4097-84d8-014d8c752b16",
+            "custom_id": "ubus9dnpq0o"
+          },
+          {
+            "id": "TC7BRSGXYQ_5",
+            "created_at": "2026-03-23T00:20:31.342000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "取消提款",
+            "author_id": "5af04071-242b-4097-84d8-014d8c752b16",
+            "custom_id": "rh6t7u69mtc"
+          },
+          {
+            "id": "TC7BRSGXYQ_6",
+            "created_at": "2026-03-23T00:20:34.772000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "速度",
+            "author_id": "5af04071-242b-4097-84d8-014d8c752b16",
+            "custom_id": "35bapmpe3c7"
+          },
+          {
+            "id": "TC7BRSGXYQ_7",
+            "created_at": "2026-03-23T00:20:38.640000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "好的亲，马上为您查询，请稍等哦",
+            "author_id": "lun.shi@dd99.games",
+            "custom_id": "1774225237743.35814093156"
+          },
+          {
+            "id": "TC7BRSGXYQ_8",
+            "created_at": "2026-03-23T00:21:41.469000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，这边已有为您提交相关单位查看，还请您稍等下了哦，谢谢您",
+            "author_id": "lun.shi@dd99.games",
+            "custom_id": "1774225300585.98421783411"
+          },
+          {
+            "id": "TC7BRSGXYQ_9",
+            "created_at": "2026-03-23T00:22:19.775000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+              }
+            },
+            "text": "好的",
+            "author_id": "5af04071-242b-4097-84d8-014d8c752b16",
+            "custom_id": "81bgh6oexm4"
+          },
+          {
+            "id": "TC7BRSGXYQ_10",
+            "created_at": "2026-03-23T00:24:48.583000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "亲，您的提款已有为您取消，再麻烦您刷新页面查看下，谢谢您",
+            "author_id": "lun.shi@dd99.games",
+            "custom_id": "1774225487698.87205097572"
+          },
+          {
+            "id": "TC7BRSGXYQ_11",
+            "created_at": "2026-03-23T00:26:17.418000Z",
+            "visibility": "all",
+            "type": "message",
+            "properties": {
+              "source": {
+                "client_id": "bb9e5b2f1ab480e4a715977b7b1b4279"
+              }
+            },
+            "text": "感谢亲的耐心等候，请问还有什么毛毛能够协助的吗？",
+            "author_id": "lun.shi@dd99.games",
+            "custom_id": "1774225576530.82188103852"
+          },
+          {
+            "id": "TC7BRSGXYQ_12",
+            "created_at": "2026-03-23T00:26:51.593000Z",
+            "visibility": "all",
+            "type": "system_message",
+            "text": "cjx1234 left the chat",
+            "system_message_type": "archived_customer_disconnected",
+            "text_vars": {
+              "customer": "cjx1234"
+            }
+          }
+        ]
+      },
+      "properties": {
+        "routing": {
+          "continuous": false,
+          "pinned": false,
+          "was_pinned": false
+        },
+        "source": {
+          "client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5",
+          "customer_client_id": "c5e4f61e1a6c3b1521b541bc5c5a2ac5"
+        }
+      },
+      "access": {
+        "group_ids": [
+          2
+        ]
+      },
+      "is_followed": false
+    }
+  ],
+  "found_chats": 38144,
+  "next_page_id": "70aed4e8-08c0-4664-aada-c936a9bb11ae"
+}
